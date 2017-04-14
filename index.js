@@ -5,8 +5,9 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 
-// routing and controllers
+// routes and controllers
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
