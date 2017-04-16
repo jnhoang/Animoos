@@ -6,7 +6,7 @@ angular
   'HomeFactory',
   function($scope, $state, HomeFactory) {
 
-    HomeFactory.testCall()
+    HomeFactory.findAnime('cowboy bebop')
     .then(function(res) {
         console.log('res success: ', res.data)
     })

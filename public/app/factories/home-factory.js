@@ -10,7 +10,7 @@ angular
     
 
   function findAnime(animeTitle) {
-    console.log('request in factory')
+    console.log('request in factory ',animeTitle)
     return $http.get('/api/anilist/search/anime/' + animeTitle);
   }
   function testCall() {

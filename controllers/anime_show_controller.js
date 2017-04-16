@@ -30,13 +30,8 @@ router.get('/', function(req, res) {
 
   if (!token || currentTime > expirationTime) {
     getAccessToken()
-    .then(function(tokenData) {
-      console.log('success at getAccessToken() ', tokenData)
-      var tokenData = tokenData;
-      token = tokenData.access_token;
-      // 1 hour expiration time
-      expirationTime = tokenData.expires;
-      
+    .then(function(tokenData) { 
+
       browsePopularAnime()
       .then(function(data) {
         console.log('success at browsePopularAnime() ', data);
@@ -46,10 +41,20 @@ router.get('/', function(req, res) {
         console.log('error at browsePopularAnime() ', err);
         res.send(err);
       })
-
     })
     .catch(function(err) {
       console.log('error at getAccessToken() ', err);
+    })
+  }
+  else {
+    browsePopularAnime()
+    .then(function(data) {
+      console.log('success at browsePopularAnime() ', data);
+      res.send(data);
+    })
+    .catch(function(err) {
+      console.log('error at browsePopularAnime() ', err);
+      res.send(err);
     })
   }
 })
@@ -61,13 +66,9 @@ router.get('/test/browse', function(req, res) {
   if (!token || currentTime > expirationTime) {
     // expired - make a post request to api and store returning auth token
     console.log('within if condition')
-    rp(accessTokenOptions)
+    
+    getAccessToken()
     .then(function(tokenData) {
-      console.log('token data', tokenData)
-      token = tokenData.access_token;
-      expirationTime = tokenData.expires;
-      console.log('saved token:', token, expirationTime)
-
       rp({
         method: 'GET'
       , uri: 'https://anilist.co/api/browse/anime/'
@@ -95,44 +96,90 @@ router.get('/test/browse', function(req, res) {
 // SEARCH SPECIFIC SHOW
 router.get('/search/anime/:id', function(req, res) {
   var currentTime = Math.floor(new Date().getTime() / 1000);
-  console.log('token ', token)
-  console.log('expiration time ', expirationTime)
-  console.log('finding correct route, before if condition');
+  console.log(req.params.id)
   // check for an authorization token / token is not expired
   if (!token || currentTime > expirationTime) {
-    // expired - make a post request to api and store returning auth token
-    console.log('within if condition')
-    waitForAccessToken = true;
-
-    return res.send(getAccessToken(req.params.id));
+    getAccessToken()
+    .then(function() {
+      
+      searchShow(req.params.id)
+      .then(function(data) {
+        console.log('success at searchShow() ', data)
+        res.send(data)
+      })
+      .catch(function(err) {
+        console.log('error at searchShow() ', err);
+      });
+    })
+    .catch(function(err) {
+      console.log('error at getAccessToken() ', err)
+    }) 
+  }
+  else {
+    searchShow(req.params.id)
+    .then(function(data) {
+      console.log('success at searchShow() ', data)
+      res.send(data)
+    })
+    .catch(function(err) {
+      console.log('error at searchShow() ', err);
+    })
   }
 
   // unexpired - make request for the searchTerm
-  return res.send(apiCall(req.params.id));
+  
 })
 
 
 // export
 module.exports = router;
 
+
+// FUNCTIONS
 function getAccessToken(searchTerm) {
   var deferred = q.defer();
 
   rp(accessTokenOptions)
   .then(function(tokenData) {
+    var tokenData = tokenData;
+    token = tokenData.access_token;
+    // 1 hour expiration time
+    expirationTime = tokenData.expires;
     deferred.resolve(tokenData);
   })
   .catch(function(err) {
     deferred.reject(err);
-  })
+  });
 
   return deferred.promise;
 }
-  
+
+function searchShow(searchTerm) {
+  var deferred = q.defer();
+
+  console.log('searchTerm in searchShow ', searchTerm) // inuyasha
+  rp({
+    uri: 'https://anilist.co/api/anime/search/' + searchTerm
+  , qs: {
+      access_token: token
+    , token_type: 'Bearer'
+    }
+  })
+  .then(function(data) {
+    deferred.resolve(data);
+  })
+  .catch(function(err) {
+    deferred.reject(err);
+  });
+
+  return deferred.promise;
+}
+
 function apiCall(searchTerm) {
-  console.log('searchTerm in apiCall ', searchTerm) // inuyasha
+  console.log('searchTerm in searchTerm ', searchTerm) // inuyasha
+  
   request.get({
-    url: 'https://anilist.co/api/anime/search/' + searchTerm + '?',
+    url: 'https://anilist.co/api/anime/search/' + searchTerm,
     qs: {
       access_token: token,
       token_type:   'Bearer'
