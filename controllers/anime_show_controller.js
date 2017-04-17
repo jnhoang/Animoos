@@ -46,15 +46,15 @@ router.get('/', function(req, res) {
 })
 
 // SEARCH SPECIFIC SHOW
-router.get('/search/anime/:id', function(req, res) {
+router.get('/search/anime/:title', function(req, res) {
   var currentTime = Math.floor(new Date().getTime() / 1000);
-  console.log(req.params.id)
+  console.log(req.params.title)
   // check for an authorization token / token is not expired
   if (!token || currentTime > expirationTime) {
     checkAccessToken()
     .then(function() {
       
-      searchShow(req.params.id)
+      searchShow(req.params.title)
       .then(function(data) {
         console.log('success at searchShow() ', data)
         res.send(data)

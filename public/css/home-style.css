@@ -63,6 +63,7 @@ video {
   width: 100%;
 }
 .home-title-card {
+  /*max-width: 285px;*/
   height: 345px;
   overflow: hidden;
 }
@@ -72,6 +73,7 @@ video {
   bottom: 0;
   color: white;
   padding: 50% 10px 10px 10px;
+  pointer-events: none;
   position: absolute;
   background: linear-gradient(to top,rgba(0,0,0,0.5) 
     0%, rgba(0,0,0,0.05) 100%);

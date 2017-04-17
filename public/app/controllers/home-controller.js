@@ -1,10 +1,10 @@
 angular
-.module('App')
+.module('Animoo')
 .controller('HomeCtrl', [
-  '$scope',
-  '$state',
-  'HomeFactory',
-  function($scope, $state, HomeFactory) {
+  '$scope'
+, '$state'
+, 'AnimeAPIFactory'
+, function($scope, $state, AnimeAPIFactory) {
     // PUBLIC VARS
     $scope.top5 = [];
     $scope.top40 = [];
@@ -17,7 +17,7 @@ angular
 
 
 
-    HomeFactory.initialSearch()
+    AnimeAPIFactory.initialSearch()
     .then(function(res) {
       $scope.top40 = res.data;
       for (var i = 0; i < 5; i++) {

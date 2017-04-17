@@ -1,6 +1,6 @@
 angular
-.module('App')
-.factory('HomeFactory', [
+.module('Animoo')
+.factory('AnimeAPIFactory', [
   '$http',
   function($http) {
     return {
