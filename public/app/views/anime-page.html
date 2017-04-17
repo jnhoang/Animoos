@@ -25,12 +25,18 @@
     </div>
     <!-- BASIC INFO -->
     <div>
-      {{ animeData.total_episodes}}
+      {{ animeData.title_english }}
+      {{ animeData.title_japanese }}
+      {{ animeData.title_romaji }}
+      total episodes: {{ animeData.total_episodes }}
       {{ animeData.duration }} mins episodes
-      average score: {{animeData.average_score }}
+      average score: {{ animeData.average_score }}
       {{ animeData.series_type }}
+      {{ animeData.type }}
       {{ animeData.start_date_fuzzy | date:"shortDate"}}
-      <p ng-repeat="genre in animeData.genres track by $index">{{genre}}</p> 
+      Airing Status: {{ animeData.airing_status }}
+      <p ng-repeat="studio in animeData.studio track by $index">{{ studio }}</p> 
+      <p ng-repeat="genre in animeData.genres track by $index">{{ genre }}</p> 
     </div>
   </div>
 </div>
@@ -38,16 +44,37 @@
 <!-- ROW 2 -->
 <div>
   <!-- CHARACTERS -->
+  <div ng-repeat="char in animeData.characters">
+    <img ng-src="{{ char.image_url_med }}">
+    {{ char.name_first }}
+    {{ cjar.name_last }}
+  </div>
   <!-- CAST & CREW -->
+  <div ng-repeat="person in animeData.staff track by $index">
+    {{person}}
+  </div>
 </div>
 
 <!-- ROW 3 -->
 <div>
   <!-- RELATED SHOWS -->
+  <div ng-repeat="show in animeData.relations track by $index">
+    <a href="/anime/{{ show.id }}">
+      <img ng-src="{{ show.image_url_lge }}">
+    </a>
+    average score: {{ show.average_score}}
+    {{ show.title_english }}
+    {{ show.type }}
+    {{ show.relationship_type }}
+
+  </div>
   <!-- WHERE TO WATCH -->
+  <div ng-repeat="service in animeData.external_links">
+    <a href="{{ service.url }}">{{ service.site }}</a>
+  </div>
 </div>
 
 <!-- ROW 4 -->
 <div>
-  <!-- WHERE TO WATCH -->
+  <!-- previously viewed items -->
 </div>
