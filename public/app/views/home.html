@@ -4,7 +4,9 @@
   <source src="vids/anime-banner.mp4" type="video/mp4">
   </video>
 </div> -->
+<a class="btn btn-floating cyan pulse"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
 
+<!-- LOADING SPINNER -->
 <div ng-if="loading" class="preloader-wrapper big active">
   <div class="spinner-layer spinner-green-only">
     <div class="circle-clipper left">
@@ -13,16 +15,25 @@
   </div>
 </div>
 
+<!-- SEARCH & FILTERS -->
+
+<!-- RESULTS -->
 <div class="row">
   <div ng-repeat="animeObj in top40">
     <div class="col s12 m4 l3">
       <div class="card home-title-card">
         <img 
-          class="title-img-lg responsive-img" 
+          class="title-img-lg" 
           ng-src="{{animeObj.image_url_lge}}">
           <!-- <p ng-repeat="genre in animeObj.genres">{{genre}}</p> -->
+        <h5 class="activator cover-title">
+          {{animeObj.title_english}}
+        </h5>
         <div class="cover-info">
-          <h5>title: {{animeObj.title_english}}</h5>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><i class="fa fa-times right" aria-hidden="true"></i></span>
+          <p>Here is some more information about this product that is only revealed once clicked on.</p>
           average score: {{animeObj.average_score}}
         </div>
       </div>
