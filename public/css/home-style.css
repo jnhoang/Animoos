@@ -1,7 +1,7 @@
 .intro-words {
-  width: 60%;
+  width: 75%;
   text-shadow: -5px 7px 5px rgba(0, 0, 0, 0.3);
-  font-size: 100px;
+  font-size: 10.5em;
   text-align: center;
   font-family: 'Permanent Marker', cursive;
   position: absolute;
@@ -15,6 +15,18 @@
   -moz-background-clip: text;
   background-clip: text;
 }
+@media (max-width: 600px) {
+  .intro-words {
+    font-size: 6em;
+  }
+}
+.video-filter {
+  height: 100vh;
+  width: 98.5vw;
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(0,0,0,0.35);
+}
 .vid-background {
   height: 100vh;
   background-size: cover;
@@ -26,22 +38,26 @@
   overflow: hidden;
 }
 video {
+  height: 100%;
   filter: blur(3px);
 }
-.splash-img {
 
+/*Search*/
+.search-container {
+  position: absolute;
+  bottom: -15px;
+  z-index: 1;
 }
-.test {
-  gradient(linear, left top, left bottom, 
-    color-stop(0%, rgba(0, 0, 0, 0.65)), 
-    color-stop(59%, rgba(0, 0, 0, 0.65)), 
-    color-stop(100%, rgba(0, 0, 0, 0.65)))) no-repeat;
+.search-bar {
+  background-color: whitesmoke;
 }
-.test {
-  border: 1px solid red;
-  height: 300px;
-  width: 300px;
+.seePopularBtn {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
 }
+
+/*Title Cards*/
 .title-img-lg {
   height: 100%;
   width: 100%;
@@ -76,4 +92,13 @@ video {
 }
 .cover-title:hover {
   cursor: pointer;
+}
+
+
+
+.test {
+  gradient(linear, left top, left bottom, 
+    color-stop(0%, rgba(0, 0, 0, 0.65)), 
+    color-stop(59%, rgba(0, 0, 0, 0.65)), 
+    color-stop(100%, rgba(0, 0, 0, 0.65)))) no-repeat;
 }
