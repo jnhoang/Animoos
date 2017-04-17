@@ -1,9 +1,50 @@
-<div class="vid-background">
+<!-- <div class="vid-background">
   <h1 class="intro-words">Anime World</h1>
   <video autoplay loop muted>
   <source src="vids/anime-banner.mp4" type="video/mp4">
   </video>
+</div> -->
+
+<div ng-if="loading" class="preloader-wrapper big active">
+  <div class="spinner-layer spinner-green-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+  </div>
 </div>
-<div class="test">
-  <!-- <img class="splash-img"src="http://res.cloudinary.com/dxumleria/image/upload/v1492139974/imageedit_9_3464682940_skma8a.gif"> -->
+
+<div class="row">
+  <div ng-repeat="animeObj in top40">
+    <div class="col s12 m4 l3">
+      <div class="card home-title-card">
+        <img 
+          class="title-img-lg responsive-img" 
+          ng-src="{{animeObj.image_url_lge}}">
+          <!-- <p ng-repeat="genre in animeObj.genres">{{genre}}</p> -->
+        <div class="cover-info">
+          <h5>title: {{animeObj.title_english}}</h5>
+          average score: {{animeObj.average_score}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="row">
+  <div class="test col s3">
+    <div class="card"></div>
+  </div>
+  <div class="test col s3">
+    
+  </div>
+  <div class="test col s3">
+    <div class="card"></div>
+  </div>
+  <div class="test col s3">
+    <div class="card"></div>
+  </div>
+</div>
+
+<!-- <div class="test">
+  <img class="splash-img"src="http://res.cloudinary.com/dxumleria/image/upload/v1492139974/imageedit_9_3464682940_skma8a.gif">
+</div> -->

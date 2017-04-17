@@ -24,74 +24,26 @@ var router = express.Router();
 // set and use statements
 
 // routes
+
 //BROWSE
 router.get('/', function(req, res) {
-  var currentTime = Math.floor(new Date().getTime() / 1000);
+  checkAccessToken()
+  .then(function(tokenData) { 
 
-  if (!token || currentTime > expirationTime) {
-    getAccessToken()
-    .then(function(tokenData) { 
-
-      browsePopularAnime()
-      .then(function(data) {
-        console.log('success at browsePopularAnime() ', data);
-        res.send(data);
-      })
-      .catch(function(err) {
-        console.log('error at browsePopularAnime() ', err);
-        res.send(err);
-      })
-    })
-    .catch(function(err) {
-      console.log('error at getAccessToken() ', err);
-    })
-  }
-  else {
     browsePopularAnime()
     .then(function(data) {
-      console.log('success at browsePopularAnime() ', data);
+      //console.log('success at browsePopularAnime() ', data);
       res.send(data);
     })
     .catch(function(err) {
       console.log('error at browsePopularAnime() ', err);
       res.send(err);
     })
-  }
+  })
+  .catch(function(err) {
+    console.log('error at checkAccessToken() ', err);
+  })
 })
-
-router.get('/test/browse', function(req, res) {
-  var currentTime = Math.floor(new Date().getTime() / 1000);
-  console.log('finding correct route, before if condition');
-  // check for an authorization token / token is not expired
-  if (!token || currentTime > expirationTime) {
-    // expired - make a post request to api and store returning auth token
-    console.log('within if condition')
-    
-    getAccessToken()
-    .then(function(tokenData) {
-      rp({
-        method: 'GET'
-      , uri: 'https://anilist.co/api/browse/anime/'
-      , json: true
-      , qs: {
-          access_token: token
-        , token_type:   'Bearer'
-        }
-      })
-      .then(function(data) {
-        res.send(data)
-      })
-      .catch(function(error) {
-        console.log('error within rp browse call')
-      })
-    })
-    .catch(function(err) {
-      console.log('error within rp tokenCall')
-    })
-  }
-  // unexpired - make request for the searchTerm
-})
-
 
 // SEARCH SPECIFIC SHOW
 router.get('/search/anime/:id', function(req, res) {
@@ -99,7 +51,7 @@ router.get('/search/anime/:id', function(req, res) {
   console.log(req.params.id)
   // check for an authorization token / token is not expired
   if (!token || currentTime > expirationTime) {
-    getAccessToken()
+    checkAccessToken()
     .then(function() {
       
       searchShow(req.params.id)
@@ -112,22 +64,9 @@ router.get('/search/anime/:id', function(req, res) {
       });
     })
     .catch(function(err) {
-      console.log('error at getAccessToken() ', err)
+      console.log('error at checkAccessToken() ', err)
     }) 
-  }
-  else {
-    searchShow(req.params.id)
-    .then(function(data) {
-      console.log('success at searchShow() ', data)
-      res.send(data)
-    })
-    .catch(function(err) {
-      console.log('error at searchShow() ', err);
-    })
-  }
-
-  // unexpired - make request for the searchTerm
-  
+  }  
 })
 
 
@@ -135,21 +74,28 @@ router.get('/search/anime/:id', function(req, res) {
 module.exports = router;
 
 
-// FUNCTIONS
-function getAccessToken(searchTerm) {
-  var deferred = q.defer();
 
-  rp(accessTokenOptions)
-  .then(function(tokenData) {
-    var tokenData = tokenData;
-    token = tokenData.access_token;
-    // 1 hour expiration time
-    expirationTime = tokenData.expires;
-    deferred.resolve(tokenData);
-  })
-  .catch(function(err) {
-    deferred.reject(err);
-  });
+// FUNCTIONS
+function checkAccessToken(searchTerm) {
+  var deferred = q.defer();
+  var currentTime = Math.floor(new Date().getTime() / 1000);
+
+  if (!token || currentTime > expirationTime) {
+    rp(accessTokenOptions)
+    .then(function(tokenData) {
+      var tokenData = tokenData;
+      token = tokenData.access_token;
+      // 1 hour expiration time
+      expirationTime = tokenData.expires;
+      deferred.resolve();
+    })
+    .catch(function(err) {
+      deferred.reject(err);
+    });
+  } 
+  else {
+    deferred.resolve();
+  }
 
   return deferred.promise;
 }

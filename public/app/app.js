@@ -1,5 +1,5 @@
 angular
-.module('App', ['ui.router'])
+.module('App', ['ui.router', 'ui.materialize'])
 .config([
   '$stateProvider',
   '$urlRouterProvider',

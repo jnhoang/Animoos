@@ -5,13 +5,32 @@ angular
   '$state',
   'HomeFactory',
   function($scope, $state, HomeFactory) {
+    // PUBLIC VARS
+    $scope.top5 = [];
+    $scope.top40 = [];
+    $scope.loading = true;
+    $scope.searchFilter = {
+      sort: 'popularity-desc'
+    , genres_exclude: 'hentai'
+    }
 
-    HomeFactory.findAnime('cowboy bebop')
+
+
+
+    HomeFactory.initialSearch()
     .then(function(res) {
-        console.log('res success: ', res.data)
+      $scope.top40 = res.data;
+      for (var i = 0; i < 5; i++) {
+        $scope.top5.push($scope.top40.shift());
+      }
+      $scope.loading = false;
+      console.log($scope.top40);
+      console.log($scope.top5);
     })
     .catch(function (err) {
         console.log('error: '. err)
     })
+
+
   }
 ])

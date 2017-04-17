@@ -5,7 +5,7 @@ angular
   function($http) {
     return {
       findAnime: findAnime
-    , testCall: testCall
+    , initialSearch: initialSearch
     }
     
 
@@ -13,7 +13,7 @@ angular
     console.log('request in factory ',animeTitle)
     return $http.get('/api/anilist/search/anime/' + animeTitle);
   }
-  function testCall() {
+  function initialSearch() {
     return $http.get('api/anilist/');
   }
 }])
