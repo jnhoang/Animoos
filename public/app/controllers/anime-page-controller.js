@@ -7,14 +7,19 @@ angular
 , 'AnimeAPIFactory'
 , function($scope, $state, $stateParams, AnimeAPIFactory) {
     $scope.animeData;
-    
-    AnimeAPIFactory.findAnime($state.params.title)
+    $scope.loading = true;
+    $scope.errorMessage;
+
+    AnimeAPIFactory.getAnimeById($stateParams.id)
     .then(function(res) {
-      console.log(res.data[0])
-      $scope.animeData = res.data[0];
+      console.log(res.data)
+      $scope.loading = false;
+      $scope.animeData = res.data;
     })
     .catch(function(err) {
-      console.log(err)
+      console.log(err.message[0])
+      // CONSIDER TOASTING THIS
+      $scope.errorMessage = err.error.messages[0];
     })
   }
 ])

@@ -14,7 +14,7 @@ angular
     , controller: 'HomeCtrl'
     })
     .state('AnimeDetail', {
-      url: '/anime/:title'
+      url: '/anime/:id'
     , templateUrl: 'app/views/anime-page.html'
     , controller: 'AnimeDetailCtrl'
     })

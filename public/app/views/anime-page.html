@@ -1,13 +1,38 @@
+<!-- LOADING SPINNER -->
+<div ng-if="loading" class="preloader-wrapper big active">
+  <div class="spinner-layer spinner-green-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
 <!-- banner -->
-<div>
+<div ng-if="!loading">
   
 </div>
 
- <!-- ROW 1  -->
-<div>
-  <!-- COVER -->
-  <!-- DESCRIPTION -->
-  <!-- BASIC INFO -->
+<div ng-if="!loading" class="container custom-container">
+
+  <!-- ROW 1  -->
+  <div class="row">
+    <!-- COVER -->
+    <div>
+      <img ng-src="{{ animeData.image_url_lge }}">
+    </div>
+    <!-- DESCRIPTION -->
+    <div>
+      <p>{{ animeData.description }}</p>
+    </div>
+    <!-- BASIC INFO -->
+    <div>
+      {{ animeData.total_episodes}}
+      {{ animeData.duration }} mins episodes
+      average score: {{animeData.average_score }}
+      {{ animeData.series_type }}
+      {{ animeData.start_date_fuzzy | date:"shortDate"}}
+      <p ng-repeat="genre in animeData.genres track by $index">{{genre}}</p> 
+    </div>
+  </div>
 </div>
 
 <!-- ROW 2 -->
