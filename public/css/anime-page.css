@@ -1,3 +1,32 @@
 .custom-container {
-  width: 80%;
+  width: 90%;
+}
+.anime-display-loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.breaker { /* remove this*/
+  height: 300px;
+  width:  100%;
+}
+.anime-side-bar {
+  padding: 15px;
+}
+.anime-desc {
+  padding: 25px;
+  text-align: justify;
+}
+.single-char {
+  padding: 0;
+  display: inline-block;
+  width: 100%;
+}
+.char-staff-img {
+  height: 100%;
+  width: 100%;
+}
+.card-content.char-name {
+  height: 60px;
+  padding: 5px 10px 10px 10px;
 }

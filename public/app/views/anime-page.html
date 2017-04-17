@@ -1,5 +1,5 @@
 <!-- LOADING SPINNER -->
-<div ng-if="loading" class="preloader-wrapper big active">
+<div ng-if="loading" class="preloader-wrapper big active anime-display-loading">
   <div class="spinner-layer spinner-green-only">
     <div class="circle-clipper left">
       <div class="circle"></div>
@@ -14,44 +14,74 @@
 <div ng-if="!loading" class="container custom-container">
 
   <!-- ROW 1  -->
+  <div class="breaker"></div>
   <div class="row">
-    <!-- COVER -->
-    <div>
-      <img ng-src="{{ animeData.image_url_lge }}">
+    <div class="col s12 m3">
+      <!-- SIDEBAR -->
+      <div class="card anime-side-bar">
+        <!-- COVER -->
+        <img class="responsive-img"
+          ng-src="{{ animeData.image_url_lge }}">
+
+        <!-- BASIC INFO -->
+        <p>English title: {{ animeData.title_english }}</p>
+        <p>Japanese title: {{ animeData.title_japanese }}</p>
+        <p>Romaji title: {{ animeData.title_romaji }}</p>
+        <p>total episodes: {{ animeData.total_episodes }}, {{ animeData.duration }}mins</p>
+        <p>average score: {{ animeData.average_score }}</p>
+        {{ animeData.series_type }}
+        {{ animeData.type }}
+        {{ animeData.start_date_fuzzy | date:"shortDate"}}
+        Airing Status: {{ animeData.airing_status }}
+        <p>
+          Studios: <span ng-repeat="studio in animeData.studio track by $index">{{ studio.studio_name }} </span> 
+        </p>
+        <p>
+          Genres: <span ng-repeat="genre in animeData.genres track by $index">{{ genre }} </span>
+        </p>
+      </div>
     </div>
     <!-- DESCRIPTION -->
-    <div>
-      <p>{{ animeData.description }}</p>
+    <div class="col s12 m9">
+      <div class="card anime-desc">
+        <span class="card-title"><strong>Synopsis</strong></span>
+        <p>{{ animeData.description }}</p>
+      </div>
     </div>
-    <!-- BASIC INFO -->
-    <div>
-      {{ animeData.title_english }}
-      {{ animeData.title_japanese }}
-      {{ animeData.title_romaji }}
-      total episodes: {{ animeData.total_episodes }}
-      {{ animeData.duration }} mins episodes
-      average score: {{ animeData.average_score }}
-      {{ animeData.series_type }}
-      {{ animeData.type }}
-      {{ animeData.start_date_fuzzy | date:"shortDate"}}
-      Airing Status: {{ animeData.airing_status }}
-      <p ng-repeat="studio in animeData.studio track by $index">{{ studio }}</p> 
-      <p ng-repeat="genre in animeData.genres track by $index">{{ genre }}</p> 
+    <!-- CHARACTERS -->
+    <div class="col s12 m9">
+      <div class="row">
+      <span class="title-name">Characters</span>
+        <div ng-repeat="char in animeData.characters">
+          <div class="col s6 m4 l3"> 
+            <div class="card single-char">
+              <img class="char-staff-img"
+                ng-src="{{ char.image_url_med }}">
+              <div class="card-content char-name">
+                <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
+                <p class="truncate">{{ char.actor[0].name_first}} {{char.actor[0].name_last }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+
   </div>
 </div>
 
 <!-- ROW 2 -->
-<div>
-  <!-- CHARACTERS -->
-  <div ng-repeat="char in animeData.characters">
-    <img ng-src="{{ char.image_url_med }}">
-    {{ char.name_first }}
-    {{ cjar.name_last }}
-  </div>
+<div class="row">
+
+  
   <!-- CAST & CREW -->
   <div ng-repeat="person in animeData.staff track by $index">
-    {{person}}
+    <img ng-src="{{ person.image_url_med }}">
+    {{ person.name_first }}
+    {{ person.name_last }}
+    {{ person.role }}
+
   </div>
 </div>
 
@@ -78,3 +108,6 @@
 <div>
   <!-- previously viewed items -->
 </div>
+
+
+<!-- MODAL= -->
