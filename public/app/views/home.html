@@ -45,20 +45,23 @@
 <!-- SEARCH RESULTS -->
 <!-- SLIDER GOES HERE -->
 
+
+
 <!-- RESULTS -->
 <div ng-if="!loading" class="row">
   <div ng-repeat="animeObj in top40">
-    <div class="col s12 m4 l3">
+    <div class="col s12 m4 l3 xl2">
       <div class="card z-depth-2 home-title-card">
-        <a ng-href="/anime/{{ animeObj.id }}"><img 
+        <a ng-href="/anime/{{ animeObj.id }}">
+          <img 
           class="title-img-lg" 
-          ng-src="{{ animeObj.image_url_lge }}"></a>
+          ng-src="{{ animeObj.image_url_lge }}">
+        </a>
           <span ng-repeat="genre in animeObj.genres">{{ genre }}</span>
         <h5 class="activator cover-title">
           {{ animeObj.title_english }}
         </h5>
-        <div class="cover-info">
-        </div>
+        <div class="cover-info"></div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><i class="fa fa-times right" aria-hidden="true"></i></span>
           <p>Here is some more information about this product that is only revealed once clicked on.</p>

@@ -1,3 +1,6 @@
+.body {
+  background-color: whitesmoke;
+}
 .custom-container {
   width: 90%;
 }
@@ -10,8 +13,20 @@
   height: 300px;
   width:  100%;
 }
+.anime-side-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .anime-side-bar {
   padding: 15px;
+}
+.row-title {
+  padding: 0 0 10px 20px;
+  line-height: 1.5;
+  font-size: 1.5em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 .anime-desc {
   padding: 25px;

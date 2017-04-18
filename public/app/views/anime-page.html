@@ -7,32 +7,51 @@
   </div>
 </div>
 <!-- banner -->
-<div ng-if="!loading">
-  
+<div>
+  <img ng-if="!loading && animeData.image_url_banner != null"
+    class="responsive-img" 
+    src="{{animeData.image_url_banner}}">
 </div>
 
 <div ng-if="!loading" class="container custom-container">
 
   <!-- ROW 1  -->
-  <div class="breaker"></div>
-  <div class="row">
-    <div class="col s12 m3">
-      <!-- SIDEBAR -->
-      <div class="card anime-side-bar">
-        <!-- COVER -->
-        <img class="responsive-img"
+  <div class="row valign-wrapper">
+
+    <div class="col s12 m3 center-align">
+      <!-- COVER -->
+      <img class="responsive-img z-depth-4"
           ng-src="{{ animeData.image_url_lge }}">
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="col s12 m9">
+      <div class="card anime-desc">
+        <span class="card-title"><strong>Synopsis</strong></span>
+        <p>{{ animeData.description }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="row valign-wrapper">
+    <!-- SIDEBAR -->
+    <div class="col s12 m3">
+      <div class="card anime-side-bar">
 
         <!-- BASIC INFO -->
-        <p>English title: {{ animeData.title_english }}</p>
+        <p><strong>Alternative Titles</strong></p>
+        <hr>
         <p>Japanese title: {{ animeData.title_japanese }}</p>
         <p>Romaji title: {{ animeData.title_romaji }}</p>
-        <p>total episodes: {{ animeData.total_episodes }}, {{ animeData.duration }}mins</p>
-        <p>average score: {{ animeData.average_score }}</p>
-        {{ animeData.series_type }}
-        {{ animeData.type }}
-        {{ animeData.start_date_fuzzy | date:"shortDate"}}
-        Airing Status: {{ animeData.airing_status }}
+        <p><strong>Info</strong></p>
+        <hr>
+        <p>total episodes: {{ animeData.total_episodes }}</p>
+        <p>Duration: {{ animeData.duration }}mins;</p>
+        <p>Average Score: {{ animeData.average_score }}</p>
+        <p>Airing Status: {{ animeData.airing_status }}</p>
+        <p>Originally Aired: {{ animeData.start_date_fuzzy | date:"shortDate"}}</p>
         <p>
           Studios: <span ng-repeat="studio in animeData.studio track by $index">{{ studio.studio_name }} </span> 
         </p>
@@ -41,63 +60,92 @@
         </p>
       </div>
     </div>
-    <!-- DESCRIPTION -->
-    <div class="col s12 m9">
-      <div class="card anime-desc">
-        <span class="card-title"><strong>Synopsis</strong></span>
-        <p>{{ animeData.description }}</p>
-      </div>
-    </div>
-    <!-- CHARACTERS -->
-    <div class="col s12 m9">
-      <div class="row">
-      <span class="title-name">Characters</span>
-        <div ng-repeat="char in animeData.characters">
-          <div class="col s6 m4 l3"> 
-            <div class="card single-char">
-              <img class="char-staff-img"
-                ng-src="{{ char.image_url_med }}">
-              <div class="card-content char-name">
-                <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
-                <p class="truncate">{{ char.actor[0].name_first}} {{char.actor[0].name_last }}</p>
+
+      <!-- CHARACTERS -->
+      <div class="col s12 m9">
+        <div class="row-title">Characters</div>
+        <div class="card row">
+          <div ng-repeat="char in animeData.characters|limitTo:8">
+            <div class="col s6 m3 l2">
+
+              <div class="card single-char z-depth-2">
+                <img class="char-staff-img"
+                  ng-src="{{ char.image_url_med }}">
+                <div class="card-content char-name">
+                  <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
+                  <p class="truncate">{{ char.actor[0].name_first}} {{char.actor[0].name_last }}</p>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
-
+        <p class="see-more right-align"
+          ng-if="animeData.characters.length > 8">
+          <strong>See more...</strong>
+        </p>
       </div>
     </div>
 
+  <!-- ROW 2 -->
+  <div class="row">
+   <!-- RELATED SHOWS -->
+     <div class="row-title">In the Franchise</div>
+     <div ng-repeat="show in animeData.relations track by $index">
+
+       <div class="col s12 m4 l3">
+         <div class="card z-depth-2 home-title-card">
+           <a href="/anime/{{ show.id }}">
+             <img class="title-img-lg"
+               ng-src="{{ show.image_url_lge }}">
+           </a>
+           <h5 class="cover-title">
+             {{ show.title_english }}
+           </h5>
+           <div class="cover-info">
+             <span>  
+               average score: {{ show.average_score}}
+               {{ show.type }}
+               {{ show.relationship_type }}
+             </span>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+    <!-- CAST & CREW -->
+    <!-- <div class="col s12 m6">
+      <div class="row">
+      <div class="row-title">Cast and Crew</div>
+        <div ng-repeat="person in animeData.staff|limitTo:4">
+          <div class="col s6 m6 l3">
+
+            <div class="card single-char z-depth-2">
+              <img class="char-staff-img"
+                ng-src="{{ person.image_url_med }}">
+              <div class="card-content char-name">
+                <p class="truncate">{{ person.name_first }} {{ person.name_last }}</p>
+                <p class="truncate">{{ person.role }}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="right"
+          ng-if="animeData.staff.length > 4">
+          <strong>See more...</strong>
+        </div>
+      </div>
+    </div> -->
+
+
   </div>
 </div>
 
-<!-- ROW 2 -->
-<div class="row">
-
-  
-  <!-- CAST & CREW -->
-  <div ng-repeat="person in animeData.staff track by $index">
-    <img ng-src="{{ person.image_url_med }}">
-    {{ person.name_first }}
-    {{ person.name_last }}
-    {{ person.role }}
-
-  </div>
-</div>
-
-<!-- ROW 3 -->
 <div>
-  <!-- RELATED SHOWS -->
-  <div ng-repeat="show in animeData.relations track by $index">
-    <a href="/anime/{{ show.id }}">
-      <img ng-src="{{ show.image_url_lge }}">
-    </a>
-    average score: {{ show.average_score}}
-    {{ show.title_english }}
-    {{ show.type }}
-    {{ show.relationship_type }}
 
-  </div>
+
+
   <!-- WHERE TO WATCH -->
   <div ng-repeat="service in animeData.external_links">
     <a href="{{ service.url }}">{{ service.site }}</a>
@@ -110,4 +158,4 @@
 </div>
 
 
-<!-- MODAL= -->
+<!-- MODAL=
