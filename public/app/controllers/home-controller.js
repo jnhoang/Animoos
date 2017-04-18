@@ -10,12 +10,12 @@ angular
     $scope.top5 = [];
     $scope.top40 = [];
     $scope.loading = true;
+    $scope.searchTerm;
     $scope.searchFilter = {
       sort: 'popularity-desc'
     , genres_exclude: 'hentai'
     }
-
-
+    $scope.search = search;
 
 
     AnimeAPIFactory.initialSearch()
@@ -29,8 +29,21 @@ angular
       console.log($scope.top5);
     })
     .catch(function (err) {
-        console.log('error: '. err)
+        console.log('error: ', err)
     })
 
+    function search() {
+      console.log('searching')
+      console.log('searchTerm: ', $scope.searchTerm)
+      AnimeAPIFactory.searchForAnime($scope.searchTerm)
+      .then(function(res) {
+        console.log('search results: ', res.data);
+        $scope.searchResults = res.data;
+      })
+      .catch(function(err) {
+        console.log('error ', err.message);
+        Materialize.toast(err.message, 10000);
+      });
+    }
   }
 ])
