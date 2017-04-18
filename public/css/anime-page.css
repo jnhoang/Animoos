@@ -1,6 +1,24 @@
 body {
   background-color: whitesmoke;
 }
+.banner-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.show-banner {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+.anime-title {
+  margin: 0;
+  position: absolute;
+  color: white;
+  text-align: center;
+  text-shadow: 0 0 5px black;
+}
 .custom-container {
   width: 90%;
 }
@@ -54,10 +72,10 @@ body {
   padding: 25px;
   text-align: justify;
 }
-.modal-img {
-  margin-top: 50%;
-}
 @media(max-width: 600px) {
+  .anime-title {
+    font-size: 2em;
+  }
   .modal-card {
     width: 80%;
     height: 90%;

@@ -7,10 +7,15 @@
   </div>
 </div>
 <!-- banner -->
-<div>
-  <img ng-if="!loading && animeData.image_url_banner != null"
-    class="responsive-img" 
+<div ng-if="!loading" class="banner-box">
+  <div class="cover-slider"></div>
+  <img ng-if="animeData.image_url_banner != null"
+    class="responsive-img show-banner" 
     src="{{animeData.image_url_banner}}">
+  <img ng-if="animeData.image_url_banner == null"
+    class="responsive-img show-banner"
+    src="">
+  <h1 class="anime-title">{{ animeData.title_english}}</h1>
 </div>
 
 <div ng-if="!loading" class="container custom-container">
@@ -41,15 +46,15 @@
       <div class="card anime-side-bar">
 
         <!-- BASIC INFO -->
-        <p><strong>Alternative Titles</strong></p>
+        <p class="center-align"><strong>Alternative Titles</strong></p>
         <div class="divider"></div>
         <p>Japanese title: {{ animeData.title_japanese }}</p>
         <p>Romaji title: {{ animeData.title_romaji }}</p>
-        <p><strong>Info</strong></p>
+        <p class="center-align"><strong>Information</strong></p>
         <div class="divider"></div>
         <p>total episodes: {{ animeData.total_episodes }}</p>
         <p>Duration: {{ animeData.duration }}mins</p>
-        <p>Average Score: {{ animeData.average_score }}</p>
+        <p>Average Score: {{ animeData.average_score }}/100</p>
         <p>Airing Status: {{ animeData.airing_status }}</p>
         <p>Originally Aired: {{ animeData.start_date_fuzzy | date:"shortDate"}}</p>
         <p>
@@ -94,7 +99,10 @@
   <!-- ROW 3 -->
   <div class="row">
    <!-- RELATED SHOWS -->
-     <div class="row-title">In the Franchise</div>
+    <div class="row-title"
+      ng-if="animeData.relations != 0">
+      In the Franchise
+    </div>
      <div ng-repeat="show in animeData.relations track by $index">
 
        <div class="col s12 m4 l3">
@@ -175,14 +183,14 @@
     ng-if="!loadingModal">
 
     <div class="col s12 m4">
-      <img class="char-staff-img modal-img" 
+      <img class="char-staff-img" 
         ng-src="{{ charData.image_url_lge }}">
     </div>
 
     <div class="col s12 m8">
-      <p>Name: {{ charData.name_first }} {{ charData.name_last }}</p>
-      <p>Japanese Name: {{ charData.name_japanese }}</p>
-      <p>Info: {{ charData.info }}</p>
+      <p><strong>Name:</strong> {{ charData.name_first }} {{ charData.name_last }}</p>
+      <p><strong>Japanese Name:</strong> {{ charData.name_japanese }}</p>
+      <p><strong>Info:</strong> {{ charData.info }}</p>
     </div>
 
     </div>
