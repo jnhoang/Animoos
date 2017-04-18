@@ -48,3 +48,18 @@ body {
   height: 60px;
   padding: 5px 10px 10px 10px;
 }
+
+/*Modal*/
+.modal-card {
+  padding: 25px;
+  text-align: justify;
+}
+.modal-img {
+  margin-top: 50%;
+}
+@media(max-width: 600px) {
+  .modal-card {
+    width: 80%;
+    height: 90%;
+  }
+}

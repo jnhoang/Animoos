@@ -16,7 +16,7 @@
 <div ng-if="!loading" class="container custom-container">
 
   <!-- ROW 1  -->
-  <div class="row valign-wrapper">
+  <div class="row">
 
     <div class="col s12 m3 center-align">
       <!-- COVER -->
@@ -35,20 +35,20 @@
   </div>
 
   <!-- ROW 2 -->
-  <div class="row valign-wrapper">
+  <div class="row">
     <!-- SIDEBAR -->
     <div class="col s12 m3">
       <div class="card anime-side-bar">
 
         <!-- BASIC INFO -->
         <p><strong>Alternative Titles</strong></p>
-        <hr>
+        <div class="divider"></div>
         <p>Japanese title: {{ animeData.title_japanese }}</p>
         <p>Romaji title: {{ animeData.title_romaji }}</p>
         <p><strong>Info</strong></p>
-        <hr>
+        <div class="divider"></div>
         <p>total episodes: {{ animeData.total_episodes }}</p>
-        <p>Duration: {{ animeData.duration }}mins;</p>
+        <p>Duration: {{ animeData.duration }}mins</p>
         <p>Average Score: {{ animeData.average_score }}</p>
         <p>Airing Status: {{ animeData.airing_status }}</p>
         <p>Originally Aired: {{ animeData.start_date_fuzzy | date:"shortDate"}}</p>
@@ -69,7 +69,9 @@
             <div class="col s6 m3 l2">
 
               <div class="card single-char z-depth-2">
-                <a ng-href="#">
+                <a href="" 
+                  data-target="charModal" modal
+                  ng-click="getCharById(char.id)">
                   <img class="char-staff-img"
                     ng-src="{{ char.image_url_med }}">
                 </a>
@@ -89,7 +91,7 @@
       </div>
     </div>
 
-  <!-- ROW 2 -->
+  <!-- ROW 3 -->
   <div class="row">
    <!-- RELATED SHOWS -->
      <div class="row-title">In the Franchise</div>
@@ -160,4 +162,29 @@
 </div>
 
 
-<!-- MODAL=
+<!-- Character Modal -->
+<div class="modal modal-card" 
+  id="charModal">
+  <!-- LOADING BAR -->
+  <div class="progress"
+    ng-if="loadingModal">
+    <div class="indeterminate"></div>
+  </div>
+    
+  <div class="row"
+    ng-if="!loadingModal">
+
+    <div class="col s12 m4">
+      <img class="char-staff-img modal-img" 
+        ng-src="{{ charData.image_url_lge }}">
+    </div>
+
+    <div class="col s12 m8">
+      <p>Name: {{ charData.name_first }} {{ charData.name_last }}</p>
+      <p>Japanese Name: {{ charData.name_japanese }}</p>
+      <p>Info: {{ charData.info }}</p>
+    </div>
+
+    </div>
+</div>
+
