@@ -4,7 +4,8 @@ angular
   '$scope'
 , '$state'
 , 'AnimeAPIFactory'
-, function($scope, $state, AnimeAPIFactory) {
+, 'smoothScroll'
+, function($scope, $state, AnimeAPIFactory, smoothScroll) {
     // PUBLIC VARS
     $scope.top5 = [];
     $scope.top40 = [];
@@ -30,7 +31,6 @@ angular
     .catch(function (err) {
         console.log('error: '. err)
     })
-
 
   }
 ])

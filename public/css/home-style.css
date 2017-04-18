@@ -86,6 +86,7 @@ video {
   width: 100%;
 }
 .home-title-card {
+  border-radius: 20px 5px;
   max-width: 300px;
   height: 345px;
   overflow: hidden;

@@ -24,7 +24,11 @@
     </div>
   </div>
 
-  <a class="btn btn-floating cyan pulse seePopularBtn" href="#home-slider">
+  <!-- PULSING BTN -->
+  <a class="btn btn-floating cyan pulse seePopularBtn"  href="#"
+    scroll-to="tester"
+    duration="1200"
+    easing="easeInOutQuint">
     <i class="fa fa-caret-down" aria-hidden="true"></i>
   </a>
 </div>
@@ -65,7 +69,8 @@
 
 <!-- SEARCH RESULTS -->
 <div class="row">
-  <div class="col s12 m6">
+  <div id="tester"
+    class="col s12 m6 z-depth-1">
     <ul tabs reload="allTabContentLoaded">
       <li class="tab col s3"><a href="#test1">Test 1</a></li>
       <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
@@ -83,7 +88,7 @@
 <div ng-if="!loading" class="row" id="test1">
   <div ng-repeat="animeObj in top40">
     <div class="col s12 m4 l3 xl2">
-      <div class="card z-depth-2 home-title-card">
+      <div class="card z-depth-3 home-title-card">
         <a ng-href="/anime/{{ animeObj.id }}">
           <img 
           class="title-img-lg" 

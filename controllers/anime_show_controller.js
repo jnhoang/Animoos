@@ -205,6 +205,7 @@ function browsePopularAnime() {
     , token_type:       'Bearer'
     , sort:             'popularity-desc'
     , genres_exclude:   'hentai'
+    , page: 1
     }
   };
 

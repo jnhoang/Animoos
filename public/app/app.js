@@ -1,5 +1,8 @@
 angular
-.module('Animoo', ['ui.router', 'ui.materialize'])
+.module('Animoo', [
+  'ui.router'
+, 'ui.materialize'
+, 'smoothScroll'])
 .config([
   '$stateProvider'
 , '$urlRouterProvider'
