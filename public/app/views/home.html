@@ -19,7 +19,7 @@
         <input 
           class="input-field col s12 search-bar" 
           id="search" type="text"></input>
-        <label for="search">Search for an Anime Title</label>
+        <label for="search">Search an Anime Title</label>
       </div>
     </div>
   </div>
@@ -38,16 +38,35 @@
   </div>
 </div>
 
+<!-- SLIDER GOES HERE -->
+<div class="slider" slider
+  ng-if="!loading" indicators="false">
+    <ul class="slides">
+      <li ng-repeat="show in top5">
+        <img ng-src="{{ show.image_url_banner }}">
+        <div class="cover-slider"></div>
+        <div class="caption left-align">
+          <h3 class="caption-text">{{ show.title_english }}</h3>
+          <h5 class="caption-text">
+            {{ show.average_score }}
+            <span ng-repeat="genre in show.genres">
+              {{ genre }} 
+            </span>
+          </h5>
+          <a href="#"
+            class="waves-effect waves-light slider-btn btn">Learn More</a>
+        </div>
+      </li>
+    </ul>
+</div>
 
 <!-- ADVANCE SEARCH/FILTER -->
 
 
 <!-- SEARCH RESULTS -->
-<!-- SLIDER GOES HERE -->
 
 
-
-<!-- RESULTS -->
+<!-- PAGE RESULTS -->
 <div ng-if="!loading" class="row">
   <div ng-repeat="animeObj in top40">
     <div class="col s12 m4 l3 xl2">

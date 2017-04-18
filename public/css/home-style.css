@@ -57,6 +57,29 @@ video {
   right: 25px;
 }
 
+/*Slider*/
+.cover-slider {
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  color: white;
+  pointer-events: none;
+  position: absolute;
+  background: linear-gradient(to right,rgba(0,0,0,0.4) 
+    0%, rgba(0,0,0,0.05) 100%);
+}
+.slider-btn {
+  color: rgba(255,255,255,0.75);
+  background: rgba(0,0,0, 0.5);
+  box-shadow: none;
+}
+.slider-btn:hover {
+/*  background-color: ; THINK ABOUT IT
+*/}
+.caption-text {
+  text-shadow: 0 0 1px solid;
+}
+
 /*Title Cards*/
 .title-img-lg {
   height: 100%;
