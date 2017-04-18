@@ -5,7 +5,8 @@ angular
 , '$state'
 , '$stateParams'
 , 'AnimeAPIFactory'
-, function($scope, $state, $stateParams, AnimeAPIFactory) {
+, '$http'
+, function($scope, $state, $stateParams, AnimeAPIFactory, $http) {
     
     // PUBLIC VARS & FUNCTIONS 
     $scope.animeData;
@@ -15,7 +16,6 @@ angular
     $scope.errorMessage;
 
     $scope.getCharById = getCharById;
-
 
     AnimeAPIFactory.getAnimeById($stateParams.id)
     .then(function(res) {

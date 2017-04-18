@@ -1,0 +1,76 @@
+{{testVar}}
+<br>
+<div class="input-field">
+  <select ng-model="testVar.season">
+    <option value="" disabled selected>Season</option>
+    <option value="spring">Spring</option>
+    <option value="summer">Summer</option>
+    <option value="autumn">Autumn</option>
+    <option value="winter">Winter</option>
+  </select>
+  <label>Materialize Select</label>
+</div>
+
+genres - action, adventure, comedy, drama, fantasy, horror, magical girl(mahou shoujo), mecha, music, mystery, psychological, romance, sci fi, slice of life, sports
+
+Genres
+<br>
+<form action="#">
+ <p>
+   <input type="checkbox" class="filled-in" id="action"
+    ng-click="toggleGenre('action')">
+   <label for="action">Action</label>
+ </p>
+ <p>
+   <input type="checkbox" class="filled-in" id="adventure"
+    ng-click="toggleGenre('adventure')">
+   <label for="adventure">Adventure</label>
+ </p>
+ <p>
+   <input type="checkbox" class="filled-in" id="comedy"
+    ng-click="toggleGenre('comedy')">
+   <label for="comedy">Comedy</label>
+ </p>
+ </form>
+
+
+
+
+<div class="container search-container">
+  <div class="row">
+    <div class="input-field">
+      <input
+        ng-model="searchTerm"
+        class="input-field col s12 search-bar" 
+        id="search" type="text"
+        placeholder="Search an Anime Title"></input>
+      <button type="button" 
+        class="btn"
+        scroll-to="#"
+        ng-click="testFunc()">
+        Search!
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- SEARCH RESULTS -->
+    <div ng-repeat="animeObj in searchResults|limitTo:4">
+      <div class="col s10 m4 l3">
+        <div class="card z-depth-3 home-title-card">
+
+          <a ng-href="/anime/{{ animeObj.id }}">
+            <img 
+            class="title-img-lg" 
+            ng-src="{{ animeObj.image_url_lge }}">
+          </a>
+            <span ng-repeat="genre in animeObj.genres">{{ genre }}</span>
+          <h5 class="activator cover-title">
+            {{ animeObj.title_english }}
+          </h5>
+          <div class="cover-info"></div>
+        </div>
+      </div>
+    </div>
+  </div>

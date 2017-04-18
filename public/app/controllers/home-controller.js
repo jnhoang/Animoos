@@ -17,7 +17,10 @@ angular
     }
     $scope.search = search;
 
+    // On Page Render
+    browseTop40();
 
+  function browseTop40() {
     AnimeAPIFactory.initialSearch()
     .then(function(res) {
       $scope.top40 = res.data;
@@ -31,6 +34,7 @@ angular
     .catch(function (err) {
         console.log('error: ', err)
     })
+  }
 
     function search() {
       console.log('searching')

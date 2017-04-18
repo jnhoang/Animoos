@@ -21,6 +21,11 @@ angular
     , templateUrl: 'app/views/anime-page.html'
     , controller: 'AnimeDetailCtrl'
     })
+    .state('Search', {
+      url: '/search'
+    , templateUrl: 'app/views/search-results.html'
+    , controller: 'SearchCtrl'
+    })
 
     $locationProvider.html5Mode(true);
 

@@ -14,9 +14,9 @@ var accessTokenOptions = {
 , uri:    'https://anilist.co/api/auth/access_token?'
 , json:   true
 , body: {
-    grant_type:     process.env.GRANT_TYPE,
-    client_id:      process.env.CLIENT_ID,
-    client_secret:  process.env.CLIENT_SECRET
+    grant_type:     process.env.GRANT_TYPE
+  , client_id:      process.env.CLIENT_ID
+  , client_secret:  process.env.CLIENT_SECRET
   }
 }
 var router = express.Router();
@@ -124,7 +124,7 @@ function checkAccessToken(searchTerm) {
     .then(function(tokenData) {
       var tokenData = tokenData;
       token = tokenData.access_token;
-      // 1 hour expiration time
+      // token expires after 1 hour
       expirationTime = tokenData.expires;
       console.log('success in checkAccessToken', tokenData)
       deferred.resolve();
@@ -197,6 +197,29 @@ function getAnimeById(id) {
   
 function browsePopularAnime() {
   var deferred = q.defer();
+  var requestOptions = {
+    method: 'GET'
+  , uri: 'https://anilist.co/api/browse/anime'
+  , qs: {
+      access_token:     token
+    , token_type:       'Bearer'
+    , sort:             'popularity-desc'
+    , genres_exclude:   'hentai'
+    , page: 1
+    }
+  };
+
+  rp(requestOptions)
+  .then(function(data) { deferred.resolve(data); })
+  .catch(function(err) { deferred.reject(err); });
+
+  return deferred.promise;
+}
+
+function browseAnime(qsObj) {
+  var deferred = q.defer();
+  var qsObj;
+  qsObj.access_token = token;
   var requestOptions = {
     method: 'GET'
   , uri: 'https://anilist.co/api/browse/anime'
