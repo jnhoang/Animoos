@@ -1,4 +1,4 @@
-.body {
+body {
   background-color: whitesmoke;
 }
 .custom-container {
@@ -22,7 +22,7 @@
   padding: 15px;
 }
 .row-title {
-  padding: 0 0 10px 20px;
+  padding: 0 0 10px 10px;
   line-height: 1.5;
   font-size: 1.5em;
   font-family: "Roboto", sans-serif;
@@ -31,6 +31,9 @@
 .anime-desc {
   padding: 25px;
   text-align: justify;
+}
+.card-container {
+  padding: 20px;
 }
 .single-char {
   padding: 0;

@@ -63,14 +63,16 @@
 
       <!-- CHARACTERS -->
       <div class="col s12 m9">
-        <div class="row-title">Characters</div>
-        <div class="card row">
+        <div class="card row card-container">
+          <div class="row-title">Characters</div>
           <div ng-repeat="char in animeData.characters|limitTo:8">
             <div class="col s6 m3 l2">
 
               <div class="card single-char z-depth-2">
-                <img class="char-staff-img"
-                  ng-src="{{ char.image_url_med }}">
+                <a ng-href="#">
+                  <img class="char-staff-img"
+                    ng-src="{{ char.image_url_med }}">
+                </a>
                 <div class="card-content char-name">
                   <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
                   <p class="truncate">{{ char.actor[0].name_first}} {{char.actor[0].name_last }}</p>

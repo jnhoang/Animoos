@@ -89,7 +89,26 @@ router.get('/page-data/anime/:id', function(req, res) {
     res.send(err);
   })
 }) 
+// GET CHARACTER BY ID
+router.get('/page-data/character/:id', function(req, res) {
+  checkAccessToken()
+  .then(function() {
 
+    getCharById(req.params.id)
+    .then(function(data) {
+      console.log('succcess at getCharById');
+      res.send(data);
+    })
+    .catch(function(err) {
+      console.log('error at getCharById()', err.message);
+      res.send(err);
+    })
+  })
+  .catch(function(err) {
+    console.log('error at checkAccessToken()', err.message)
+    res.send(err);
+  })
+})
 // export
 module.exports = router;
 
@@ -97,8 +116,8 @@ module.exports = router;
 
 // FUNCTIONS
 function checkAccessToken(searchTerm) {
-  var deferred = q.defer();
-  var currentTime = Math.floor(new Date().getTime() / 1000);
+  var deferred      = q.defer();
+  var currentTime   = Math.floor(new Date().getTime() / 1000);
 
   if (!token || currentTime > expirationTime) {
     rp(accessTokenOptions)
@@ -140,6 +159,24 @@ function searchShow(searchTerm) {
   return deferred.promise;
 }
 
+function getCharById(id) {
+  var deferred = q.defer();
+  requestOptions = {
+    method: 'GET'
+  , uri:    'https://anilist.co/api/character/' + id
+  , qs: {
+      access_token: token
+    , token_type:   'Bearer'
+    }
+  };
+
+  rp(requestOptions)
+  .then(function(data) { deferred.resolve(data); })
+  .catch(function(err) { deferred.reject(err); });
+
+  return deferred.promise;
+}
+
 function getAnimeById(id) {
   var deferred = q.defer();
   requestOptions = {
@@ -147,13 +184,13 @@ function getAnimeById(id) {
   , uri:    'https://anilist.co/api/anime/' + id + '/page'
   , qs: {
       access_token: token
-    , token_type: 'Bearer'  
+    , token_type:   'Bearer'
     }
   };
   
   rp(requestOptions)
   .then(function(data) { deferred.resolve(data); })
-  .catch(function(err) { deferred.reject(err); })
+  .catch(function(err) { deferred.reject(err); });
 
   return deferred.promise;
 }
@@ -173,7 +210,7 @@ function browsePopularAnime() {
 
   rp(requestOptions)
   .then(function(data) { deferred.resolve(data); })
-  .catch(function(err) { deferred.reject(err); })
+  .catch(function(err) { deferred.reject(err); });
 
   return deferred.promise;
 }
