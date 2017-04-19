@@ -74,6 +74,7 @@ body {
 }
 /*Modal*/
 .modal-card {
+  width: 80%;
   padding: 25px;
   text-align: justify;
 }
@@ -82,7 +83,6 @@ body {
     font-size: 2em;
   }
   .modal-card {
-    width: 80%;
     height: 90%;
   }
 }

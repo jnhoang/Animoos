@@ -53,9 +53,9 @@
         <div class="divider"></div>
         <p>Total Episodes: {{ animeData.total_episodes }}</p>
         <p>Duration: {{ animeData.duration }}mins</p>
-        <p>Average Score: {{ animeData.average_score }}/100</p>
+        <p>Average Score: {{ animeData.average_score }}%</p>
         <p>Airing Status: {{ animeData.airing_status }}</p>
-        <p>Originally Aired: {{ animeData.start_date_fuzzy | date:"shortDate"}}</p>
+        <p>Originally Aired: {{ animeData.start_date_fuzzy }}</p>
         <p>
           Studios: <span ng-repeat="studio in animeData.studio track by $index">{{ studio.studio_name }} </span> 
         </p>
@@ -66,45 +66,46 @@
     </div>
 
       <!-- CHARACTERS -->
-      <div class="col s12 m9">
-        <div class="card row card-container">
-          <div class="row-title">Characters</div>
-          <div ng-repeat="char in animeData.characters|limitTo:6">
-            <div class="col s6 m4 l2">
-              <div class="card single-char z-depth-2">
-                <a href="" 
-                  data-target="charModal" modal
-                  ng-click="getCharById(char.id)">
-                  
-                  <img class="char-staff-img"
-                    ng-show="!showActor"
-                    ng-src="{{ char.image_url_med }}">
-                  <img class="char-staff-img"
-                    ng-show="showActor"
-                    ng-src="{{ char.actor[0].image_url_med }}">
-                </a>
-                <div class="card-content char-name">
-                  <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
-                  <p ng-mouseenter="showActor = true"
-                    ng-mouseleave="showActor = false"
-                    class="truncate">
-                  {{ char.actor[0].name_first}} {{char.actor[0].name_last }}
-                  </p>
-                </div>
-              </div>
+    <div class="col s12 m9">
+      <div class="card row card-container">
+        <div class="row-title">Characters</div>
+        <div ng-repeat="char in animeData.characters|limitTo:6">
+          <div class="col s6 m4 l2">
 
+            <div class="card single-char z-depth-2">
+              <a href="" 
+                data-target="charModal" modal
+                ng-click="getCharById(char.id)">
+                
+                <img class="char-staff-img"
+                  ng-show="!showActor"
+                  ng-src="{{ char.image_url_med }}">
+                <img class="char-staff-img"
+                  ng-show="showActor"
+                  ng-src="{{ char.actor[0].image_url_med }}">
+              </a>
+              <div class="card-content char-name">
+                <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
+                <p ng-mouseenter="showActor = true"
+                  ng-mouseleave="showActor = false"
+                  class="truncate">
+                {{ char.actor[0].name_first}} {{char.actor[0].name_last }}
+                </p>
+              </div>
             </div>
+
           </div>
-        <p class="see-more right-align"
-          ng-if="animeData.characters.length > 6">
-          <a href=""
-            data-target="allCharModal" modal>
-            <strong>See more...</strong>
-          </a>
-        </p>
         </div>
+      <p class="see-more right-align"
+        ng-if="animeData.characters.length > 6">
+        <a href=""
+          data-target="allCharModal" modal>
+          <strong>See more...</strong>
+        </a>
+      </p>
       </div>
     </div>
+  </div>
 
   <!-- ROW 3 -->
   <div class="row">
@@ -162,6 +163,9 @@
   <!-- previously viewed items -->
 </div>
 
+<!-- ****** -->
+<!-- MODALS -->
+<!-- ****** -->
 
 <!-- Single Character Modal -->
 <div class="modal modal-card" 
@@ -187,10 +191,13 @@
     </div>
 
   </div>
+
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
 </div>
 
 <!-- All Character Modal -->
-
 <div class="modal modal-card"
   id="allCharModal">
   
@@ -199,7 +206,7 @@
     <div class="card row card-container">
       <div class="row-title">Characters</div>
       <div ng-repeat="char in animeData.characters">
-        <div class="col s6 m4">
+        <div class="col s6 m3">
           
           <div class="card single-char z-depth-2">
             <a href="" 
@@ -233,7 +240,7 @@
     <div class="card row card-container">
       <div class="row-title">Cast and Crew</div>
       <div ng-repeat="person in animeData.staff">
-        <div class="col s6 m4">
+        <div class="col s6 m3">
 
           <div class="card single-char z-depth-2">
             <img class="char-staff-img"
@@ -247,6 +254,10 @@
         </div>
       </div>
     </div>
+
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
   </div>
 
 </div>

@@ -17,7 +17,6 @@ angular
 
     $scope.getAnimeData = getAnimeData;
     $scope.getCharById = getCharById;
-    $scope.testFunc = testFunc;
 
     // Run at page render
     getAnimeData();
@@ -28,16 +27,13 @@ angular
         console.log(res.data)
         $scope.loading = false;
         $scope.animeData = res.data;
+        $scope.start_date_fuzzy =
         $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description)
       })
       .catch(function(err) {
         console.log(err.message[0])
         Materialize.toast('Sorry, there was an error. Reload the page or try again later', 10000);
       });
-    }
-
-    function testFunc() {
-      console.log('infinite scroll point reached');
     }
 
     function getCharById(id) {
