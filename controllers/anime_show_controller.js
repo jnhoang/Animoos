@@ -1,9 +1,9 @@
 // global vars and requires
 require('dotenv').config();
-var express = require('express');
-var request = require('request');
-var rp = require('request-promise');
-var q = require('q');
+var express   = require('express');
+var request   = require('request');
+var rp        = require('request-promise');
+var q         = require('q');
 
 // Auth token
 var token;
@@ -19,11 +19,10 @@ var accessTokenOptions = {
   , client_secret:  process.env.CLIENT_SECRET
   }
 }
+
 var router = express.Router();
 
-// set and use statements
-
-// routes
+// ROUTES
 router.get('/test', function(req, res) {
   var test = req.query;
 
@@ -34,15 +33,9 @@ router.get('/test', function(req, res) {
     .then(function(data) {
       res.send(data)
     })
-    .catch(function(err) {
-      console.log('error at browseAnime()', err.message)
-      res.send(err);
-    })
+    .catch(function(err) { errorMsg(res, err, 'browseAnime()'); })
   })
-  .catch(function(err) {
-    console.log('error at checkAccessToken() ', err.message);
-    res.send(err);
-  })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
 })
 //BROWSE
 router.get('/', function(req, res) {
@@ -54,15 +47,9 @@ router.get('/', function(req, res) {
       //console.log('success at browsePopularAnime() ', data);
       res.send(data);
     })
-    .catch(function(err) {
-      console.log('error at browsePopularAnime() ', err.message);
-      res.send(err);
-    })
+    .catch(function(err) { errorMsg(res, err, 'browsePopularAnime()'); })
   })
-  .catch(function(err) {
-    console.log('error at checkAccessToken() ', err.message);
-    res.send(err);
-  })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
 })
 
 // SEARCH FOR SHOW BY :TITLE
@@ -77,15 +64,9 @@ router.get('/search/anime/:title', function(req, res) {
       console.log('success at searchShow() ', data)
       res.send(data);
     })
-    .catch(function(err) {
-      console.log('error at searchShow() ', err.message);
-      res.send(err);
-    });
+    .catch(function(err) { errorMsg(res, err, 'searchShow()'); });
   })
-  .catch(function(err) {
-    console.log('error at checkAccessToken() ', err.message)
-    res.send(err);
-  })   
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })   
 })
 
 // GET SPECIFIC SHOW BY :ID
@@ -98,15 +79,9 @@ router.get('/page-data/anime/:id', function(req, res) {
       console.log('success at getAnimeById()');
       res.send(data);
     })
-    .catch(function(err) {
-      console.log('error at getAnimeById()', err.message);
-      res.send(err);
-    })
+    .catch(function(err) { errorMsg(res, err, 'getAnimeById()'); })
   })
-  .catch(function(err) {
-    console.log('error at checkAccessToken()', err.message);
-    res.send(err);
-  })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
 }) 
 // GET CHARACTER BY ID
 router.get('/page-data/character/:id', function(req, res) {
@@ -118,15 +93,9 @@ router.get('/page-data/character/:id', function(req, res) {
       console.log('succcess at getCharById');
       res.send(data);
     })
-    .catch(function(err) {
-      console.log('error at getCharById()', err.message);
-      res.send(err);
-    })
+    .catch(function(err) { errorMsg(res, err, 'getCharById()'); })
   })
-  .catch(function(err) {
-    console.log('error at checkAccessToken()', err.message)
-    res.send(err);
-  })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
 })
 // export
 module.exports = router;
@@ -250,4 +219,9 @@ function browseAnime(qsObj) {
   .catch(function(err) { deferred.reject(err); });
 
   return deferred.promise;
+}
+
+function errorMsg(res, err, locationOfError) {
+  console.log('error in ' + locationOfError, err.message)
+  res.send(err);
 }
