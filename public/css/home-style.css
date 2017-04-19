@@ -29,13 +29,13 @@
 }
 .vid-background {
   height: 100vh;
-  background-size: cover;
-  background-color: black;
   display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
   overflow: hidden;
+  background-size: cover;
+  background-color: black;
 }
 video {
   height: 100%;
@@ -82,6 +82,9 @@ video {
   text-shadow: 0 0 1px solid;
 }
 
+.results-panel {
+  margin-top: 0;
+}
 /*Title Cards*/
 .title-img-lg {
   height: 100%;

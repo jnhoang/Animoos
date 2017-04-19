@@ -121,9 +121,8 @@
 
 
 <!-- MAIN PAGE FILTERS -->
-<div class="row">
   <div ng-if="!loading" 
-    class="col s12 m8 z-depth-1"
+    class="z-depth-1 z-depth-0"
     id="filter-bar">
     <ul tabs reload="allTabContentLoaded">
       <li class="tab col s3">
@@ -137,9 +136,8 @@
       </li>
     </ul>
   </div>
-</div>
 <!-- PAGE RESULTS -->
-<div class="card-panel">
+<div class="card-panel results-panel">
 <div ng-if="!loading" class="row" id="pageResults">
   <div ng-repeat="animeObj in top40">
     <div class="col s12 m4 l3 xl2">
