@@ -14,6 +14,7 @@ angular
     $scope.showArr      = [];
     $scope.scoreArr     = [];
     $scope.loading      = true;
+    $scope.loadingBar   = false;
     $scope.searchFilter = {
       sort: 'popularity-desc'
     , genres_exclude: 'hentai'
@@ -59,6 +60,7 @@ angular
         };
       }
 
+      $scope.loadingBar = true;
       AnimeAPIFactory.browseBy(options)
       .then(function(res) {
         console.log('results back', res.data);
@@ -70,6 +72,7 @@ angular
           $scope.currentArr = res.data;
           $scope.showArr = res.data;
         }
+        $scope.loadingBar = false;
       })
       .catch(function(err) {
         Materialize.toast('Sorry, there was an error. \

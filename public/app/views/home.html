@@ -124,7 +124,15 @@
   <div ng-if="!loading" 
     class="z-depth-1 z-depth-0"
     id="filter-bar">
-    <ul tabs >
+
+    <!-- LOADING BAR -->
+    <div class="progress"
+      ng-if="loadingBar">
+      <div class="indeterminate"></div>
+    </div>
+
+    <ul tabs 
+      ng-if="!loadingBar">
       <li class="tab col s3 active"
         ng-click="selectResults('popular')">
         <a href="#">Popular</a>
@@ -137,11 +145,15 @@
         ng-click="selectResults('score')">
         <a href="#">Highest Score</a>
       </li>
+      <li class="tab col s3">
+
+      </li>
     </ul>
   </div>
 <!-- PAGE RESULTS -->
 <div ng-if="!loading"
   class="card-panel results-panel">
+
   <div class="row">
     <div ng-repeat="animeObj in showArr track by $index">
       <div class="col s12 m4 l3 xl2">
