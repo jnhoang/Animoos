@@ -51,7 +51,7 @@
         <p>Romaji title: {{ animeData.title_romaji }}</p>
         <p class="center-align"><strong>Information</strong></p>
         <div class="divider"></div>
-        <p>total episodes: {{ animeData.total_episodes }}</p>
+        <p>Total Episodes: {{ animeData.total_episodes }}</p>
         <p>Duration: {{ animeData.duration }}mins</p>
         <p>Average Score: {{ animeData.average_score }}/100</p>
         <p>Airing Status: {{ animeData.airing_status }}</p>
@@ -69,94 +69,88 @@
       <div class="col s12 m9">
         <div class="card row card-container">
           <div class="row-title">Characters</div>
-          <div ng-repeat="char in animeData.characters|limitTo:8">
-            <div class="col s6 m3 l2">
-
+          <div ng-repeat="char in animeData.characters|limitTo:6">
+            <div class="col s6 m4 l2">
               <div class="card single-char z-depth-2">
                 <a href="" 
                   data-target="charModal" modal
                   ng-click="getCharById(char.id)">
+                  
                   <img class="char-staff-img"
+                    ng-show="!showActor"
                     ng-src="{{ char.image_url_med }}">
+                  <img class="char-staff-img"
+                    ng-show="showActor"
+                    ng-src="{{ char.actor[0].image_url_med }}">
                 </a>
                 <div class="card-content char-name">
                   <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
-                  <p class="truncate">{{ char.actor[0].name_first}} {{char.actor[0].name_last }}</p>
+                  <p ng-mouseenter="showActor = true"
+                    ng-mouseleave="showActor = false"
+                    class="truncate">
+                  {{ char.actor[0].name_first}} {{char.actor[0].name_last }}
+                  </p>
                 </div>
               </div>
 
             </div>
           </div>
-        </div>
         <p class="see-more right-align"
-          ng-if="animeData.characters.length > 8">
-          <strong>See more...</strong>
+          ng-if="animeData.characters.length > 6">
+          <a href=""
+            data-target="allCharModal" modal>
+            <strong>See more...</strong>
+          </a>
         </p>
+        </div>
       </div>
     </div>
 
   <!-- ROW 3 -->
   <div class="row">
-   <!-- RELATED SHOWS -->
-    <div class="row-title"
-      ng-if="animeData.relations != 0">
-      In the Franchise
-    </div>
-     <div ng-repeat="show in animeData.relations track by $index">
+    <!-- RELATED SHOWS -->
+    <div class="col s12">
+      <div class="card row card-container">
+        <div class="row-title"
+          ng-if="animeData.relations != 0">
+          In the Franchise
+        </div>
+         <div ng-repeat="show in animeData.relations track by $index">
 
-       <div class="col s12 m4 l3">
-         <div class="card z-depth-2 home-title-card">
-           <a href="/anime/{{ show.id }}">
-             <img class="title-img-lg"
-               ng-src="{{ show.image_url_lge }}">
-           </a>
-           <h5 class="cover-title">
-             {{ show.title_english }}
-           </h5>
-           <div class="cover-info">
-             <span>  
-               average score: {{ show.average_score}}
-               {{ show.type }}
-               {{ show.relationship_type }}
-             </span>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
-    <!-- CAST & CREW -->
-    <!-- <div class="col s12 m6">
-      <div class="row">
-      <div class="row-title">Cast and Crew</div>
-        <div ng-repeat="person in animeData.staff|limitTo:4">
-          <div class="col s6 m6 l3">
-
-            <div class="card single-char z-depth-2">
-              <img class="char-staff-img"
-                ng-src="{{ person.image_url_med }}">
-              <div class="card-content char-name">
-                <p class="truncate">{{ person.name_first }} {{ person.name_last }}</p>
-                <p class="truncate">{{ person.role }}</p>
+          <div class="col s12 m4 l3">
+            <div class="card z-depth-2 home-title-card">
+              <a href="/anime/{{ show.id }}">
+                <img class="title-img-lg"
+                  ng-src="{{ show.image_url_lge }}">
+              </a>
+              <h5 class="cover-title">
+                {{ show.title_english }}
+              </h5>
+              <div class="cover-info">
+                <span>  
+                  average score: {{ show.average_score}}
+                  {{ show.type }}
+                  {{ show.relationship_type }}
+                </span>
               </div>
             </div>
-
           </div>
+
         </div>
-        <div class="right"
-          ng-if="animeData.staff.length > 4">
-          <strong>See more...</strong>
-        </div>
+        <p class="see-more right-align"
+          ng-if="animeData.characters.length > 6">
+          <a href="#">
+            <strong>See more...</strong>
+          </a>
+        </p>
       </div>
-    </div> -->
-
-
+    </div>
+  </div>
+    
   </div>
 </div>
 
 <div>
-
-
-
   <!-- WHERE TO WATCH -->
   <div ng-repeat="service in animeData.external_links">
     <a href="{{ service.url }}">{{ service.site }}</a>
@@ -169,7 +163,7 @@
 </div>
 
 
-<!-- Character Modal -->
+<!-- Single Character Modal -->
 <div class="modal modal-card" 
   id="charModal">
   <!-- LOADING BAR -->
@@ -192,6 +186,68 @@
       <p><strong>Info:</strong> {{ charData.info }}</p>
     </div>
 
-    </div>
+  </div>
 </div>
 
+<!-- All Character Modal -->
+
+<div class="modal modal-card"
+  id="allCharModal">
+  
+  <!-- CHARACTERS -->
+  <div class="col s12">
+    <div class="card row card-container">
+      <div class="row-title">Characters</div>
+      <div ng-repeat="char in animeData.characters">
+        <div class="col s6 m4">
+          
+          <div class="card single-char z-depth-2">
+            <a href="" 
+              data-target="charModal" modal
+              ng-click="getCharById(char.id)">
+              
+              <img class="char-staff-img"
+                ng-show="!showActor"
+                ng-src="{{ char.image_url_med }}">
+              <img class="char-staff-img"
+                ng-show="showActor"
+                ng-src="{{ char.actor[0].image_url_med }}">
+            </a>
+            <div class="card-content char-name">
+              <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
+              <p ng-mouseenter="showActor = true"
+                ng-mouseleave="showActor = false"
+                class="truncate">
+              {{ char.actor[0].name_first}} {{char.actor[0].name_last }}
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAST & CREW -->
+  <div class="col s12">
+    <div class="card row card-container">
+      <div class="row-title">Cast and Crew</div>
+      <div ng-repeat="person in animeData.staff">
+        <div class="col s6 m4">
+
+          <div class="card single-char z-depth-2">
+            <img class="char-staff-img"
+              ng-src="{{ person.image_url_med }}">
+            <div class="card-content char-name">
+              <p class="truncate">{{ person.name_first }} {{ person.name_last }}</p>
+              <p class="truncate">{{ person.role }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+  

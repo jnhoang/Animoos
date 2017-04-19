@@ -11,8 +11,9 @@ angular
     // PUBLIC VARS & FUNCTIONS 
     $scope.animeData;
     $scope.charData;
-    $scope.loading = true;
-    $scope.loadingModal = true;
+    $scope.showActor      = false;
+    $scope.loading        = true;
+    $scope.loadingModal   = true;
 
     $scope.getAnimeData = getAnimeData;
     $scope.getCharById = getCharById;

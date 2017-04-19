@@ -17,7 +17,7 @@ body {
   position: absolute;
   color: white;
   text-align: center;
-  text-shadow: 0 0 5px black;
+  text-shadow: 0 0 50px black;
 }
 .custom-container {
   width: 90%;
@@ -57,8 +57,10 @@ body {
   padding: 0;
   display: inline-block;
   width: 100%;
+  min-height: 225px;
 }
 .char-staff-img {
+  min-height: 100px;
   height: 100%;
   width: 100%;
 }
@@ -66,7 +68,10 @@ body {
   height: 60px;
   padding: 5px 10px 10px 10px;
 }
-
+.see-more {
+  margin: 0;
+  clear: both;
+}
 /*Modal*/
 .modal-card {
   padding: 25px;
