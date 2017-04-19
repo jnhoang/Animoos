@@ -25,8 +25,24 @@ var router = express.Router();
 
 // routes
 router.get('/test', function(req, res) {
-  console.log(req.query)
-  res.send("got it!");
+  var test = req.query;
+
+  checkAccessToken()
+  .then(function(tokenData) {
+    
+    browseAnime(test)
+    .then(function(data) {
+      res.send(data)
+    })
+    .catch(function(err) {
+      console.log('error at browseAnime()', err.message)
+      res.send(err);
+    })
+  })
+  .catch(function(err) {
+    console.log('error at checkAccessToken() ', err.message);
+    res.send(err);
+  })
 })
 //BROWSE
 router.get('/', function(req, res) {
@@ -181,7 +197,7 @@ function getCharById(id) {
 }
 
 function getAnimeById(id) {
-  var deferred = q.defer();
+  var deferred   = q.defer();
   requestOptions = {
     method: 'GET'
   , uri:    'https://anilist.co/api/anime/' + id + '/page'
@@ -226,13 +242,7 @@ function browseAnime(qsObj) {
   var requestOptions = {
     method: 'GET'
   , uri: 'https://anilist.co/api/browse/anime'
-  , qs: {
-      access_token:     token
-    , token_type:       'Bearer'
-    , sort:             'popularity-desc'
-    , genres_exclude:   'hentai'
-    , page: 1
-    }
+  , qs: qsObj
   };
 
   rp(requestOptions)

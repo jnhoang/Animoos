@@ -2,11 +2,11 @@ angular
 .module('Animoo')
 .controller('AnimeDetailCtrl', [
   '$scope'
+, '$sce'
 , '$state'
 , '$stateParams'
 , 'AnimeAPIFactory'
-, '$http'
-, function($scope, $state, $stateParams, AnimeAPIFactory, $http) {
+, function($scope, $sce, $state, $stateParams, AnimeAPIFactory) {
     
     // PUBLIC VARS & FUNCTIONS 
     $scope.animeData;
@@ -22,6 +22,7 @@ angular
       console.log(res.data)
       $scope.loading = false;
       $scope.animeData = res.data;
+      $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description)
     })
     .catch(function(err) {
       console.log(err.message[0])

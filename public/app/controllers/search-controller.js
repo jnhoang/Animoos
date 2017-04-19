@@ -6,12 +6,7 @@ angular
 , '$http'
 , 'AnimeAPIFactory'
 , function($scope, $state, $http, AnimeAPIFactory) {
-    // TYPE
-    // 0 TV
-    // 1 TV Short
-    // 2 Movie
-    // 3 Special
-    // 4 OVA
+    $scope.testFunc = testFunc;
     $scope.toggleGenre = toggleGenre;
     // TEST
     $scope.testVar = {
@@ -25,31 +20,36 @@ angular
     , page: 1
     }
     function testFunc() {
-
-
+      for (var key in $scope.testVar) {
+        if ($scope.testVar[key] == '') {
+          delete $scope.testVar[key]
+        }
+      }
+      $http({
+        url: 'api/anilist/test'
+      , method: 'GET'
+      , params: $scope.testVar
+      })
+      .then(function(res) {
+        $scope.data = res.data
+        console.log(res)
+        console.log(res.data)
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
     }
-    var testParams = {
-      hey: 'friendssss'
-    , touche: 'bob'
-    , fart: 'toose'
-    }
 
-    $http({
-      url: 'api/anilist/test'
-    , method: 'GET'
-    , params: testParams
-    })
-    .then(function(res) {
-      console.log(res.data)
-    })
-    .catch(function(err) {
-      console.log(err)
-    })
+
 
 
 
 
     function toggleGenre(genre) {
+      if ($scope.testVar.genres == undefined) {
+        $scope.testVar.genres = [];
+      }
+
       if ($scope.testVar.genres.includes(genre)) {
         $scope.testVar.genres.splice($scope.testVar.genres.indexOf(genre), 1);
       } else {
