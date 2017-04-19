@@ -8,8 +8,17 @@ angular
     , searchForAnime: searchForAnime  
     , initialSearch: initialSearch
     , getCharById: getCharById
+    , browseBy: browseBy
     }
   
+  function browseBy(filter) {
+    console.log('triggered in the factory', filter);
+    return $http({
+      url: 'api/anilist/browse'
+    , method: 'GET'
+    , params: filter
+    })
+  }
   function getCharById(id) {
     return $http.get('/api/anilist/page-data/character/' + id);
   } 

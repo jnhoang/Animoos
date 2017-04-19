@@ -13,23 +13,31 @@ angular
     $scope.charData;
     $scope.loading = true;
     $scope.loadingModal = true;
-    $scope.errorMessage;
 
+    $scope.getAnimeData = getAnimeData;
     $scope.getCharById = getCharById;
+    $scope.testFunc = testFunc;
 
-    AnimeAPIFactory.getAnimeById($stateParams.id)
-    .then(function(res) {
-      console.log(res.data)
-      $scope.loading = false;
-      $scope.animeData = res.data;
-      $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description)
-    })
-    .catch(function(err) {
-      console.log(err.message[0])
-      // CONSIDER TOASTING THIS
-      $scope.errorMessage = err.error.messages[0];
-    })
+    // Run at page render
+    getAnimeData();
 
+    function getAnimeData() {
+      AnimeAPIFactory.getAnimeById($stateParams.id)
+      .then(function(res) {
+        console.log(res.data)
+        $scope.loading = false;
+        $scope.animeData = res.data;
+        $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description)
+      })
+      .catch(function(err) {
+        console.log(err.message[0])
+        Materialize.toast('Sorry, there was an error. Reload the page or try again later', 10000);
+      });
+    }
+
+    function testFunc() {
+      console.log('infinite scroll point reached');
+    }
 
     function getCharById(id) {
       $scope.loadingModal = true;

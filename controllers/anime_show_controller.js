@@ -23,9 +23,9 @@ var accessTokenOptions = {
 var router = express.Router();
 
 // ROUTES
-router.get('/test', function(req, res) {
+router.get('/browse', function(req, res) {
   var test = req.query;
-
+  console.log('triggered on the server')
   checkAccessToken()
   .then(function(tokenData) {
     
@@ -33,12 +33,13 @@ router.get('/test', function(req, res) {
     .then(function(data) {
       res.send(data)
     })
-    .catch(function(err) { errorMsg(res, err, 'browseAnime()'); })
+    .catch(function(err) { errorMsg(res, err, 'browseAnime()'); });
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
 //BROWSE
 router.get('/', function(req, res) {
+  
   checkAccessToken()
   .then(function(tokenData) { 
 
@@ -47,9 +48,9 @@ router.get('/', function(req, res) {
       //console.log('success at browsePopularAnime() ', data);
       res.send(data);
     })
-    .catch(function(err) { errorMsg(res, err, 'browsePopularAnime()'); })
+    .catch(function(err) { errorMsg(res, err, 'browsePopularAnime()'); });
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
 
 // SEARCH FOR SHOW BY :TITLE
@@ -66,11 +67,12 @@ router.get('/search/anime/:title', function(req, res) {
     })
     .catch(function(err) { errorMsg(res, err, 'searchShow()'); });
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })   
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
 
 // GET SPECIFIC SHOW BY :ID
 router.get('/page-data/anime/:id', function(req, res) {
+  
   checkAccessToken()
   .then(function() {
 
@@ -79,12 +81,13 @@ router.get('/page-data/anime/:id', function(req, res) {
       console.log('success at getAnimeById()');
       res.send(data);
     })
-    .catch(function(err) { errorMsg(res, err, 'getAnimeById()'); })
+    .catch(function(err) { errorMsg(res, err, 'getAnimeById()'); });
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 }) 
 // GET CHARACTER BY ID
 router.get('/page-data/character/:id', function(req, res) {
+  
   checkAccessToken()
   .then(function() {
 
@@ -93,9 +96,9 @@ router.get('/page-data/character/:id', function(req, res) {
       console.log('succcess at getCharById');
       res.send(data);
     })
-    .catch(function(err) { errorMsg(res, err, 'getCharById()'); })
+    .catch(function(err) { errorMsg(res, err, 'getCharById()'); });
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); })
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
 // export
 module.exports = router;
@@ -207,6 +210,7 @@ function browsePopularAnime() {
 function browseAnime(qsObj) {
   var deferred = q.defer();
   var qsObj;
+  qsObj.genres_exclude = 'hentai'; // (^_^');;
   qsObj.access_token = token;
   var requestOptions = {
     method: 'GET'

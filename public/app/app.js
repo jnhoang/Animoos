@@ -2,6 +2,7 @@ angular
 .module('Animoo', [
   'ui.router'
 , 'ui.materialize'
+, 'infinite-scroll'
 , 'smoothScroll'])
 .config([
   '$stateProvider'
