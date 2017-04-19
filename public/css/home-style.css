@@ -125,10 +125,7 @@ video {
 }
 
 
-
-.test {
-  gradient(linear, left top, left bottom, 
-    color-stop(0%, rgba(0, 0, 0, 0.65)), 
-    color-stop(59%, rgba(0, 0, 0, 0.65)), 
-    color-stop(100%, rgba(0, 0, 0, 0.65)))) no-repeat;
+.flexThis {
+  display: flex;
+  flex-wrap: wrap;
 }

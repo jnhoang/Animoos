@@ -24,7 +24,10 @@ var router = express.Router();
 // set and use statements
 
 // routes
-
+router.get('/test', function(req, res) {
+  console.log(req.query)
+  res.send("got it!");
+})
 //BROWSE
 router.get('/', function(req, res) {
   checkAccessToken()

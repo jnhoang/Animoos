@@ -3,8 +3,9 @@ angular
 .controller('SearchCtrl', [
   '$scope'
 , '$state'
+, '$http'
 , 'AnimeAPIFactory'
-, function($scope, $state, AnimeAPIFactory) {
+, function($scope, $state, $http, AnimeAPIFactory) {
     // TYPE
     // 0 TV
     // 1 TV Short
@@ -27,10 +28,29 @@ angular
 
 
     }
+    var testParams = {
+      hey: 'friendssss'
+    , touche: 'bob'
+    , fart: 'toose'
+    }
+
+    $http({
+      url: 'api/anilist/test'
+    , method: 'GET'
+    , params: testParams
+    })
+    .then(function(res) {
+      console.log(res.data)
+    })
+    .catch(function(err) {
+      console.log(err)
+    })
+
+
+
+
     function toggleGenre(genre) {
-      console.log(genre)
       if ($scope.testVar.genres.includes(genre)) {
-        console.log('yes!')
         $scope.testVar.genres.splice($scope.testVar.genres.indexOf(genre), 1);
       } else {
         $scope.testVar.genres.push(genre)
