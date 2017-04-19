@@ -124,25 +124,26 @@
   <div ng-if="!loading" 
     class="z-depth-1 z-depth-0"
     id="filter-bar">
-    <ul tabs reload="allTabContentLoaded">
-      <li class="tab col s3">
-        <a href="#pageResults">Popular</a>
+    <ul tabs >
+      <li class="tab col s3 active"
+        ng-click="selectResults('popular')">
+        <a href="#">Popular</a>
       </li>
       <li class="tab col s3"
-        ng-click="filterResults('current')">
-        <a href="#pageResults">Currently Airing</a>
+        ng-click="selectResults('current')">
+        <a href="#">Currently Airing</a>
       </li>
       <li class="tab col s3"
-        ng-click="filterResults('score')">
-        <a href="#pageResults">Highest Score</a>
+        ng-click="selectResults('score')">
+        <a href="#">Highest Score</a>
       </li>
     </ul>
   </div>
 <!-- PAGE RESULTS -->
 <div ng-if="!loading"
   class="card-panel results-panel">
-  <div class="row" id="pageResults" active>
-    <div ng-repeat="animeObj in top40">
+  <div class="row">
+    <div ng-repeat="animeObj in showArr track by $index">
       <div class="col s12 m4 l3 xl2">
         <div class="card z-depth-3 home-title-card">
           <a ng-href="/anime/{{ animeObj.id }}">
@@ -150,7 +151,7 @@
             class="title-img-lg" 
             ng-src="{{ animeObj.image_url_lge }}">
           </a>
-            <span ng-repeat="genre in animeObj.genres">{{ genre }}</span>
+            <span ng-repeat="genre in animeObj.genres track by $index">{{ genre }}</span>
           <h5 class="activator cover-title">
             {{ animeObj.title_english }}
           </h5>

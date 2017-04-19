@@ -7,11 +7,13 @@ angular
 , 'smoothScroll'
 , function($scope, $state, AnimeAPIFactory, smoothScroll) {
     // PUBLIC VARS
-    $scope.top5 = [];
-    $scope.top40 = [];
-    $scope.scoreArr = [];
-    $scope.currentArr = [];
-    $scope.loading = true;
+    $scope.top5         = [];
+    $scope.top40        = [];
+    $scope.currentArr   = [];
+    $scope.popularArr   = [];
+    $scope.showArr      = [];
+    $scope.scoreArr     = [];
+    $scope.loading      = true;
     $scope.searchFilter = {
       sort: 'popularity-desc'
     , genres_exclude: 'hentai'
@@ -19,17 +21,18 @@ angular
     $scope.search = search;
 
     $scope.searchTerm;
-    $scope.filterResults = filterResults;
+    $scope.selectResults = selectResults;
     // On Page Render
     browseTop40();
 
     function browseTop40() {
       AnimeAPIFactory.initialSearch()
       .then(function(res) {
-        $scope.top40 = res.data;
+        $scope.popularArr = res.data;
         for (var i = 0; i < 5; i++) {
-          $scope.top5.push($scope.top40.shift());
+          $scope.top5.push($scope.popularArr.shift());
         }
+        $scope.showArr = $scope.popularArr;
         $scope.loading = false;
         console.log($scope.top5);
       })
@@ -40,31 +43,58 @@ angular
       });
     }
 
-    function filterResults(filter) {
+    function selectResults(filter) {
       var options;
-      console.log('current arr length: ', $scope.currentArr.length)
-      if (filter == 'score' && $scope.scoreArr.length == 0) {
+
+      // stops function if data already saved from prev call
+      if (isDataSaved(filter)) { return; }
+
+      if (filter == 'score') {
         options = { sort: 'score-desc'};
       } 
-      else if (filter == 'current' && $scope.currentArr.length == 0) {
+      else if (filter == 'current') {
         options = {
           sort: 'popularity-desc'
         , status: 'currently airing'
         };
       }
-      else {
-        return;
-      }
 
       AnimeAPIFactory.browseBy(options)
       .then(function(res) {
         console.log('results back', res.data);
-        $scope.currentArr = res.data;
+        if (filter == 'score') {
+          $scope.scoreArr = res.data;
+          $scope.showArr = res.data;
+        }
+        else {
+          $scope.currentArr = res.data;
+          $scope.showArr = res.data;
+        }
       })
       .catch(function(err) {
         Materialize.toast('Sorry, there was an error. \
           Reload the page or try again later', 10000);
       });
+    }
+    $scope.scoreArr     = [];
+
+    function isDataSaved(filter) {
+      if (filter == 'popular') {
+        $scope.showArr = $scope.popularArr;
+        return true;
+      } 
+      else if (filter == 'score' && $scope.scoreArr.length > 0) {
+        $scope.showArr = $scope.scoreArr;
+        return true;
+      } 
+      else if (filter == 'current' && $scope.currentArr.length > 0) {
+        $scope.showArr = $scope.currentArr;
+        return true;
+      } 
+      else {
+        console.log(filter, ': false!')
+        return false;
+      }
     }
 
     function search() {
