@@ -15,8 +15,8 @@ angular
     $scope.loading        = true;
     $scope.loadingModal   = true;
 
-    $scope.getAnimeData = getAnimeData;
-    $scope.getCharById = getCharById;
+    $scope.getAnimeData   = getAnimeData;
+    $scope.getCharById    = getCharById;
 
     // Run at page render
     getAnimeData();
@@ -30,7 +30,7 @@ angular
         adjustApiData();
       })
       .catch(function(err) {
-        console.log(err.message[0])
+        console.log(err.message)
         Materialize.toast('Sorry, there was an error. Reload the page or try again later', 10000);
       });
     }
@@ -48,6 +48,7 @@ angular
     }
 
     function adjustApiData() {
+      // re-arrange date format
       var dateData = $scope.animeData.start_date_fuzzy.toString();
       var year;
       var month;
@@ -58,7 +59,8 @@ angular
       month = parseInt(dateData.substr(4,2));
       month = months[month - 1];
       $scope.animeData.start_date_fuzzy = month + ' ' + year;
-      
+
+      // reformat description to read HTML elements
       $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description);
     }
   }

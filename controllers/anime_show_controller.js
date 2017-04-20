@@ -23,9 +23,10 @@ var accessTokenOptions = {
 var router = express.Router();
 
 // ROUTES
+//BROWSE
 router.get('/browse', function(req, res) {
   var test = req.query;
-  console.log('triggered on the server')
+
   checkAccessToken()
   .then(function(tokenData) {
     
@@ -37,7 +38,6 @@ router.get('/browse', function(req, res) {
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
-//BROWSE
 
 // SEARCH FOR SHOW BY :TITLE
 // Gets back array of possible shows

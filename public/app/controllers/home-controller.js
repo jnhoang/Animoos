@@ -8,7 +8,6 @@ angular
 , function($scope, $state, AnimeAPIFactory, smoothScroll) {
     // PUBLIC VARS
     $scope.top5         = [];
-    $scope.top40        = [];
     $scope.currentArr   = [];
     $scope.popularArr   = [];
     $scope.showArr      = [];
@@ -52,7 +51,7 @@ angular
       if (isDataSaved(filter)) { return; }
 
       if (filter == 'score') {
-        options = { sort: 'score-desc'};
+        options = { sort: 'score-desc' };
       } 
       else if (filter == 'current') {
         options = {
@@ -80,7 +79,6 @@ angular
           Reload the page or try again later', 10000);
       });
     }
-    $scope.scoreArr     = [];
 
     function isDataSaved(filter) {
       if (filter == 'popular') {
@@ -96,11 +94,11 @@ angular
         return true;
       } 
       else {
-        console.log(filter, ': false!')
         return false;
       }
     }
 
+    // DELETE OR NOT?
     function search() {
       console.log('searching')
       console.log('searchTerm: ', $scope.searchTerm)
