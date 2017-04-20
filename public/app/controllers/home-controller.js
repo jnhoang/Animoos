@@ -14,10 +14,6 @@ angular
     $scope.loading      = true;
     $scope.loadingBar   = false;
     $scope.advFilter    = false;
-    $scope.searchFilter = {
-      sort: 'popularity-desc'
-    , genres_exclude: 'hentai'
-    };
 
     $scope.genres = [
       'Genres', 'action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror',
@@ -35,15 +31,11 @@ angular
     , page:       1
     }
 
-    $scope.test = test;
-
-    function test() {
-      console.log('triggered')
+    $scope.toggleFilters = function() {
       $scope.advFilter = $scope.advFilter ?  false : true;
-      console.log($scope.advFilter)
     }
    
-    function filterAnime() {
+    $scope.filterAnime = function() {
       // deletes empty keys
       for (var key in $scope.filterObj) {
         if ($scope.filterObj[key] == '') {
