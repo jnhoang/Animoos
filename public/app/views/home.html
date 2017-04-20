@@ -46,7 +46,7 @@
           <a ng-href="/anime/{{ show.id }}"
             class="waves-effect waves-light slider-btn btn">Learn More</a>
         </p>
-        
+
       </div>
     </li>
   </ul>
@@ -60,10 +60,10 @@
 
 <!-- MAIN PAGE FILTERS -->
 <div ng-if="!loading" 
-  class="z-depth-1 z-depth-0"
-  id="filter-bar">
+  class="z-depth-1 z-depth-0">
 
-  <ul tabs>
+  <ul tabs
+    class="filter-bar">
     <li class="tab col s3"
       ng-click="selectResults('popular')">
       <a href="#">Popular</a>
@@ -77,15 +77,108 @@
       <a href="#">Highest Score</a>
     </li>
     <li class="tab col s3">
-
+      <a href=""
+        ng-click="test()">Flip</a>
     </li>
   </ul>
+</div>
+
+<!-- ADVANCED FILTERS -->
+<div class="row filter-bar advance-filter"
+  ng-if="!loading">
+  <div ng-class="{'invisible': !advFilter}">
+    <!-- YEAR -->
+    <div class="col s5 m3 l2">
+      <div input-field>
+        <input type="text"
+          ng-maxlength="4"
+          ng-model="searchObj.year"
+          placeholder="Year: e.g '2000'">
+      </div>
+    </div>
+
+    <!-- SEASON -->
+    <div class="col s5 m3 l2">
+      <div input-field>
+        <select class="" 
+          ng-model="searchObj.season"
+          material-select>
+          <option value="" selected>Season</option>
+          <option value="spring">Spring</option>
+          <option value="summer">Summer</option>
+          <option value="autumn">Autumn</option>
+          <option value="winter">Winter</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SORT -->
+    <div class="col s5 m3 l2">
+      <div input-field>
+        <select class="" 
+          ng-model="searchObj.sort"
+          material-select>
+          <option value="" selected>Sort by</option>
+          <option value="id">Id</option>
+          <option value="score-desc">Score (Higest)</option>
+          <option value="score">Score (Lowest)</option>
+          <option value="popularity-desc">Popularity (Highest)</option>
+          <option value="popularity">Popularity (Lowest)</option>
+          <option value="start_date">Start Date</option>
+          <option value="end_date">End Date</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TYPE -->
+    <div class="col s5 m3 l2">
+      <div input-field>
+        <select class="" 
+          ng-model="searchObj.type"
+          material-select>
+          <option value="" selected>Type</option>
+          <option value="tv">TV</option>
+          <option value="tv short">TV Short</option>
+          <option value="movie">Movie</option>
+          <option value="special">Special</option>
+          <option value="ova">OVA</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- STATUS -->
+    <div class="col s5 m3 l2">
+      <div input-field>
+        <select class="" 
+          ng-model="searchObj.status"
+          material-select>
+          <option value="" selected>Status</option>
+          <option value="finished airing">Finished Airing</option>
+          <option value="currently airing">Currently Airing</option>
+          <option value="not yet aired">Not Yet Aired</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- GENRES -->
+    <div class="col s5 m3 l2">
+      <div class="input-field">
+        <select class="" 
+          ng-model="filterObj.genres"
+          material-select multiple watch>
+          <option ng-repeat="genre in genres">
+            {{genre}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- PAGE RESULTS -->
 <div ng-if="!loading"
   class="card-panel results-panel">
-
   <div class="row">
     <div ng-repeat="animeObj in showArr track by $index">
       <div class="col s12 m4 l3 xl2">

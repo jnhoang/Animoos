@@ -6,10 +6,9 @@ angular
 , '$http'
 , 'AnimeAPIFactory'
 , function($scope, $state, $http, AnimeAPIFactory) {
-    $scope.testFunc = testFunc;
-    $scope.toggleGenre = toggleGenre;
-    // TEST
-    $scope.testVar = {
+    $scope.searchResults;
+    $scope.searchTerm;
+    $scope.filterObj = {
       token_type: 'Bearer'
     , year: ''
     , season: ''
@@ -19,25 +18,35 @@ angular
     , sort: ''
     , page: 1
     }
-    function testFunc() {
-      for (var key in $scope.testVar) {
-        if ($scope.testVar[key] == '') {
-          delete $scope.testVar[key]
+    $scope.searchAnime = searchAnime;
+    $scope.filterAnime = filterAnime;
+    $scope.toggleGenre = toggleGenre;
+
+    function searchAnime() {
+      AnimeAPIFactory.searchForAnime($scope.searchTerm)
+      .then(function(res) {
+        console.log(res.data);
+        $scope.searchResults = res.data;
+      })
+      .catch(function(err) {
+        console.log(err.message);
+      });
+    }
+
+    function filterAnime() {
+      // deletes empty keys
+      for (var key in $scope.filterObj) {
+        if ($scope.filterObj[key] == '') {
+          delete $scope.filterObj[key]
         }
       }
-      $http({
-        url: 'api/anilist/test'
-      , method: 'GET'
-      , params: $scope.testVar
-      })
+      AnimeAPIFactory.browseBy(filterObj)
       .then(function(res) {
-        $scope.data = res.data
-        console.log(res)
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch(function(err) {
         console.log(err)
-      })
+      });
     }
 
 
@@ -46,14 +55,14 @@ angular
 
 
     function toggleGenre(genre) {
-      if ($scope.testVar.genres == undefined) {
-        $scope.testVar.genres = [];
+      if ($scope.filterObj.genres == undefined) {
+        $scope.filterObj.genres = [];
       }
 
-      if ($scope.testVar.genres.includes(genre)) {
-        $scope.testVar.genres.splice($scope.testVar.genres.indexOf(genre), 1);
+      if ($scope.filterObj.genres.includes(genre)) {
+        $scope.filterObj.genres.splice($scope.filterObj.genres.indexOf(genre), 1);
       } else {
-        $scope.testVar.genres.push(genre)
+        $scope.filterObj.genres.push(genre)
       }
     }
 

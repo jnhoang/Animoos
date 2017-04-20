@@ -1,34 +1,27 @@
-{{testVar}}
-
 <div class="container search-container">
   
+  <div class="card">
+    <div class="card-content">
+      
+      <!-- SEARCH BAR -->
+      <div class="row">
+        <div class="input-field">
+          <input
+            ng-model="searchTerm"
+            class="input-field col s8 search-bar" 
+            id="search" type="text"
+            placeholder="Search an Anime Title"></input>
+        </div>
+        <button type="button" 
+          class="btn"
+          scroll-to="#"
+          ng-click="searchAnime()">
+          Search
+        </button>
+      </div>
 
-
-  <div class="row">
-    <div class="input-field">
-      <input
-        ng-model="searchTerm"
-        class="input-field col s12 search-bar" 
-        id="search" type="text"
-        placeholder="Search an Anime Title"></input>
-    </div>
-  </div>
-</div>
-
-<button type="button" 
-  class="btn"
-  scroll-to="#"
-  ng-click="testFunc()">
-  Search!
-</button>
-
-<div class="card">
-  <div class="card-content">
-    <ul class="collapsible" data-collapsible="accordion">
-      <li>
-        <div class="collapsible-header">Advanced search</div>
-        <div class="collapsible-body">
-
+        <!-- ADVANCED FILTERS -->
+        <div class="">
           <div class="row">
 
             <!-- YEAR -->
@@ -36,8 +29,8 @@
               <div input-field>
                 <input type="text"
                   ng-maxlength="4"
-                  ng-model="testVar.year"
-                  placeholder="Year: 4 digit year e.g. '2014'">
+                  ng-model="searchObj.year"
+                  placeholder="Year: e.g '2000'">
               </div>
             </div>
 
@@ -45,7 +38,7 @@
             <div class="col s5 m3 l2">
               <div input-field>
                 <select class="" 
-                  ng-model="testVar.season"
+                  ng-model="searchObj.season"
                   material-select>
                   <option value="" selected>Season</option>
                   <option value="spring">Spring</option>
@@ -60,7 +53,7 @@
             <div class="col s5 m3 l2">
               <div input-field>
                 <select class="" 
-                  ng-model="testVar.sort"
+                  ng-model="searchObj.sort"
                   material-select>
                   <option value="" selected>Sort by</option>
                   <option value="id">Id</option>
@@ -78,7 +71,7 @@
             <div class="col s5 m3 l2">
               <div input-field>
                 <select class="" 
-                  ng-model="testVar.type"
+                  ng-model="searchObj.type"
                   material-select>
                   <option value="" selected>Type</option>
                   <option value="tv">TV</option>
@@ -94,7 +87,7 @@
             <div class="col s5 m3 l2">
               <div input-field>
                 <select class="" 
-                  ng-model="testVar.status"
+                  ng-model="searchObj.status"
                   material-select>
                   <option value="" selected>Status</option>
                   <option value="finished airing">Finished Airing</option>
@@ -104,7 +97,6 @@
                 </select>
               </div>
             </div>
-
 
           </div>
 
@@ -187,11 +179,15 @@
           </div>
 
         </div>
-       </li>
-     </ul>
-<div class="row">
-  <!-- SEARCH RESULTS -->
-    <div ng-repeat="animeObj in data">
+    </div>
+  </div>
+</div>
+
+<div class="card-panel results-panel">
+  <div class="row">
+
+    <!-- SEARCH RESULTS -->
+    <div ng-repeat="animeObj in searchResults|limitTo:6">
       <div class="col s10 m4 l3">
         <div class="card z-depth-3 home-title-card">
 
@@ -208,5 +204,8 @@
         </div>
       </div>
     </div>
+    
   </div>
+</div>
+
 

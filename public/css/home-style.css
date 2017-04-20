@@ -55,7 +55,6 @@ video {
 
 /*Search*/
 .search-bar {
-  color: white;
 }
 .seePopularBtn {
   position: absolute;
@@ -94,7 +93,15 @@ video {
 }
 
 .results-panel {
+  min-height: 400px;
+  background-color: rgba(255,255,255, 0.75);
   margin-top: 0;
+}
+.filter-bar {
+  background-color: rgba(255,255,255, 0.75);
+}
+.advance-filter {
+  margin: 0;
 }
 /*Title Cards*/
 .title-img-lg {

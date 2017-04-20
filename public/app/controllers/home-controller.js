@@ -13,14 +13,53 @@ angular
     $scope.scoreArr     = [];
     $scope.loading      = true;
     $scope.loadingBar   = false;
+    $scope.advFilter    = false;
     $scope.searchFilter = {
       sort: 'popularity-desc'
     , genres_exclude: 'hentai'
-    }
-    $scope.search = search;
+    };
 
-    $scope.searchTerm;
-    $scope.selectResults = selectResults;
+    $scope.genres = [
+      'Genres', 'action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror',
+      'mahou shoujo', 'mecha', 'music', 'mystery', 'psychological', 'romance', 
+      'sci fi', 'slice of life', 'sports'
+    ];
+    $scope.filterObj = {
+      token_type: 'Bearer'
+    , year:       ''
+    , season:     ''
+    , type:       ''
+    , status:     ''
+    , genres:     []
+    , sort:       ''
+    , page:       1
+    }
+
+    $scope.test = test;
+
+    function test() {
+      console.log('triggered')
+      $scope.advFilter = $scope.advFilter ?  false : true;
+      console.log($scope.advFilter)
+    }
+   
+    function filterAnime() {
+      // deletes empty keys
+      for (var key in $scope.filterObj) {
+        if ($scope.filterObj[key] == '') {
+          delete $scope.filterObj[key]
+        }
+      }
+      AnimeAPIFactory.browseBy(filterObj)
+      .then(function(res) {
+        console.log(res.data);
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
+    }
+
+
     // On Page Render
     browseTop40();
 
@@ -45,7 +84,7 @@ angular
 
     function selectResults(filter) {
       var options;
-
+      console.log('triggering')
       // stops function if data already saved from prev call
       if (isDataSaved(filter)) { return; }
 
@@ -97,19 +136,5 @@ angular
       }
     }
 
-    // DELETE OR NOT?
-    function search() {
-      console.log('searching')
-      console.log('searchTerm: ', $scope.searchTerm)
-      AnimeAPIFactory.searchForAnime($scope.searchTerm)
-      .then(function(res) {
-        console.log('search results: ', res.data);
-        $scope.searchResults = res.data;
-      })
-      .catch(function(err) {
-        console.log('error ', err.message);
-        Materialize.toast(err.message, 10000);
-      });
-    }
   }
 ])
