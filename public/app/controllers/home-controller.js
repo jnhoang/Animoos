@@ -27,7 +27,8 @@ angular
     browseTop40();
 
     function browseTop40() {
-      AnimeAPIFactory.initialSearch()
+      var option = { sort: 'popularity-desc' }
+      AnimeAPIFactory.browseBy(option)
       .then(function(res) {
         $scope.popularArr = res.data;
         for (var i = 0; i < 5; i++) {

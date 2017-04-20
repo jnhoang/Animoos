@@ -38,20 +38,6 @@ router.get('/browse', function(req, res) {
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
 //BROWSE
-router.get('/', function(req, res) {
-  
-  checkAccessToken()
-  .then(function(tokenData) { 
-
-    browsePopularAnime()
-    .then(function(data) {
-      //console.log('success at browsePopularAnime() ', data);
-      res.send(data);
-    })
-    .catch(function(err) { errorMsg(res, err, 'browsePopularAnime()'); });
-  })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
-})
 
 // SEARCH FOR SHOW BY :TITLE
 // Gets back array of possible shows
@@ -179,27 +165,6 @@ function getAnimeById(id) {
     }
   };
   
-  rp(requestOptions)
-  .then(function(data) { deferred.resolve(data); })
-  .catch(function(err) { deferred.reject(err); });
-
-  return deferred.promise;
-}
-  
-function browsePopularAnime() {
-  var deferred = q.defer();
-  var requestOptions = {
-    method: 'GET'
-  , uri: 'https://anilist.co/api/browse/anime'
-  , qs: {
-      access_token:     token
-    , token_type:       'Bearer'
-    , sort:             'popularity-desc'
-    , genres_exclude:   'hentai'
-    , page: 1
-    }
-  };
-
   rp(requestOptions)
   .then(function(data) { deferred.resolve(data); })
   .catch(function(err) { deferred.reject(err); });

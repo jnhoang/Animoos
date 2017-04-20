@@ -6,7 +6,6 @@ angular
     return {
       getAnimeById: getAnimeById
     , searchForAnime: searchForAnime  
-    , initialSearch: initialSearch
     , getCharById: getCharById
     , browseBy: browseBy
     }
@@ -17,7 +16,7 @@ angular
       url: 'api/anilist/browse'
     , method: 'GET'
     , params: filter
-    })
+    });
   }
   function getCharById(id) {
     return $http.get('/api/anilist/page-data/character/' + id);
@@ -27,8 +26,5 @@ angular
   }
   function searchForAnime(animeTitle) {
     return $http.get('/api/anilist/search/anime/' + animeTitle);
-  }
-  function initialSearch() {
-    return $http.get('api/anilist/');
   }
 }])
