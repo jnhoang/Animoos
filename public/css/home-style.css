@@ -171,5 +171,23 @@ video {
   visibility: hidden;
 }
 .loadingBar {
+  background-color: white;
   margin: 0;
+}
+.wallpaper {
+  height: 100vh;
+  width: 100vw;
+  background-color: linear-gradient( 45deg, blue, red );
+  background-image: url('http://res.cloudinary.com/dxumleria/image/upload/v1492139974/imageedit_9_3464682940_skma8a.gif');
+  background-position: center;
+  background-size: cover;
+  position: fixed;
+  z-index: -2;
+}
+.wallpaper-filter {
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background: linear-gradient(225deg, rgba(255,255,255,0.6), rgba(255,255,255,1));
 }
