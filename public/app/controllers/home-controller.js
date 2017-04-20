@@ -2,10 +2,9 @@ angular
 .module('Animoo')
 .controller('HomeCtrl', [
   '$scope'
-, '$state'
 , 'AnimeAPIFactory'
 , 'smoothScroll'
-, function($scope, $state, AnimeAPIFactory, smoothScroll) {
+, function($scope, AnimeAPIFactory, smoothScroll) {
     // PUBLIC VARS
     $scope.top5         = [];
     $scope.currentArr   = [];

@@ -3,10 +3,9 @@ angular
 .controller('AnimeDetailCtrl', [
   '$scope'
 , '$sce'
-, '$state'
 , '$stateParams'
 , 'AnimeAPIFactory'
-, function($scope, $sce, $state, $stateParams, AnimeAPIFactory) {
+, function($scope, $sce, $stateParams, AnimeAPIFactory) {
     
     // PUBLIC VARS & FUNCTIONS 
     $scope.animeData;

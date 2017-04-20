@@ -1,3 +1,4 @@
+<!-- VIDEO -->
 <div class="vid-background">
   <div class="video-filter"></div>
   <h1 class="intro-words">Animemoo</h1>
@@ -6,7 +7,7 @@
   </video>
 
   <!-- PULSING BTN -->
-  <a class="btn btn-floating cyan pulse seePopularBtn"  href="#"
+  <a class="btn btn-floating cyan pulse seePopularBtn"  href=""
     scroll-to="home-slider"
     duration="1200"
     easing="easeInOutQuint">
@@ -26,121 +27,61 @@
 <!-- TOP 5 SLIDER -->
 <div id="home-slider" class="slider" slider
   ng-if="!loading" indicators="false" height="475">
-    <ul class="slides">
-      <li ng-repeat="show in top5">
-        <img ng-src="{{ show.image_url_banner }}">
-        <div class="cover-slider"></div>
-        <div class="caption left-align">
-          <h3 class="caption-text slider-title">{{ show.title_english }}</h3>
-          <h5 class="caption-text">
-            {{ show.average_score }}%
-          </h5>
-          <h5>
-            <span ng-repeat="genre in show.genres">
-              {{ genre }} 
-            </span>
-          </h5>
-          <p>
-            <a ng-href="/anime/{{ show.id }}"
-              class="waves-effect waves-light slider-btn btn">Learn More</a>
-          </p>
-        </div>
-      </li>
-    </ul>
+  <ul class="slides">
+    <li ng-repeat="show in top5">
+      <img ng-src="{{ show.image_url_banner }}">
+      <div class="cover-slider"></div>
+      <div class="caption left-align">
+        
+        <h3 class="caption-text slider-title">{{ show.title_english }}</h3>
+        <h5 class="caption-text">
+          {{ show.average_score }}%
+        </h5>
+        <h5>
+          <span ng-repeat="genre in show.genres">
+            {{ genre }} 
+          </span>
+        </h5>
+        <p>
+          <a ng-href="/anime/{{ show.id }}"
+            class="waves-effect waves-light slider-btn btn">Learn More</a>
+        </p>
+        
+      </div>
+    </li>
+  </ul>
 </div>
 
-<!-- ADVANCE SEARCH/FILTER -->
-<div ng-if="!loading"
-  class="container custom-container">
-  <div class="row">
-    <!-- SEARCH BAR -->
-    <div class="container">
-      <div class="row">
-        <div class="input-field">
-          <input
-            ng-model="searchTerm"
-            class="input-field col s12 search-bar" 
-            id="search" type="text"
-            placeholder="Search an Anime Title"></input>
-          <button type="button" 
-            class="btn"
-            scroll-to="#"
-            ng-click="search()">
-            Search!
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- ng-if="searchResults != undefined"> -->
-    <!-- advance search tabs here, consider putting them in a container -->
-    <div class="card">
-      <div class="card-content">
-        <ul class="collapsible" data-collapsible="accordion">
-           <li>
-             <div class="collapsible-header">Advanced search</div>
-             <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-           </li>
-         </ul>
-      <div class="row">
-        <!-- SEARCH RESULTS -->
-          <div ng-repeat="animeObj in searchResults|limitTo:4">
-            <div class="col s10 m4 l3">
-              <div class="card z-depth-3 home-title-card">
-
-                <a ng-href="/anime/{{ animeObj.id }}">
-                  <img 
-                  class="title-img-lg" 
-                  ng-src="{{ animeObj.image_url_lge }}">
-                </a>
-                  <span ng-repeat="genre in animeObj.genres">{{ genre }}</span>
-                <h5 class="activator cover-title">
-                  {{ animeObj.title_english }}
-                </h5>
-                <div class="cover-info"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>    
-  </div> 
+<!-- LOADING BAR -->
+<div class="progress loadingBar"
+  ng-class="{'invisible': !loadingBar}">
+  <div class="indeterminate"></div>
 </div>
-               <!--  <p class="see-more right-align"
-                  ng-if="animeObj.length > 4">
-                  <strong>See more...</strong>
-                </p> -->
 
+<!-- MAIN PAGE FILTERS -->
+<div ng-if="!loading" 
+  class="z-depth-1 z-depth-0"
+  id="filter-bar">
 
-  <!-- LOADING BAR -->
-  <div class="progress loadingBar"
-    ng-class="{'invisible': !loadingBar}">
-    <div class="indeterminate"></div>
-  </div>
-  <!-- MAIN PAGE FILTERS -->
-  <div ng-if="!loading" 
-    class="z-depth-1 z-depth-0"
-    id="filter-bar">
+  <ul tabs>
+    <li class="tab col s3"
+      ng-click="selectResults('popular')">
+      <a href="#">Popular</a>
+    </li>
+    <li class="tab col s3"
+      ng-click="selectResults('current')">
+      <a href="#">Currently Airing</a>
+    </li>
+    <li class="tab col s3"
+      ng-click="selectResults('score')">
+      <a href="#">Highest Score</a>
+    </li>
+    <li class="tab col s3">
 
+    </li>
+  </ul>
+</div>
 
-    <ul tabs>
-      <li class="tab col s3"
-        ng-click="selectResults('popular')">
-        <a href="#">Popular</a>
-      </li>
-      <li class="tab col s3"
-        ng-click="selectResults('current')">
-        <a href="#">Currently Airing</a>
-      </li>
-      <li class="tab col s3"
-        ng-click="selectResults('score')">
-        <a href="#">Highest Score</a>
-      </li>
-      <li class="tab col s3">
-
-      </li>
-    </ul>
-  </div>
 <!-- PAGE RESULTS -->
 <div ng-if="!loading"
   class="card-panel results-panel">

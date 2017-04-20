@@ -11,7 +11,6 @@ angular
     }
   
   function browseBy(filter) {
-    console.log('triggered in the factory', filter);
     return $http({
       url: 'api/anilist/browse'
     , method: 'GET'
