@@ -125,12 +125,18 @@ video {
   , rgba(0,0,0,0.5) 35%
   , rgba(0,0,0,0.1) 100%)
 }
+.cover-title-short {
+  margin-bottom: 25px;
+}
 .cover-title {
-  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  bottom: 25px;
   width: 100%;
   height: 50px;
   padding: 10px;
-  margin-bottom: 50px;
   position: absolute;
   z-index: 1;
   
@@ -158,4 +164,10 @@ video {
 .flexThis {
   display: flex;
   flex-wrap: wrap;
+}
+.invisible {
+  visibility: hidden;
+}
+.loadingBar {
+  margin: 0;
 }

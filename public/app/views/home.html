@@ -112,20 +112,19 @@
                 </p> -->
 
 
-<!-- MAIN PAGE FILTERS -->
+  <!-- LOADING BAR -->
+  <div class="progress loadingBar"
+    ng-class="{'invisible': !loadingBar}">
+    <div class="indeterminate"></div>
+  </div>
+  <!-- MAIN PAGE FILTERS -->
   <div ng-if="!loading" 
     class="z-depth-1 z-depth-0"
     id="filter-bar">
 
-    <!-- LOADING BAR -->
-    <div class="progress"
-      ng-if="loadingBar">
-      <div class="indeterminate"></div>
-    </div>
 
-    <ul tabs 
-      ng-if="!loadingBar">
-      <li class="tab col s3 active"
+    <ul tabs>
+      <li class="tab col s3"
         ng-click="selectResults('popular')">
         <a href="#">Popular</a>
       </li>
