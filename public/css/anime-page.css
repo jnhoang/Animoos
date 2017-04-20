@@ -72,6 +72,14 @@ body {
   margin: 0;
   clear: both;
 }
+.related-info {
+  top: 0;
+  z-index: 1;
+  padding: 20px;
+  position: absolute;
+  text-shadow: 0 0 15px black;
+  color: white;
+}
 /*Modal*/
 .modal-card {
   width: 80%;

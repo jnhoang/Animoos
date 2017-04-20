@@ -134,7 +134,7 @@ video {
   z-index: 2;
   margin-top: -40px;
   position: relative;
-  color: white;
+  color: rgba(255,255,255,0.35);
 }
 .more-info-indicator:hover {
   cursor: pointer;

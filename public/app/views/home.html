@@ -45,7 +45,7 @@
         <div class="caption left-align">
           <h3 class="caption-text">{{ show.title_english }}</h3>
           <h5 class="caption-text">
-            {{ show.average_score }}%,
+            {{ show.average_score }}%
           </h5>
           <h5>
             <span ng-repeat="genre in show.genres">
@@ -181,6 +181,8 @@
             <div class="reveal-content">
               <p>
                 <strong>Type:</strong> {{ animeObj.type }}
+              </p>
+              <p>
                 <strong>Score:</strong> {{ animeObj.average_score }}%
               </p>
               <p ng-if="animeObj.genres != 0">
