@@ -9,12 +9,22 @@ angular
     // PUBLIC VARS AND FUNCTIONS
     $scope.searchTerm;
     $scope.searchResults;
-
+    $scope.loadingBar = false;
     $scope.searchAnime = function() {
+      $scope.loadingBar = true;
+
       AnimeAPIFactory.searchForAnime($scope.searchTerm)
       .then(function(res) {
-        console.log(res.data);
+        $scope.loadingBar = false;
+        console.log('res.data: ', res.data);
+        if (res.data.error) {
+          Materialize.toast(res.data.error.messages[0], 10000);
+          return;
+        }
+          
         $scope.searchResults = res.data;
+          
+
       })
       .catch(function(err) {
         console.log(err.message);

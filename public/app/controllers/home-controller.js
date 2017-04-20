@@ -5,7 +5,7 @@ angular
 , 'AnimeAPIFactory'
 , 'smoothScroll'
 , function($scope, AnimeAPIFactory, smoothScroll) {
-    // PUBLIC VARS
+    // PAGE LOAD ASSETS
     $scope.top5         = [];
     $scope.currentArr   = [];
     $scope.popularArr   = [];
@@ -13,44 +13,6 @@ angular
     $scope.scoreArr     = [];
     $scope.loading      = true;
     $scope.loadingBar   = false;
-    $scope.advFilter    = false;
-
-    $scope.genres = [
-      'Genres', 'action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror',
-      'mahou shoujo', 'mecha', 'music', 'mystery', 'psychological', 'romance', 
-      'sci fi', 'slice of life', 'sports'
-    ];
-    $scope.filterObj = {
-      token_type: 'Bearer'
-    , year:       ''
-    , season:     ''
-    , type:       ''
-    , status:     ''
-    , genres:     []
-    , sort:       ''
-    , page:       1
-    }
-
-    $scope.toggleFilters = function() {
-      $scope.advFilter = $scope.advFilter ?  false : true;
-    }
-   
-    $scope.filterAnime = function() {
-      // deletes empty keys
-      for (var key in $scope.filterObj) {
-        if ($scope.filterObj[key] == '') {
-          delete $scope.filterObj[key]
-        }
-      }
-      AnimeAPIFactory.browseBy(filterObj)
-      .then(function(res) {
-        console.log(res.data);
-      })
-      .catch(function(err) {
-        console.log(err)
-      });
-    }
-
 
     // On Page Render
     browseTop40();
@@ -126,6 +88,57 @@ angular
       else {
         return false;
       }
+    }
+
+    
+    // ADVANCE FILTER ASSETS
+    $scope.advFilter = false;
+    $scope.genres = [
+      'Genres', 'action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror',
+      'mahou shoujo', 'mecha', 'music', 'mystery', 'psychological', 'romance', 
+      'sci fi', 'slice of life', 'sports'
+    ];
+    $scope.filterObj = {
+      token_type: 'Bearer'
+    , year:       ''
+    , season:     ''
+    , type:       ''
+    , status:     ''
+    , genres:     []
+    , sort:       ''
+    , page:       1
+    }
+
+    $scope.$watchCollection('filterObj', function(newObj, oldObj) {
+      console.log('logging')
+      for (var key in $scope.filterObj) {
+        if ($scope.filterObj[key] == '') {
+          delete $scope.filterObj[key]
+        }
+      }
+      AnimeAPIFactory.browseBy($scope.filterObj)
+      .then(function(res) {
+        console.log(res.data);
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
+    });
+
+    $scope.toggleFilters = function() {
+      $scope.advFilter = $scope.advFilter ?  false : true;
+    }
+   
+    function filterAnime() {
+      console.log('searching')
+      // deletes empty keys
+      AnimeAPIFactory.browseBy($scope.filterObj)
+      .then(function(res) {
+        console.log(res.data);
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
     }
 
   }

@@ -1,7 +1,7 @@
 <div class="container search-container">
   
   <div class="card">
-    <div class="card-content">
+    <div class="card-panel">
       
       <!-- SEARCH BAR -->
       <div class="row">
@@ -20,167 +20,14 @@
         </button>
       </div>
 
-        <!-- ADVANCED FILTERS -->
-        <div class="">
-          <div class="row">
-
-            <!-- YEAR -->
-            <div class="col s5 m3 l2">
-              <div input-field>
-                <input type="text"
-                  ng-maxlength="4"
-                  ng-model="searchObj.year"
-                  placeholder="Year: e.g '2000'">
-              </div>
-            </div>
-
-            <!-- SEASON -->
-            <div class="col s5 m3 l2">
-              <div input-field>
-                <select class="" 
-                  ng-model="searchObj.season"
-                  material-select>
-                  <option value="" selected>Season</option>
-                  <option value="spring">Spring</option>
-                  <option value="summer">Summer</option>
-                  <option value="autumn">Autumn</option>
-                  <option value="winter">Winter</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- SORT -->
-            <div class="col s5 m3 l2">
-              <div input-field>
-                <select class="" 
-                  ng-model="searchObj.sort"
-                  material-select>
-                  <option value="" selected>Sort by</option>
-                  <option value="id">Id</option>
-                  <option value="score-desc">Score (Higest)</option>
-                  <option value="score">Score (Lowest)</option>
-                  <option value="popularity-desc">Popularity (Highest)</option>
-                  <option value="popularity">Popularity (Lowest)</option>
-                  <option value="start_date">Start Date</option>
-                  <option value="end_date">End Date</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- TYPE -->
-            <div class="col s5 m3 l2">
-              <div input-field>
-                <select class="" 
-                  ng-model="searchObj.type"
-                  material-select>
-                  <option value="" selected>Type</option>
-                  <option value="tv">TV</option>
-                  <option value="tv short">TV Short</option>
-                  <option value="movie">Movie</option>
-                  <option value="special">Special</option>
-                  <option value="ova">OVA</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- STATUS -->
-            <div class="col s5 m3 l2">
-              <div input-field>
-                <select class="" 
-                  ng-model="searchObj.status"
-                  material-select>
-                  <option value="" selected>Status</option>
-                  <option value="finished airing">Finished Airing</option>
-                  <option value="currently airing">Currently Airing</option>
-                  <option value="not yet aired">Not Yet Aired</option>
-                  <option value="cancelled">Cancelled</option>
-                </select>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- GENRES -->
-          <div class="flexThis">
-            <p>
-              <input type="checkbox" class="filled-in" id="action"
-               ng-click="toggleGenre('action')">
-              <label for="action">Action</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="adventure"
-               ng-click="toggleGenre('adventure')">
-              <label for="adventure">Adventure</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="comedy"
-               ng-click="toggleGenre('comedy')">
-              <label for="comedy">Comedy</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="drama"
-               ng-click="toggleGenre('drama')">
-              <label for="drama">Drama</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="fantasy"
-               ng-click="toggleGenre('fantasy')">
-              <label for="fantasy">Fantasy</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="horror"
-               ng-click="toggleGenre('horror')">
-              <label for="horror">Horror</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="mahou shoujo"
-               ng-click="toggleGenre('mahou shoujo')">
-              <label for="mahou shoujo">Magical girl</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="mecha"
-               ng-click="toggleGenre('mecha')">
-              <label for="mecha">Mecha</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="music"
-               ng-click="toggleGenre('music')">
-              <label for="music">Music</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="mystery"
-               ng-click="toggleGenre('mystery')">
-              <label for="mystery">Mystery</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="psychological"
-               ng-click="toggleGenre('psychological')">
-              <label for="psychological">Psychological</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="romance"
-               ng-click="toggleGenre('romance')">
-              <label for="romance">Romance</label>
-            </p> <p>
-              <input type="checkbox" class="filled-in" id="sci fi"
-               ng-click="toggleGenre('sci fi')">
-              <label for="sci fi">Sci fi</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="slice of life"
-               ng-click="toggleGenre('slice of life')">
-              <label for="slice of life">Slice of Life</label>
-            </p>
-            <p>
-              <input type="checkbox" class="filled-in" id="sports"
-               ng-click="toggleGenre('sports')">
-              <label for="sports">Sports</label>
-            </p>
-          </div>
-
-        </div>
     </div>
   </div>
+</div>
+
+<!-- LOADING BAR -->
+<div class="progress loadingBar"
+  ng-class="{'invisible': !loadingBar}">
+  <div class="indeterminate"></div>
 </div>
 
 <div class="card-panel results-panel">

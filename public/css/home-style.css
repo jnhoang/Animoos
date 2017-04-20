@@ -93,7 +93,7 @@ video {
 }
 
 .results-panel {
-  min-height: 400px;
+  min-height: 65vh;
   background-color: rgba(255,255,255, 0.75);
   margin-top: 0;
 }
@@ -170,10 +170,6 @@ video {
   margin-bottom: 20px;
   padding-right: 24px;
 }
-.flexThis {
-  display: flex;
-  flex-wrap: wrap;
-}
 .invisible {
   visibility: hidden;
 }
@@ -197,4 +193,8 @@ video {
   width: 100vw;
   position: fixed;
   background: linear-gradient(225deg, rgba(255,255,255,0.6), rgba(255,255,255,1));
+}
+
+.search-container {
+  padding-top: 50px;
 }
