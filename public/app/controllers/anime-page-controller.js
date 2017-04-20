@@ -27,8 +27,7 @@ angular
         console.log(res.data)
         $scope.loading = false;
         $scope.animeData = res.data;
-        $scope.start_date_fuzzy =
-        $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description)
+        adjustApiData();
       })
       .catch(function(err) {
         console.log(err.message[0])
@@ -45,8 +44,22 @@ angular
         $scope.loadingModal = false;
         $scope.charData = res.data;
       })
-      .catch(function(err) { console.log(err.message[0]); });
+      .catch(function(err) { console.log(err.message); });
     }
 
+    function adjustApiData() {
+      var dateData = $scope.animeData.start_date_fuzzy.toString();
+      var year;
+      var month;
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 
+        'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+      
+      year = dateData.substr(0,4);
+      month = parseInt(dateData.substr(4,2));
+      month = months[month - 1];
+      $scope.animeData.start_date_fuzzy = month + ' ' + year;
+      
+      $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description);
+    }
   }
 ])
