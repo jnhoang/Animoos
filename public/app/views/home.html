@@ -204,7 +204,7 @@
                 <strong>Score:</strong> {{ animeObj.average_score }}%
               </p>
               <p ng-if="animeObj.genres != 0">
-                <strong>Genres:</strong> <span ng-repeat="genre in animeObj.genres track by $index">{{ genre }}, </span>
+                <strong>Genres:</strong> <span ng-repeat="genre in animeObj.genres track by $index">{{ genre }} </span>
               </p>
             </div>
           </div>

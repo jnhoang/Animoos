@@ -45,11 +45,11 @@
       <div class="card anime-side-bar">
 
         <!-- BASIC INFO -->
-        <p class="center-align"><strong>Alternative Titles</strong></p>
+        <h5 class="center-align"><strong>Alternative Titles</strong></h5>
         <div class="divider"></div>
         <p>Japanese title: {{ animeData.title_japanese }}</p>
         <p>Romaji title: {{ animeData.title_romaji }}</p>
-        <p class="center-align"><strong>Information</strong></p>
+        <h5 class="center-align"><strong>Information</strong></h5>
         <div class="divider"></div>
         <p>Total Episodes: {{ animeData.total_episodes }}</p>
         <p>Duration: {{ animeData.duration }}mins</p>
@@ -62,6 +62,16 @@
         <p>
           Genres: <span ng-repeat="genre in animeData.genres track by $index">{{ genre }} </span>
         </p>
+
+        <!-- EXTERNAL LINKS -->
+        <h5 class="center-align"><strong>External Links</strong></h5>
+        <div class="divider"></div>
+
+        <div class=""
+          ng-repeat="service in animeData.external_links">
+          <a href="{{ service.url }}">{{ service.site }}</a>
+        </div>
+
       </div>
     </div>
 
@@ -143,6 +153,7 @@
           </div>
 
         </div>
+
         <p class="see-more right-align"
           ng-if="animeData.relations.length > 4">
           <a href=""
@@ -150,19 +161,13 @@
             <strong>See more...</strong>
           </a>
         </p>
+
       </div>
     </div>
   </div>
     
   </div>
-</div>
-
-<div>
-  <!-- WHERE TO WATCH -->
-  <div ng-repeat="service in animeData.external_links">
-    <a href="{{ service.url }}">{{ service.site }}</a>
-  </div>
-</div>
+</div> <!-- End of Container -->
 
 <!-- ROW 4 -->
 <div>

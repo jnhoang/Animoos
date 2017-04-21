@@ -58,6 +58,13 @@ angular
       month = parseInt(dateData.substr(4,2));
       month = months[month - 1];
       $scope.animeData.start_date_fuzzy = month + ' ' + year;
+      // add commas for genres, studios
+      for (var i = 0; i < $scope.animeData.genres.length - 1; i++) {
+        $scope.animeData.genres[i] += ',';
+      }
+      for (var i = 0; i < $scope.animeData.studio.length - 1; i++) {
+        $scope.animeData.studio[i].studio_name += ',';
+      }
 
       // reformat description to read HTML elements
       $scope.animeData.description = $sce.trustAsHtml($scope.animeData.description);

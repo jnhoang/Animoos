@@ -22,6 +22,8 @@ angular
       AnimeAPIFactory.browseBy(option)
       .then(function(res) {
         $scope.popularArr = res.data;
+        adjustApiData($scope.popularArr);
+        
         for (var i = 0; i < 5; i++) {
           $scope.top5.push($scope.popularArr.shift());
         }
@@ -58,11 +60,13 @@ angular
         console.log('results back', res.data);
         if (filter == 'score') {
           $scope.scoreArr = res.data;
-          $scope.showArr = res.data;
+          adjustApiData($scope.scoreArr);
+          $scope.showArr = $scope.scoreArr;
         }
         else {
           $scope.currentArr = res.data;
-          $scope.showArr = res.data;
+          adjustApiData($scope.currentArr)
+          $scope.showArr = $scope.currentArr;
         }
         $scope.loadingBar = false;
       })
@@ -90,6 +94,14 @@ angular
       }
     }
 
+    function adjustApiData(animeArr) {
+      console.log(animeArr)
+      animeArr.forEach(function(anime) {
+        for (var i = 0; i < anime.genres.length - 1; i++) {
+          anime.genres[i] += ',';
+        }
+      });
+    }
     
     // ADVANCE FILTER ASSETS
     $scope.advFilter = false;

@@ -12,15 +12,17 @@ body {
 .intro-words {
   width: 75%;
   text-shadow: -5px 7px 5px rgba(0, 0, 0, 0.3);
-  font-size: 10.5em;
+  font-size: 8.5em;
   text-align: center;
   font-family: 'Rubik Mono One', cursive;
   position: absolute;
   z-index: 1;
   font-size: 9em;
   color: transparent;
-  background-size: contain;
+  background-size: cover;
   background-image: url('http://res.cloudinary.com/dxumleria/image/upload/v1492141444/anime-characters-wallpaper-15_mhruva.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
   /*filter: grayscale(100%);*/
   -webkit-background-clip: text;
   -moz-background-clip: text;
