@@ -16,6 +16,11 @@ angular
       }
       
     })
+
+    
+    $scope.search = function() {
+      console.log('hayyyy')
+    }
 }
 ])
 

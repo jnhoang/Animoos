@@ -1,7 +1,14 @@
 body {
   background-color: whitesmoke;
   font-family: 'Francois One', sans-serif;
-;
+}
+a.brand-logo {
+  display: flex;
+}
+.logo {
+  height: 64px;
+  width: 64px;
+  padding: 7px;
 }
 .navbar {
   position: fixed;
