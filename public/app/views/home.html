@@ -89,7 +89,7 @@
       <div input-field>
         <input type="text"
           ng-maxlength="4"
-          ng-model="searchObj.year"
+          ng-model="filterObj.year"
           placeholder="Year: e.g '2000'">
       </div>
     </div>
@@ -98,7 +98,7 @@
     <div class="col s5 m3 l2">
       <div input-field>
         <select class="" 
-          ng-model="searchObj.season"
+          ng-model="filterObj.season"
           material-select>
           <option value="" selected>Season</option>
           <option value="spring">Spring</option>
@@ -113,7 +113,7 @@
     <div class="col s5 m3 l2">
       <div input-field>
         <select class="" 
-          ng-model="searchObj.sort"
+          ng-model="filterObj.sort"
           material-select>
           <option value="" selected>Sort by</option>
           <option value="id">Id</option>
@@ -131,7 +131,7 @@
     <div class="col s5 m3 l2">
       <div input-field>
         <select class="" 
-          ng-model="searchObj.type"
+          ng-model="filterObj.type"
           material-select>
           <option value="" selected>Type</option>
           <option value="tv">TV</option>
@@ -147,7 +147,7 @@
     <div class="col s5 m3 l2">
       <div input-field>
         <select class="" 
-          ng-model="searchObj.status"
+          ng-model="filterObj.status"
           material-select>
           <option value="" selected>Status</option>
           <option value="finished airing">Finished Airing</option>
@@ -212,6 +212,7 @@
       </div>
     </div>
   </div>
+  <div style='clear: both;'></div>
 </div>
 
 

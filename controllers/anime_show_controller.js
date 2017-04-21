@@ -23,7 +23,7 @@ var accessTokenOptions = {
 var router = express.Router();
 
 // ROUTES
-//BROWSE
+// BROWSE
 router.get('/browse', function(req, res) {
   var test = req.query;
 

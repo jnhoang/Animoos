@@ -10,6 +10,7 @@ angular
     $scope.searchTerm;
     $scope.searchResults;
     $scope.loadingBar = false;
+    
     $scope.searchAnime = function() {
       $scope.loadingBar = true;
 
@@ -23,8 +24,6 @@ angular
         }
           
         $scope.searchResults = res.data;
-          
-
       })
       .catch(function(err) {
         console.log(err.message);

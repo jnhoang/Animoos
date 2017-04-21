@@ -15,9 +15,9 @@ angular
     $scope.loadingBar   = false;
 
     // On Page Render
-    browseTop40();
+    getTop5();
 
-    function browseTop40() {
+    function getTop5() {
       var option = { sort: 'popularity-desc' }
       AnimeAPIFactory.browseBy(option)
       .then(function(res) {
@@ -27,15 +27,16 @@ angular
         for (var i = 0; i < 5; i++) {
           $scope.top5.push($scope.popularArr.shift());
         }
-        $scope.showArr = $scope.popularArr;
+
         $scope.loading = false;
         console.log($scope.top5);
-      })
+      }.bind($scope))
       .catch(function (err) {
           console.log('error: ', err.message[0])
           Materialize.toast('Sorry, there was an error. \
             Reload the page or try again later', 10000);
-      });
+      })
+
     }
 
     function selectResults(filter) {
@@ -95,7 +96,6 @@ angular
     }
 
     function adjustApiData(animeArr) {
-      console.log(animeArr)
       animeArr.forEach(function(anime) {
         for (var i = 0; i < anime.genres.length - 1; i++) {
           anime.genres[i] += ',';
@@ -117,12 +117,12 @@ angular
     , type:       ''
     , status:     ''
     , genres:     []
-    , sort:       ''
+    , sort:       'score-desc'
     , page:       1
     }
 
     $scope.$watchCollection('filterObj', function(newObj, oldObj) {
-      console.log('logging')
+      $scope.loadingBar = true;
       for (var key in $scope.filterObj) {
         if ($scope.filterObj[key] == '') {
           delete $scope.filterObj[key]
@@ -131,9 +131,18 @@ angular
       AnimeAPIFactory.browseBy($scope.filterObj)
       .then(function(res) {
         console.log(res.data);
+        $scope.showArr = res.data;
+        $scope.loadingBar = false;
+        if (res.data.error || res.data.length == 0) {
+          Materialize.toast('Sorry, there were no results.', 10000);
+          return;
+        }
       })
       .catch(function(err) {
         console.log(err)
+        $scope.loadingBar = false;
+        Materialize.toast('Sorry, there was an error. \
+          Reload the page or try again later', 10000);
       });
     });
 
