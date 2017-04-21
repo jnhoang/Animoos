@@ -1,7 +1,6 @@
 <!-- VIDEO -->
 <div class="vid-background">
   <div class="video-filter"></div>
-  <h1 class="intro-words">Animemoo</h1>
   <video autoplay loop muted>
     <!-- <source src="vids/anime-banner.mp4" type="video/mp4"> -->
   </video>
@@ -56,31 +55,6 @@
 </div>
 
 <!-- MAIN PAGE FILTERS -->
-<div ng-if="!loading" 
-  class="z-depth-1 z-depth-0">
-
-  <ul tabs
-    class="filter-bar">
-    <li class="tab col s3"
-      ng-click="selectResults('popular')">
-      <a href="#">Popular</a>
-    </li>
-    <li class="tab col s3"
-      ng-click="selectResults('current')">
-      <a href="#">Currently Airing</a>
-    </li>
-    <li class="tab col s3"
-      ng-click="selectResults('score')">
-      <a href="#">Highest Score</a>
-    </li>
-    <li class="tab col s3">
-      <a href=""
-        ng-click="toggleFilters()">Adv Filters</a>
-    </li>
-  </ul>
-</div>
-
-<!-- ADVANCED FILTERS -->
 <div class="row filter-bar advance-filter"
   ng-if="!loading">
   <div>

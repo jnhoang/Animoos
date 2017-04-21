@@ -4,6 +4,7 @@ body {
 }
 a.brand-logo {
   display: flex;
+  font-family: 'Carter One', cursive;
 }
 .logo {
   height: 64px;
@@ -63,8 +64,6 @@ video {
 }
 
 /*Search*/
-.search-bar {
-}
 .seePopularBtn {
   position: absolute;
   bottom: 25px;
@@ -97,10 +96,6 @@ video {
 .slider-btn:hover {
   background-color: #00bcd4; 
 }
-.caption-text {
-
-}
-
 .results-panel {
   min-height: 65vh;
   background-color: rgba(255,255,255, 0.75);
@@ -172,7 +167,6 @@ video {
   cursor: pointer;
   color: #00e5ff;
 }
-
 .reveal-content {
   bottom: 0;
   position: absolute;
@@ -203,7 +197,6 @@ video {
   position: fixed;
   background: linear-gradient(225deg, rgba(255,255,255,0.6), rgba(255,255,255,1));
 }
-
 .search-container {
   padding-top: 50px;
 }
