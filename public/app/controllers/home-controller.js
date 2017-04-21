@@ -29,10 +29,8 @@ angular
         }
 
         $scope.loading = false;
-        console.log($scope.top5);
       }.bind($scope))
       .catch(function (err) {
-          console.log('error: ', err.message[0])
           Materialize.toast('Sorry, there was an error. \
             Reload the page or try again later', 10000);
       })
@@ -41,7 +39,6 @@ angular
 
     function selectResults(filter) {
       var options;
-      console.log('triggering')
       // stops function if data already saved from prev call
       if (isDataSaved(filter)) { return; }
 
@@ -58,7 +55,6 @@ angular
       $scope.loadingBar = true;
       AnimeAPIFactory.browseBy(options)
       .then(function(res) {
-        console.log('results back', res.data);
         if (filter == 'score') {
           $scope.scoreArr = res.data;
           adjustApiData($scope.scoreArr);
@@ -104,20 +100,20 @@ angular
     }
     
     // ADVANCE FILTER ASSETS
-    $scope.advFilter = false;
-    $scope.genres = [
+    $scope.advFilter  = false;
+    $scope.genres     = [
       'Genres', 'action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror',
       'mahou shoujo', 'mecha', 'music', 'mystery', 'psychological', 'romance', 
       'sci fi', 'slice of life', 'sports'
     ];
     $scope.filterObj = {
       token_type: 'Bearer'
-    , year:       ''
+    , year:       '2017'
     , season:     ''
     , type:       ''
-    , status:     ''
+    , status:     'currently airing'
     , genres:     []
-    , sort:       'score-desc'
+    , sort:       'popularity-desc'
     , page:       1
     }
 
@@ -130,16 +126,14 @@ angular
       }
       AnimeAPIFactory.browseBy($scope.filterObj)
       .then(function(res) {
-        console.log(res.data);
-        $scope.showArr = res.data;
-        $scope.loadingBar = false;
+        $scope.showArr      = res.data;
+        $scope.loadingBar   = false;
         if (res.data.error || res.data.length == 0) {
           Materialize.toast('Sorry, there were no results.', 10000);
           return;
         }
       })
       .catch(function(err) {
-        console.log(err)
         $scope.loadingBar = false;
         Materialize.toast('Sorry, there was an error. \
           Reload the page or try again later', 10000);
@@ -149,18 +143,6 @@ angular
     $scope.toggleFilters = function() {
       $scope.advFilter = $scope.advFilter ?  false : true;
     }
-   
-    function filterAnime() {
-      console.log('searching')
-      // deletes empty keys
-      AnimeAPIFactory.browseBy($scope.filterObj)
-      .then(function(res) {
-        console.log(res.data);
-      })
-      .catch(function(err) {
-        console.log(err)
-      });
-    }
 
   }
-])
+]);

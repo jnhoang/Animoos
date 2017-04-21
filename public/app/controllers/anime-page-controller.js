@@ -24,8 +24,8 @@ angular
       AnimeAPIFactory.getAnimeById($stateParams.id)
       .then(function(res) {
         console.log(res.data)
-        $scope.loading = false;
-        $scope.animeData = res.data;
+        $scope.loading    = false;
+        $scope.animeData  = res.data;
         adjustApiData();
       })
       .catch(function(err) {
@@ -40,8 +40,8 @@ angular
       AnimeAPIFactory.getCharById(id)
       .then(function(res) {
         console.log(res.data);
-        $scope.loadingModal = false;
-        $scope.charData = res.data;
+        $scope.loadingModal   = false;
+        $scope.charData       = res.data;
       })
       .catch(function(err) { console.log(err.message); });
     }
@@ -54,9 +54,10 @@ angular
       var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 
         'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
       
-      year = dateData.substr(0,4);
-      month = parseInt(dateData.substr(4,2));
-      month = months[month - 1];
+      year    = dateData.substr(0,4);
+      month   = parseInt(dateData.substr(4,2));
+      month   = months[month - 1];
+      
       $scope.animeData.start_date_fuzzy = month + ' ' + year;
       // add commas for genres, studios
       for (var i = 0; i < $scope.animeData.genres.length - 1; i++) {

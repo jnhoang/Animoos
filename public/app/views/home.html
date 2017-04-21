@@ -2,7 +2,7 @@
 <div class="vid-background">
   <div class="video-filter"></div>
   <video autoplay loop muted>
-    <!-- <source src="vids/anime-banner.mp4" type="video/mp4"> -->
+    <source src="vids/anime-banner.mp4" type="video/mp4">
   </video>
 
   <!-- PULSING BTN -->
@@ -70,8 +70,8 @@
 
     <!-- SEASON -->
     <div class="col s5 m3 l2">
-      <div input-field>
-        <select class="" 
+      <div class="filter-text" input-field>
+        <select class="filter-text"
           ng-model="filterObj.season"
           material-select>
           <option value="" selected>Season</option>
@@ -133,7 +133,7 @@
     </div>
     
     <!-- GENRES -->
-    <div class="col s5 m3 l2">
+    <!-- <div class="col s5 m3 l2">
       <div class="input-field">
         <select class="" 
           ng-model="filterObj.genres"
@@ -143,7 +143,8 @@
           </option>
         </select>
       </div>
-    </div>
+    </div> -->
+    
   </div>
 </div>
 

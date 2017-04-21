@@ -47,11 +47,9 @@ router.get('/search/anime/:title', function(req, res) {
   .then(function() {
     
     searchShow(req.params.title)
-    .then(function(data) {
-      console.log('success at searchShow() ', data)
-      res.send(data);
-    })
+    .then(function(data) { res.send(data); })
     .catch(function(err) { errorMsg(res, err, 'searchShow()'); });
+
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
@@ -63,14 +61,14 @@ router.get('/page-data/anime/:id', function(req, res) {
   .then(function() {
 
     getAnimeById(req.params.id)
-    .then(function(data) {
-      console.log('success at getAnimeById()');
-      res.send(data);
-    })
+
+    .then(function(data) { res.send(data); })
     .catch(function(err) { errorMsg(res, err, 'getAnimeById()'); });
+  
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 }) 
+
 // GET CHARACTER BY ID
 router.get('/page-data/character/:id', function(req, res) {
   
@@ -78,11 +76,9 @@ router.get('/page-data/character/:id', function(req, res) {
   .then(function() {
 
     getCharById(req.params.id)
-    .then(function(data) {
-      console.log('succcess at getCharById');
-      res.send(data);
-    })
+    .then(function(data) { res.send(data);})
     .catch(function(err) { errorMsg(res, err, 'getCharById()'); });
+  
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
@@ -175,6 +171,7 @@ function getAnimeById(id) {
 function browseAnime(qsObj) {
   var deferred = q.defer();
   var qsObj;
+  // add an excluded results and access token before API call
   qsObj.genres_exclude = 'hentai'; // (^_^');;
   qsObj.access_token = token;
   var requestOptions = {
