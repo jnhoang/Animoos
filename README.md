@@ -1,7 +1,7 @@
 # Animoos
 A site that offers information on Anime. Use the search/filter system to review what you missed, check out the current offerings or check the actors behind the characters you love. [View Site](https://animoos.herokuapp.com/).
 
-#A pproach
+# Approach
 ### Day 1 
 * Plan server structure and routes
 * Drew wireframes
@@ -36,29 +36,30 @@ A site that offers information on Anime. Use the search/filter system to review 
 * Deployed site
 * Refactor front-end controller code
 
-#Technologies Used
+# Technologies Used
 [Materialize](http://materializecss.com/)
 [FontAwesome](http://fontawesome.io/)
 [SmoothScroll](https://github.com/d-oliveros/ngSmoothScroll)
 [Request-Promise](https://github.com/request/request-promise)
 [Anilist API](https://anilist-api.readthedocs.io/en/latest/)
 
-#Routes
+# Routes
 METHOD | URL | Purpose
+--- | --- | ---
 GET | /browse | receives a query param of an object with filter specifications. queries the Anilist API and returns a result of 40 anime objects.
 GET | /search/anime/:title| receives query param of an anime title, queries the API with the search term returns an array of objects that match the search term.
 GET | /page-data/anime/:id | receives query param of an anime id, queries the API and returns an object with the anime data
 GET | /page-data/character/:id | receives query param of an character id, queries the API and returns an object with the character data
 
-#Issues
+# Issues
 * This was a project to practice CSS skills, making Angular and Materialize work together was difficult.
 * Creating a universal backend route to query the API proved difficult to make a route generic enough to handle the front-end request properly. The Anilist API also does not accept blank entries in their API queries and designing the call around that was interesting.
 
-#Unsolved Problems
+# Unsolved Problems
 * bug due to image sizing with character image size and voice actor image size, hover over actor names produces a twitching effect.
 * bug due to image sizing with character image size not all uniform causes mostly empty rows in the all character and staff modal.
 
-#Next Steps
+# Next Steps
 * Complete infinite scroll on main page or implement pagination for filter results
 * optimize home page, heavily loaded with content produces slow navigation
 
