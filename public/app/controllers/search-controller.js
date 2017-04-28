@@ -19,6 +19,7 @@ angular
       AnimeAPIFactory.searchForAnime($scope.searchTerm)
       .then(function(res) {
         $scope.searchResults = res.data;
+        console.log($scope.searchResults)
         $scope.loadingBar = false;
         
         if (res.data.error) {
