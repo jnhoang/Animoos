@@ -9,8 +9,8 @@ A site that offers information on Anime. Use the search/filter system to review 
 * Research and test API calls
 
 ###### Home Page wireframes
-![1](public/img/main1.png)
-![2](public/img/main2.png)
+![1](/public/img/main1.png)
+![2](/public/img/main2.png)
 
 ###### Description wireframe
 ![1](./public/img/descrip1.png)
