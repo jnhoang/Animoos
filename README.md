@@ -1,7 +1,7 @@
 # Animoos
 A site that offers information on Anime. Use the search/filter system to review what you missed, check out the current offerings or check the actors behind the characters you love. [View Site](https://animoos.herokuapp.com/).
 
-![Demo Image](./img/demo.png) 
+![Demo Image](/public/img/demo.png) 
 # Approach
 ### Day 1 
 * Plan server structure and routes
@@ -13,8 +13,8 @@ A site that offers information on Anime. Use the search/filter system to review 
 ![2](/public/img/main2.png)
 
 ###### Description wireframe
-![1](./public/img/descrip1.png)
-![1](./public/img/descrip2.png)
+![1](/public/img/descrip1.png)
+![1](/public/img/descrip2.png)
 
 
 
