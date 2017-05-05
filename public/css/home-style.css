@@ -157,9 +157,12 @@ video {
   text-align: center;
   text-shadow: 0 0 1px black;
 }
+.cover-title:hover {
+  color: #00e5ff;
+}
 .more-info-indicator {
   z-index: 2;
-  margin-top: -40px;
+  margin-top: 235px;
   position: relative;
   color: rgba(255,255,255,0.35);
 }

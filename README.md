@@ -48,11 +48,11 @@ A site that offers information on Anime. Use the search/filter system to review 
 * Refactor front-end controller code
 
 # Technologies Used
-[Materialize](http://materializecss.com/)
-[FontAwesome](http://fontawesome.io/)
-[SmoothScroll](https://github.com/d-oliveros/ngSmoothScroll)
-[Request-Promise](https://github.com/request/request-promise)
-[Anilist API](https://anilist-api.readthedocs.io/en/latest/)
+* [Materialize](http://materializecss.com/)
+* [FontAwesome](http://fontawesome.io/)
+* [SmoothScroll](https://github.com/d-oliveros/ngSmoothScroll)
+* [Request-Promise](https://github.com/request/request-promise)
+* [Anilist API](https://anilist-api.readthedocs.io/en/latest/)
 
 # Routes
 METHOD | URL | Purpose
@@ -75,5 +75,5 @@ GET | /page-data/character/:id | receives query param of an character id, querie
 * optimize home page, heavily loaded with content produces slow navigation
 
 #Resources Used
-[Background used for shows that do not have a banner](http://www.nmgncp.com/anime-background-wallpaper/3663544.html)
-[App background](http://www.shunvmall.com/anime-wallpaper/47754412.html)
+* [Background used for shows that do not have a banner](http://www.nmgncp.com/anime-background-wallpaper/3663544.html)
+* [App background](http://www.shunvmall.com/anime-wallpaper/47754412.html)

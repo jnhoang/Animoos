@@ -154,16 +154,12 @@
   <div class="row">
     <div ng-repeat="animeObj in showArr track by $index">
       <div class="col s12 m4 l3 xl2">
-        <div class="card z-depth-3 home-title-card">
+        <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
           <a ng-href="/anime/{{ animeObj.id }}">
-            <img 
-            class="title-img-lg" 
-            ng-src="{{ animeObj.image_url_lge }}">
+            <h5 class="cover-title">
+              {{ animeObj.title_english }}
+            </h5>
           </a>
-            
-          <h5 class="cover-title">
-            {{ animeObj.title_english }}
-          </h5>
           <h5 class="center activator more-info-indicator">
             <i class="fa fa-chevron-up" aria-hidden="true"></i>
           </h5>
