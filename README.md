@@ -74,6 +74,7 @@ GET | /page-data/character/:id | receives query param of an character id, querie
 * Complete infinite scroll on main page or implement pagination for filter results
 * optimize home page, heavily loaded with content produces slow navigation
 
-#Resources Used
+
+# Resources Used
 * [Background used for shows that do not have a banner](http://www.nmgncp.com/anime-background-wallpaper/3663544.html)
 * [App background](http://www.shunvmall.com/anime-wallpaper/47754412.html)
