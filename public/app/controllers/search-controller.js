@@ -21,6 +21,7 @@ angular
       .then(function(res) {
         $scope.searchResults = res.data;
         $scope.loadingBar = false;
+        
         // Message if no results from search
         if (res.data.error) {
           Materialize.toast(res.data.error.messages[0], 10000);
