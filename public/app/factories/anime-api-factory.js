@@ -1,8 +1,8 @@
 angular
 .module('Animoo')
 .factory('AnimeAPIFactory', [
-  '$http',
-  function($http) {
+  '$http'
+, function($http) {
     return {
       getAnimeById: getAnimeById
     , searchForAnime: searchForAnime  

@@ -25,15 +25,12 @@ var router = express.Router();
 // ROUTES
 // BROWSE
 router.get('/browse', function(req, res) {
-  var test = req.query;
+  var browseObj = req.query;
 
   checkAccessToken()
-  .then(function(tokenData) {
-    
-    browseAnime(test)
-    .then(function(data) {
-      res.send(data)
-    })
+  .then(function(tokenData) { 
+    browseAnime(browseObj)
+    .then(function(data) { res.send(data); })
     .catch(function(err) { errorMsg(res, err, 'browseAnime()'); });
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
@@ -42,43 +39,33 @@ router.get('/browse', function(req, res) {
 // SEARCH FOR SHOW BY :TITLE
 // Gets back array of possible shows
 router.get('/search/anime/:title', function(req, res) {
-  
   checkAccessToken()
   .then(function() {
-    
     searchShow(req.params.title)
     .then(function(data) { res.send(data); })
     .catch(function(err) { errorMsg(res, err, 'searchShow()'); });
-
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
 
 // GET SPECIFIC SHOW BY :ID
 router.get('/page-data/anime/:id', function(req, res) {
-  
   checkAccessToken()
   .then(function() {
-
     getAnimeById(req.params.id)
-
     .then(function(data) { res.send(data); })
     .catch(function(err) { errorMsg(res, err, 'getAnimeById()'); });
-  
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 }) 
 
 // GET CHARACTER BY ID
-router.get('/page-data/character/:id', function(req, res) {
-  
+router.get('/page-data/character/:id', function(req, res) { 
   checkAccessToken()
   .then(function() {
-
     getCharById(req.params.id)
     .then(function(data) { res.send(data);})
     .catch(function(err) { errorMsg(res, err, 'getCharById()'); });
-  
   })
   .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
 })
@@ -102,28 +89,23 @@ function checkAccessToken(searchTerm) {
       console.log('success in checkAccessToken', tokenData)
       deferred.resolve();
     })
-    .catch(function(err) {
-      console.log('error in checkAccessToken', err.message)
-      deferred.reject(err);
-    });
+    .catch(function(err) { deferred.reject(err); });
   } 
-  else {
-    deferred.resolve();
-  }
+  else { deferred.resolve(); }
 
   return deferred.promise;
 }
 
 function searchShow(searchTerm) {
-  var deferred = q.defer();
-  var requestOptions = {
+  var deferred        = q.defer();
+  var requestOptions  = {
     method: 'GET'
   , uri:    'https://anilist.co/api/anime/search/' + searchTerm
   , qs: {
       access_token: token
     , token_type:   'Bearer'
     }
-  }
+  };
 
   rp(requestOptions)
   .then(function(data) { deferred.resolve(data); })
@@ -133,8 +115,8 @@ function searchShow(searchTerm) {
 }
 
 function getCharById(id) {
-  var deferred = q.defer();
-  requestOptions = {
+  var deferred    = q.defer();
+  requestOptions  = {
     method: 'GET'
   , uri:    'https://anilist.co/api/character/' + id
   , qs: {

@@ -18,22 +18,21 @@ angular
     getTop5();
 
     function getTop5() {
-      var option = { sort: 'popularity-desc' }
+      var option = { sort: 'popularity-desc' };
+      
       AnimeAPIFactory.browseBy(option)
       .then(function(res) {
         $scope.popularArr = res.data;
         adjustApiData($scope.popularArr);
-        
+        // Takes out first 5 arr items for display in slider
         for (var i = 0; i < 5; i++) {
           $scope.top5.push($scope.popularArr.shift());
         }
-
         $scope.loading = false;
       }.bind($scope))
       .catch(function (err) {
-          Materialize.toast('Sorry, there was an error. \
-            Reload the page or try again later', 10000);
-      })
+          Materialize.toast('Sorry, there was an error. \Reload the page or try again later', 10000);
+      });
 
     }
 
@@ -41,7 +40,7 @@ angular
       var options;
       // stops function if data already saved from prev call
       if (isDataSaved(filter)) { return; }
-
+      // prepares search object for API call
       if (filter == 'score') {
         options = { sort: 'score-desc' };
       } 
@@ -53,8 +52,13 @@ angular
       }
 
       $scope.loadingBar = true;
+      // Makes API call, returns anime Arr based on filter
       AnimeAPIFactory.browseBy(options)
       .then(function(res) {
+        // Stores result in arr to prevent additional API calls
+        // and adjusts some styles of returned info
+        // filter to == 'score' or 'current' 
+        // (popular already stored from initial call)
         if (filter == 'score') {
           $scope.scoreArr = res.data;
           adjustApiData($scope.scoreArr);
@@ -74,6 +78,7 @@ angular
     }
 
     function isDataSaved(filter) {
+      // checks if filter request was already made and saved
       if (filter == 'popular') {
         $scope.showArr = $scope.popularArr;
         return true;
@@ -106,6 +111,7 @@ angular
       'mahou shoujo', 'mecha', 'music', 'mystery', 'psychological', 'romance', 
       'sci fi', 'slice of life', 'sports'
     ];
+    // Initial API call
     $scope.filterObj = {
       token_type: 'Bearer'
     , year:       '2017'
@@ -116,9 +122,10 @@ angular
     , sort:       'popularity-desc'
     , page:       1
     }
-
+    // auto API call on any change to filters
     $scope.$watchCollection('filterObj', function(newObj, oldObj) {
       $scope.loadingBar = true;
+      // clears empty fields from filterObj
       for (var key in $scope.filterObj) {
         if ($scope.filterObj[key] == '') {
           delete $scope.filterObj[key]

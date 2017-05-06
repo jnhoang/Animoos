@@ -10,18 +10,18 @@ angular
     $scope.searchResults;
     $scope.loadingBar = false;
     
+    // Auto API call on any changes
     $scope.$watch('searchTerm', function(newObj, oldObj) {
       if ($scope.searchTerm == undefined || $scope.searchTerm == '') {
         return;
       }
       $scope.loadingBar = true;
-
+      // API call
       AnimeAPIFactory.searchForAnime($scope.searchTerm)
       .then(function(res) {
         $scope.searchResults = res.data;
-        console.log($scope.searchResults)
         $scope.loadingBar = false;
-        
+        // Message if no results from search
         if (res.data.error) {
           Materialize.toast(res.data.error.messages[0], 10000);
           return;
