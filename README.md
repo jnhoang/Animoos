@@ -48,6 +48,8 @@ A site that offers information on Anime. Use the search/filter system to review 
 * Refactor front-end controller code
 
 # Technologies Used
+* AngularJS
+* Express/Node
 * [Materialize](http://materializecss.com/)
 * [FontAwesome](http://fontawesome.io/)
 * [SmoothScroll](https://github.com/d-oliveros/ngSmoothScroll)
