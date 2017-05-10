@@ -114,10 +114,10 @@ angular
     // Initial API call
     $scope.filterObj = {
       token_type: 'Bearer'
-    , year:       '2017'
+    , year:       ''
     , season:     ''
     , type:       ''
-    , status:     'currently airing'
+    , status:     ''
     , genres:     []
     , sort:       'popularity-desc'
     , page:       1
