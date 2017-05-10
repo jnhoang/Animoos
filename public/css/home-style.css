@@ -162,8 +162,9 @@ video {
 }
 .more-info-indicator {
   z-index: 2;
-  margin-top: 235px;
-  position: relative;
+  bottom: 0;
+  left: 45%;
+  position: absolute;
   color: rgba(255,255,255,0.35);
 }
 .more-info-indicator:hover {
