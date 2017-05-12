@@ -154,32 +154,32 @@
   <div class="row">
     <div ng-repeat="animeObj in showArr track by $index">
       <div class="col s12 m4 l3 xl2">
-        <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
-          <a ng-href="/anime/{{ animeObj.id }}">
-            <h5 class="cover-title">
-              {{ animeObj.title_english }}
+        <a ng-href="/anime/{{ animeObj.id }}">
+          <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
+              <h5 class="cover-title">
+                {{ animeObj.title_english }}
+              </h5>
+            <h5 class="center activator more-info-indicator">
+              <i class="fa fa-chevron-up" aria-hidden="true"></i>
             </h5>
-          </a>
-          <h5 class="center activator more-info-indicator">
-            <i class="fa fa-chevron-up" aria-hidden="true"></i>
-          </h5>
 
-          <div class="cover-info"></div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4"><i class="fa fa-times right" aria-hidden="true"></i></span>
-            <div class="reveal-content">
-              <p>
-                <strong>Type:</strong> {{ animeObj.type }}
-              </p>
-              <p>
-                <strong>Score:</strong> {{ animeObj.average_score }}%
-              </p>
-              <p ng-if="animeObj.genres != 0">
-                <strong>Genres:</strong> <span ng-repeat="genre in animeObj.genres track by $index">{{ genre }} </span>
-              </p>
+            <div class="cover-info"></div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><i class="fa fa-times right" aria-hidden="true"></i></span>
+              <!-- <div class="reveal-content">
+                <p>
+                  <strong>Type:</strong> {{ animeObj.type }}
+                </p>
+                <p>
+                  <strong>Score:</strong> {{ animeObj.average_score }}%
+                </p>
+                <p ng-if="animeObj.genres != 0">
+                  <strong>Genres:</strong> <span ng-repeat="genre in animeObj.genres track by $index">{{ genre }} </span>
+                </p>
+              </div> -->
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
