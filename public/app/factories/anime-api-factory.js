@@ -6,6 +6,7 @@ angular
 , '$q'
 , '$sce'
 , function($http, $log, $q, $sce) {
+    // cache storage for any api calls
     var storage = {
       animeData:    {}
     , browseData:   {}
@@ -48,24 +49,28 @@ angular
       // returns promise
       return deferred.promise;
     } 
+    // returns factory storage || api call for anime data via a promise
     function getAnimeById(id) {
       var deferred = $q.defer();
 
       if (storage.animeData[id]) {
+        // returns local data if available
         $log.debug('anime id stored in cache', storage.animeData[id]);
         deferred.resolve(storage.animeData[id])
       }
       else {
+        // api call for data, stores in local cache, returns local data
         $http.get('/api/anilist/page-data/anime/' + id)
         .then(function(res){
           storage.animeData[id] = res.data;
+          // formats return data for display
           adjustApiData(storage.animeData[id]);
           $log.debug('successfully fetched data from API for anime id: ', id);
           deferred.resolve(storage.animeData[id]);
         })
         .catch(function(err) { defer.reject(err); })
-
       }
+      // returns promise
       return deferred.promise;
     }
     function searchForAnime(animeTitle) {

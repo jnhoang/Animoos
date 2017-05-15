@@ -74,7 +74,7 @@ GET | /page-data/character/:id | receives query param of an character id, querie
 
 # Next Steps
 * Complete infinite scroll on main page or implement pagination for filter results
-* optimize home page, heavily loaded with content produces slow navigation
+* Optimize home page, heavily loaded with content produces slow navigation
 
 
 # Resources Used

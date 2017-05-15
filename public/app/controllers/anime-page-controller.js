@@ -24,7 +24,6 @@ angular
       .then(function(data) {
         $scope.loading    = false;
         $scope.animeData  = data;
-        // adjustApiData();
       })
       .catch(function(err) {
         console.log(err.message)
@@ -42,7 +41,5 @@ angular
       })
       .catch(function(err) { console.log(err.message); });
     }
-
-    
   }
 ])

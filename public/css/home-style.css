@@ -41,34 +41,6 @@ a.brand-logo {
     font-size: 6em;
   }
 }
-.video-filter {
-  height: 100vh;
-  width: 100vw;
-  z-index: 1;
-  position: absolute;
-  background-color: rgba(0,0,0,0.35);
-}
-.vid-background {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-size: cover;
-  background-color: black;
-}
-video {
-  height: 100%;
-  filter: blur(3px);
-}
-
-/*Search*/
-.seePopularBtn {
-  position: absolute;
-  bottom: 25px;
-  right: 50%;
-}
 
 /*Slider*/
 .cover-slider {
