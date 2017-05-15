@@ -39,9 +39,8 @@ angular
 
       AnimeAPIFactory.getCharById(id)
       .then(function(res) {
-        console.log(res.data);
         $scope.loadingModal   = false;
-        $scope.charData       = res.data;
+        $scope.charData       = res;
       })
       .catch(function(err) { console.log(err.message); });
     }
