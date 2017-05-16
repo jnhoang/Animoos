@@ -21,11 +21,11 @@ angular
     , browseBy: browseBy
     }
   
-    function browseBy(filter) {
+    function browseBy(filterObj) {
       return $http({
         url: 'api/anilist/browse'
       , method: 'GET'
-      , params: filter
+      , params: filterObj
       });
     }
     // returns factory storage || api call for char data via a promise
@@ -73,9 +73,6 @@ angular
       // returns promise
       return deferred.promise;
     }
-    function searchForAnime(animeTitle) {
-      return $http.get('/api/anilist/search/anime/' + animeTitle);
-    }
 
     function adjustApiData(data) {
       // re-arrange date format
@@ -101,5 +98,16 @@ angular
       // reformat description to read HTML elements
       data.description = $sce.trustAsHtml(data.description);
     }
+
+    function searchForAnime(animeTitle) {
+      return $http.get('/api/anilist/search/anime/' + animeTitle);
+    }
+
+
+
+
+
+
+
   }
 ]);
