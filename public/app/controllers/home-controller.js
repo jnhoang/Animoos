@@ -44,7 +44,7 @@ angular
     
     // ADVANCE FILTER ASSETS
 
-    $scope.genres     = [
+    $scope.genres = [
       'Genres', 'action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror',
       'mahou shoujo', 'mecha', 'music', 'mystery', 'psychological', 'romance', 
       'sci fi', 'slice of life', 'sports'

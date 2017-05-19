@@ -150,17 +150,6 @@
             <div class="cover-info"></div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4"><i class="fa fa-times right" aria-hidden="true"></i></span>
-              <!-- <div class="reveal-content">
-                <p>
-                  <strong>Type:</strong> {{ animeObj.type }}
-                </p>
-                <p>
-                  <strong>Score:</strong> {{ animeObj.average_score }}%
-                </p>
-                <p ng-if="animeObj.genres != 0">
-                  <strong>Genres:</strong> <span ng-repeat="genre in animeObj.genres track by $index">{{ genre }} </span>
-                </p>
-              </div> -->
             </div>
           </div>
         </a>
@@ -169,4 +158,6 @@
   </div>
 </div>
 
-
+<div 
+  ng-include="'app/views/partials/footer.html'"
+  ng-if="!loading"></div>

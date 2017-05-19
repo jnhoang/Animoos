@@ -102,12 +102,5 @@ angular
     function searchForAnime(animeTitle) {
       return $http.get('/api/anilist/search/anime/' + animeTitle);
     }
-
-
-
-
-
-
-
   }
 ]);
