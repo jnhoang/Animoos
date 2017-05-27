@@ -1,15 +1,15 @@
 // global vars and requires
 require('dotenv').config();
-var express   = require('express');
-var request   = require('request');
-var rp        = require('request-promise');
-var q         = require('q');
+const express   = require('express');
+const request   = require('request');
+const rp        = require('request-promise');
+const q         = require('q');
 
 // Auth token
-var token;
-var expirationTime;
-var waitForAccessToken = false;
-var accessTokenOptions = {
+let token;
+let expirationTime;
+const waitForAccessToken = false;
+const accessTokenOptions = {
   method: 'POST'
 , uri:    'https://anilist.co/api/auth/access_token?'
 , json:   true
@@ -19,55 +19,64 @@ var accessTokenOptions = {
   , client_secret:  process.env.CLIENT_SECRET
   }
 }
+// General API call options
+const requestOptions  = {
+  method: 'GET'
+, uri: ''
+, qs: {
+    access_token: ''
+  , token_type: 'Bearer'
+  }
+};
 
-var router = express.Router();
+const router = express.Router();
 
 // ROUTES
 // BROWSE
 router.get('/browse', function(req, res) {
-  var browseObj = req.query;
+   const browseObj = req.query;
 
   checkAccessToken()
-  .then(function(tokenData) { 
+  .then( (tokenData) => { 
     browseAnime(browseObj)
-    .then(function(data) { res.send(data); })
-    .catch(function(err) { errorMsg(res, err, 'browseAnime()'); });
+    .then( (data) => res.send(data) )
+    .catch( (err) => errorMsg(res, err, 'browseAnime()') );
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
+  .catch((err) => errorMsg(res, err, 'checkAccessToken()') );
 })
 
 // SEARCH FOR SHOW BY :TITLE
 // Gets back array of possible shows
-router.get('/search/anime/:title', function(req, res) {
+router.get('/search/anime/:title', (req, res) => {
   checkAccessToken()
-  .then(function() {
+  .then( () => {
     searchShow(req.params.title)
-    .then(function(data) { res.send(data); })
-    .catch(function(err) { errorMsg(res, err, 'searchShow()'); });
+    .then( (data) => res.send(data) )
+    .catch( (err) => errorMsg(res, err, 'searchShow()') );
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
+  .catch( (err) => errorMsg(res, err, 'checkAccessToken()') );
 })
 
 // GET SPECIFIC SHOW BY :ID
 router.get('/page-data/anime/:id', function(req, res) {
   checkAccessToken()
-  .then(function() {
+  .then( () => {
     getAnimeById(req.params.id)
-    .then(function(data) { res.send(data); })
-    .catch(function(err) { errorMsg(res, err, 'getAnimeById()'); });
+    .then( (data) => res.send(data) )
+    .catch( (err) => errorMsg(res, err, 'getAnimeById()') );
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
+  .catch( (err) => errorMsg(res, err, 'checkAccessToken()') );
 }) 
 
 // GET CHARACTER BY ID
 router.get('/page-data/character/:id', function(req, res) { 
   checkAccessToken()
-  .then(function() {
+  .then( () => {
     getCharById(req.params.id)
-    .then(function(data) { res.send(data);})
-    .catch(function(err) { errorMsg(res, err, 'getCharById()'); });
+    .then( (data) => res.send(data) )
+    .catch( (err) => errorMsg(res, err, 'getCharById()') );
   })
-  .catch(function(err) { errorMsg(res, err, 'checkAccessToken()'); });
+  .catch( (err) => errorMsg(res, err, 'checkAccessToken()') );
 })
 // export
 module.exports = router;
@@ -76,95 +85,76 @@ module.exports = router;
 
 // FUNCTIONS
 function checkAccessToken(searchTerm) {
-  var deferred      = q.defer();
-  var currentTime   = Math.floor(new Date().getTime() / 1000);
+  const deferred      = q.defer();
+  const currentTime   = Math.floor(new Date().getTime() / 1000);
 
   if (!token || currentTime > expirationTime) {
     rp(accessTokenOptions)
-    .then(function(tokenData) {
-      var tokenData = tokenData;
+    .then( (data) => {
+      const tokenData = data;
       token = tokenData.access_token;
       // token expires after 1 hour
       expirationTime = tokenData.expires;
       console.log('success in checkAccessToken', tokenData)
       deferred.resolve();
     })
-    .catch(function(err) { deferred.reject(err); });
+    .catch( (err) => deferred.reject(err) );
   } 
-  else { deferred.resolve(); }
+  else { 
+    deferred.resolve(); 
+  }
 
   return deferred.promise;
 }
 
 function searchShow(searchTerm) {
-  var deferred        = q.defer();
-  var requestOptions  = {
-    method: 'GET'
-  , uri:    'https://anilist.co/api/anime/search/' + searchTerm
-  , qs: {
-      access_token: token
-    , token_type:   'Bearer'
-    }
-  };
+  const deferred = q.defer();
+  requestOptions.uri = 'https://anilist.co/api/anime/search/' + searchTerm;
+  requestOptions.qs.access_token = token;
 
   rp(requestOptions)
-  .then(function(data) { deferred.resolve(data); })
-  .catch(function(err) { deferred.reject(err); });
+  .then( (data) => deferred.resolve(data) )
+  .catch( (err) => deferred.reject(err) );
 
   return deferred.promise;
 }
 
 function getCharById(id) {
-  var deferred    = q.defer();
-  requestOptions  = {
-    method: 'GET'
-  , uri:    'https://anilist.co/api/character/' + id
-  , qs: {
-      access_token: token
-    , token_type:   'Bearer'
-    }
-  };
+  const deferred = q.defer();
+  requestOptions.uri = 'https://anilist.co/api/character/' + id;
+  requestOptions.qs.access_token = token;
 
   rp(requestOptions)
-  .then(function(data) { deferred.resolve(data); })
-  .catch(function(err) { deferred.reject(err); });
+  .then( (data) => deferred.resolve(data) )
+  .catch( (err) => deferred.reject(err) );
 
   return deferred.promise;
 }
 
 function getAnimeById(id) {
-  var deferred   = q.defer();
-  requestOptions = {
-    method: 'GET'
-  , uri:    'https://anilist.co/api/anime/' + id + '/page'
-  , qs: {
-      access_token: token
-    , token_type:   'Bearer'
-    }
-  };
-  
-  rp(requestOptions)
-  .then(function(data) { deferred.resolve(data); })
-  .catch(function(err) { deferred.reject(err); });
+  const deferred = q.defer();
+  requestOptions.uri = 'https://anilist.co/api/anime/' + id + '/page';
+  requestOptions.qs.access_token = token;
 
+  rp(requestOptions)
+  .then( (data) => deferred.resolve(data) )
+  .catch( (err) => deferred.reject(err) );
   return deferred.promise;
 }
 
+// receives qs for requestOptions
 function browseAnime(qsObj) {
-  var deferred = q.defer();
-  var qsObj;
-  // add an excluded results and access token before API call
+  const deferred = q.defer();
+  
+  // add an excluded results and access token to qs before API call
   qsObj.genres_exclude = 'hentai'; // (^_^');;
   qsObj.access_token = token;
-  var requestOptions = {
-    method: 'GET'
-  , uri: 'https://anilist.co/api/browse/anime'
-  , qs: qsObj
-  };
+  requestOptions.uri = 'https://anilist.co/api/browse/anime';
+  requestOptions.qs = qsObj
 
   rp(requestOptions)
-  .then(function(data) { deferred.resolve(data); })
-  .catch(function(err) { deferred.reject(err); });
+  .then( (data) => deferred.resolve(data) )
+  .catch( (err) => deferred.reject(err) );
 
   return deferred.promise;
 }
