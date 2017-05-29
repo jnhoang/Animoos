@@ -1,10 +1,10 @@
 // requires and global variables
 require('dotenv').config();
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var rp = require('request-promise');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const rp = require('request-promise');
+const app = express();
 
 // set and use statements
 app.use(bodyParser.json());
@@ -23,4 +23,4 @@ app.get('/*', function(req, res) {
 
 
 // listen
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => console.log('Animoo server up'));
