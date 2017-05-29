@@ -66,7 +66,7 @@ router.route('/:id')
       return res.send({ message: 'success' });
     })
   })
-  
+
   // if Authenticated, returns a sugned JWT
   router.post('/auth', (req, res) => {
     User.findOne({ email: req.body }, (err, user) => {
@@ -80,7 +80,7 @@ router.route('/:id')
       const token = jwt.sign(user.toJSON(), secret);
       // returns token
       return res.send({ user: user, token: token });
-    })  
+    });  
   });
 
 module.exports = router;
