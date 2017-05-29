@@ -34,7 +34,7 @@ const router = express.Router();
 // ROUTES
 // BROWSE
 router.get('/browse', function(req, res) {
-   const browseObj = req.query;
+  const browseObj = req.query;
 
   checkAccessToken()
   .then( (tokenData) => { 
@@ -108,8 +108,8 @@ function checkAccessToken(searchTerm) {
 }
 
 function searchShow(searchTerm) {
-  const deferred = q.defer();
-  requestOptions.uri = 'https://anilist.co/api/anime/search/' + searchTerm;
+  const deferred      = q.defer();
+  requestOptions.uri  = 'https://anilist.co/api/anime/search/' + searchTerm;
   requestOptions.qs.access_token = token;
 
   rp(requestOptions)
@@ -120,8 +120,8 @@ function searchShow(searchTerm) {
 }
 
 function getCharById(id) {
-  const deferred = q.defer();
-  requestOptions.uri = 'https://anilist.co/api/character/' + id;
+  const deferred      = q.defer();
+  requestOptions.uri  = 'https://anilist.co/api/character/' + id;
   requestOptions.qs.access_token = token;
 
   rp(requestOptions)
@@ -132,8 +132,8 @@ function getCharById(id) {
 }
 
 function getAnimeById(id) {
-  const deferred = q.defer();
-  requestOptions.uri = 'https://anilist.co/api/anime/' + id + '/page';
+  const deferred      = q.defer();
+  requestOptions.uri  = 'https://anilist.co/api/anime/' + id + '/page';
   requestOptions.qs.access_token = token;
 
   rp(requestOptions)
@@ -147,10 +147,10 @@ function browseAnime(qsObj) {
   const deferred = q.defer();
   
   // add an excluded results and access token to qs before API call
-  qsObj.genres_exclude = 'hentai'; // (^_^');;
-  qsObj.access_token = token;
-  requestOptions.uri = 'https://anilist.co/api/browse/anime';
-  requestOptions.qs = qsObj
+  qsObj.genres_exclude  = 'hentai'; // (^_^');;
+  qsObj.access_token    = token;
+  requestOptions.uri    = 'https://anilist.co/api/browse/anime';
+  requestOptions.qs     = qsObj
 
   rp(requestOptions)
   .then( (data) => deferred.resolve(data) )
