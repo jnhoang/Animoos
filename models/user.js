@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   firstName: String
 , lastName: String
 , username: {
@@ -33,7 +33,7 @@ UserSchema.set('toJSON', {
   return returnJSON;
   }
 });
-UserScheme.methods.authenticated = (password) => {
+UserSchema.methods.authenticated = (password) => {
   const provider = this;
   const isAuthenticated = bcrypt.compareSync(password, provider.password);
 
