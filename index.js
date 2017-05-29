@@ -20,6 +20,7 @@ app.use(require('morgan')('dev'));
 // routes
 // controllers
 app.use('/api/anilist', require('./controllers/anime_show_controller'));
+app.use('/api/user', require('./controllers/users'));
 
 // Angular route
 app.get('/*', function(req, res) {

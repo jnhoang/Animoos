@@ -1,6 +1,14 @@
+// set and require statements
+require('dotenv').config();
 const express = require('express');
 const User = require('../models/user');
-const router = express.Router() ;
+
+// JSON web token dependencies
+const expressJWT = require('express-jwt');
+const jwt = require('jsonwebtoken');
+const secret = process.env.JWT_SECRET;
+
+const router = express.Router();
 
 router.route('/')
   // returns object of all users
@@ -58,5 +66,21 @@ router.route('/:id')
       return res.send({ message: 'success' });
     })
   })
+  
+  // if Authenticated, returns a sugned JWT
+  router.post('/auth', (req, res) => {
+    User.findOne({ email: req.body }, (err, user) => {
+      // returns 401 if error or not a user
+      if (err || !user) return res.status(401).send({ message: 'User not found' });
+      // checks provided password against db password
+      const isAuthenticated = user.authenticated(req.body.password);
+      // returns 401 if error or bad password
+      if (err || !isAuthenticated) return res.status(401).send({ message: 'User not authenticated'});
+      // all checks cleared, creates new jwt token
+      const token = jwt.sign(user.toJSON(), secret);
+      // returns token
+      return res.send({ user: user, token: token });
+    })  
+  });
 
 module.exports = router;

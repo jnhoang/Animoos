@@ -6,29 +6,29 @@ angular
     return {
       userLogin: userLogin
     , userSignup: userSignup
-    , userSingle: userSingle
-    , userAll : userAll
+    , getUserSingle: getUserSingle
+    , getUserAll : getUserAll
     , userUpdate: userUpdate
     , userDelete: userDelete
     }
 
-    function userLogin() {
+    function userLogin(userObj) {
 
     }
-    function userSignup() {
+    function userSignup(userObj) {
 
     }
-    function userSingle() {
+    function getUserSingle(id) {
 
     }
-    function userAll() {
+    function getUserAll() {
 
     }
-    function userUpdate() {
+    function userUpdate(id, userObj) {
 
     }
-    function userDelete() {
-      
+    function userDelete(id) {
+
     }
   }
 ]);
