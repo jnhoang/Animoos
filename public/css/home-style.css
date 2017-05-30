@@ -14,7 +14,7 @@ a.brand-logo {
 .navbar {
   position: fixed;
   background-color: transparent;
-  z-index: 5;
+  z-index: 100;
   transition: all 500ms;
 }
 .intro-words {

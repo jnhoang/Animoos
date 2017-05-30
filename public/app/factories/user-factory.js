@@ -10,7 +10,7 @@ angular
     , getUserAll:       getUserAll
     , userUpdate:       userUpdate
     , userDelete:       userDelete
-    }
+    };
 
     function userLogin(userObj) {
       return $http.post('/api/users/auth', userObj);

@@ -1,3 +1,8 @@
+<div 
+  ng-if="!loading"
+  ng-include="'app/views/partials/nav.html'">
+</div>
+
 <!-- LOADING SPINNER -->
 <div ng-if="loading" class="preloader-wrapper big active anime-display-loading">
   <div class="spinner-layer spinner-green-only">
@@ -180,148 +185,24 @@
   <!-- previously viewed items -->
 </div>
 
+<!-- Footer -->
+<div 
+  ng-include="'app/views/partials/footer.html'"
+  ng-if="!loading">
+</div>
+
 <!-- ****** -->
 <!-- MODALS -->
 <!-- ****** -->
 
 <!-- Single Character Modal -->
-<div class="modal modal-card" 
-  id="charModal">
-  <!-- LOADING BAR -->
-  <div class="progress"
-    ng-if="loadingModal">
-    <div class="indeterminate"></div>
-  </div>
-    
-  <div class="row"
-    ng-if="!loadingModal">
-
-    <div class="col s12 m4">
-      <img class="char-staff-img" 
-        ng-src="{{ charData.image_url_lge }}">
-    </div>
-
-    <div class="col s12 m8">
-      <p><strong>Name:</strong> {{ charData.name_first }} {{ charData.name_last }}</p>
-      <p><strong>Japanese Name:</strong> {{ charData.name_japanese }}</p>
-      <p><strong>Info:</strong> {{ charData.info }}</p>
-    </div>
-
-  </div>
-
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-  </div>
+<div ng-include="'app/views/modals/single-char-modal.html'">
 </div>
 
 <!-- All Character Modal -->
-<div class="modal modal-card"
-  id="allCharModal">
-  
-  <!-- CHARACTERS -->
-  <div class="col s12">
-    <div class="card row card-container">
-      <div class="row-title">Characters</div>
-      <div ng-repeat="char in animeData.characters">
-        <div class="col s6 m3">
-          
-          <div class="card single-char z-depth-2">
-            <a href="" 
-              data-target="charModal" modal
-              ng-click="getCharById(char.id)">
-              
-              <img class="char-staff-img"
-                ng-show="!showActor"
-                ng-src="{{ char.image_url_med }}">
-              <img class="char-staff-img"
-                ng-show="showActor"
-                ng-src="{{ char.actor[0].image_url_med }}">
-            </a>
-            <div class="card-content char-name">
-              <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
-              <p ng-mouseenter="showActor = true"
-                ng-mouseleave="showActor = false"
-                class="truncate">
-              {{ char.actor[0].name_first}} {{char.actor[0].name_last }}
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CAST & CREW -->
-  <div class="col s12">
-    <div class="card row card-container">
-      <div class="row-title">Cast and Crew</div>
-      <div ng-repeat="person in animeData.staff">
-        <div class="col s6 m3">
-
-          <div class="card single-char z-depth-2">
-            <img class="char-staff-img"
-              ng-src="{{ person.image_url_med }}">
-            <div class="card-content char-name">
-              <p class="truncate">{{ person.name_first }} {{ person.name_last }}</p>
-              <p class="truncate">{{ person.role }}</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-  </div>
-
+<div ng-include="'app/views/modals/all-char-modal.html'">
 </div>
-<div 
-  ng-include="'app/views/partials/footer.html'"
-  ng-if="!loading"></div>
-
 
 <!-- All Franchise Modal -->
-<div class="modal modal-card"
-  id="allFranchise">
-  
-  <div class="col s12">
-    <div class="card row card-container">
-      <div class="row-title">In the Franchise</div>
-
-        <div ng-repeat="show in animeData.relations track by $index">
-
-         <div class="col s12 m4 l3">
-           <div class="card z-depth-2 home-title-card">
-             <a href="/anime/{{ show.id }}">
-               <img class="title-img-lg"
-                 ng-src="{{ show.image_url_lge }}">
-             </a>
-             <div class="related-info">
-               <p> 
-                 Type: {{ show.type }}
-               </p>
-               <p>
-                 Avg Score: {{ show.average_score }}%
-               </p>
-               <p>
-                 Relation: {{ show.relation_type }}
-               </p>
-             </div>
-             <h5 class="cover-title">
-               {{ show.title_english }}
-             </h5>
-             <div class="cover-info"></div>
-           </div>
-         </div>
-
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
-
-  </div>
+<div ng-include="'app/views/modals/all-franchise-modal.html'">
+</div>

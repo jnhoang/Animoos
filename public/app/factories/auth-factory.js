@@ -4,9 +4,9 @@ angular
   '$window'
 , ($window) => {
     let authStorage = {
-      token = ''
-    , UserInfo = {}
-    }
+      token: ''
+    , UserInfo: {}
+    };
 
     return {
       saveToken:      saveToken
@@ -16,7 +16,7 @@ angular
     , getUserInfo:    getUserInfo
     , isLoggedIn:     isLoggedIn
     , currentUser:    currentUser
-    }
+    };
 
     function saveToken(token) {
       authStorage.token = token;
@@ -36,6 +36,25 @@ angular
     }
     function isLoggedIn() {
       return authStorage.token ? true : false;
+    }
+    function currentUser() {
+      if (!this.isLoggedIn) {
+        console.log('return')
+        return false;
+      }
+
+      const token = this.getToken();
+      // console.log(token);
+      try {
+        // console.log('auth token: ', token);
+        const payload = JSON.parse($window.atob(token.split('.')[1]));
+        // console.log('payload: ', payload);
+        return payload;
+      }
+      catch(err) {
+        // console.log('error', err);
+        return false;
+      }
     }
   }
 ]);

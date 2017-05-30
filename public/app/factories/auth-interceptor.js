@@ -2,7 +2,8 @@ angular
 .module('Animoo')
 .factory('AuthInterceptor', [
   'AuthFactory'
-, (AuthFactory) => {
+, '$httpProvider'
+, (AuthFactory, $httpProvider) => {
     return {
       request: function(config) {
         const token = AuthFactory.getToken();
@@ -13,7 +14,7 @@ angular
         return config;
       }
     }
+    
+    $httpProvider.interceptors.push('AuthInterceptor');
   }
 ]);
-
-$httpProvider.interceptors.push('AuthInterceptor');

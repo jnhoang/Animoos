@@ -1,0 +1,28 @@
+<div class="modal modal-card" 
+  id="charModal">
+  <!-- LOADING BAR -->
+  <div class="progress"
+    ng-if="loadingModal">
+    <div class="indeterminate"></div>
+  </div>
+    
+  <div class="row"
+    ng-if="!loadingModal">
+
+    <div class="col s12 m4">
+      <img class="char-staff-img" 
+        ng-src="{{ charData.image_url_lge }}">
+    </div>
+
+    <div class="col s12 m8">
+      <p><strong>Name:</strong> {{ charData.name_first }} {{ charData.name_last }}</p>
+      <p><strong>Japanese Name:</strong> {{ charData.name_japanese }}</p>
+      <p><strong>Info:</strong> {{ charData.info }}</p>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>

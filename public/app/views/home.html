@@ -1,3 +1,7 @@
+<div 
+  ng-if="!loading"
+  ng-include="'app/views/partials/nav.html'">
+</div>
 <!-- LOADING BAR -->
 <div class="progress loadingBar"
   ng-if="loading">
@@ -143,7 +147,7 @@
               <h5 class="cover-title">
                 {{ animeObj.title_english }}
               </h5>
-            <h5 class="center activator more-info-indicator">
+            <h5 class="center more-info-indicator">
               <i class="fa fa-chevron-up" aria-hidden="true"></i>
             </h5>
 
@@ -160,4 +164,5 @@
 
 <div 
   ng-include="'app/views/partials/footer.html'"
-  ng-if="!loading"></div>
+  ng-if="!loading">
+</div>

@@ -1,0 +1,63 @@
+<div class="modal modal-card"
+  id="allCharModal">
+  <!-- CHARACTERS -->
+  <div class="col s12">
+    <div class="card row card-container">
+      <div class="row-title">Characters</div>
+      <div ng-repeat="char in animeData.characters">
+        <div class="col s6 m3">
+          
+          <div class="card single-char z-depth-2">
+            <a href="" 
+              data-target="charModal" modal
+              ng-click="getCharById(char.id)">
+              
+              <img class="char-staff-img"
+                ng-show="!showActor"
+                ng-src="{{ char.image_url_med }}">
+              <img class="char-staff-img"
+                ng-show="showActor"
+                ng-src="{{ char.actor[0].image_url_med }}">
+            </a>
+            <div class="card-content char-name">
+              <p class="truncate">{{ char.name_first }} {{ char.name_last }}</p>
+              <p ng-mouseenter="showActor = true"
+                ng-mouseleave="showActor = false"
+                class="truncate">
+              {{ char.actor[0].name_first}} {{char.actor[0].name_last }}
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- CAST & CREW -->
+  <div class="col s12">
+    <div class="card row card-container">
+      <div class="row-title">Cast and Crew</div>
+      <div ng-repeat="person in animeData.staff">
+        <div class="col s6 m3">
+
+          <div class="card single-char z-depth-2">
+            <img class="char-staff-img"
+              ng-src="{{ person.image_url_med }}">
+            <div class="card-content char-name">
+              <p class="truncate">{{ person.name_first }} {{ person.name_last }}</p>
+              <p class="truncate">{{ person.role }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+
+  </div>
+</div>

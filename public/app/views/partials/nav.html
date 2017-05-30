@@ -5,9 +5,22 @@
     
     <!-- SEARCH BAR -->
     <ul class="right">
-      <li>
+       <!-- WORKING AREA -->
+      <li class="cyan" 
+        ng-if="!loggedIn">
+        <a href="">Sign up</a>
+      </li>
+      <li class="cyan" 
+        ng-if="!loggedIn">
+        <a href="">Log in</a>
+      </li>
+      <li class="cyan" 
+        ng-if="loggedIn">
+        <a href="">logged in!</a>
+      </li>
+      <li class="cyan">
         <a href="/search">
-          <i class="fa fa-2x fa-search" aria-hidden="true"></i>
+          <i class="fa fa-search" aria-hidden="true"></i>
         </a>
       </li>
     </ul>
