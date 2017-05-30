@@ -1,9 +1,5 @@
 <!-- Modals -->
-<!-- Signup Modal -->
-<div ng-include="'app/views/modals/signup-modal.html'"></div>
-<div class="modal modal-card" id="signup-modal">
-  <h1>hello</h1>
-</div>
+
 <!-- Login Modal -->
 <div ng-include="'app/views/modals/login-modal.html'">
 </div>
@@ -16,18 +12,24 @@
     <!-- SEARCH BAR -->
     <ul class="right">
        <!-- WORKING AREA -->
-      <li class="cyan" 
+      <li 
+        class="cyan" 
         ng-if="!loggedIn">
-        <a href="" data-target="signup-modal" modal>Sign up</a>
+        <a href="/signup">
+        Sign up
+        </a>
       </li>
-      <li class="cyan" 
+      <li 
+        class="cyan" 
         ng-if="!loggedIn">
-        <a data-target="login-modal" modal
+
+        <a href="" data-target="login-modal" modal
           ng-click='test()'>
           Log in
         </a>
       </li>
-      <li class="cyan" 
+      <li 
+        class="cyan" 
         ng-if="loggedIn">
         <a href="">logged in!</a>
       </li>

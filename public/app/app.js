@@ -17,6 +17,11 @@ angular
     , templateUrl: 'app/views/home.html'
     , controller: 'HomeCtrl'
     })
+    .state('Signup', {
+      url: '/signup'
+    , templateUrl: 'app/views/signup.html'
+    , controller: 'SignupCtrl'
+    })
     .state('AnimeDetail', {
       url: '/anime/:id'
     , templateUrl: 'app/views/anime-page.html'
