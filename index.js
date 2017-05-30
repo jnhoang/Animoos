@@ -41,7 +41,6 @@ app.use(function (err, req, res, next) {
 
 // if Authenticated, returns a sugned JWT
 app.post('/api/auth', (req, res) => {
-  console.log('hello from server', req.body)
   User.findOne({ username: req.body.username }, (err, user) => {
     // returns 401 if error or not a user
     if (err || !user) return res.status(401).send({ message: 'User not found' });
@@ -51,7 +50,6 @@ app.post('/api/auth', (req, res) => {
     if (err || !isAuthenticated) return res.status(401).send({ message: 'User not authenticated'});
     // all checks cleared, creates new jwt token
     const token = jwt.sign(user.toJSON(), secret);
-    console.log('token: ', token);
     
     // returns token
     return res.send({ user: user, token: token });

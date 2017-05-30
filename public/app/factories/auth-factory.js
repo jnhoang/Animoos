@@ -11,7 +11,7 @@ angular
     return {
       saveToken:      saveToken
     , getToken:       getToken
-    , removeToken:    removeToken
+    , clearStorage:   clearStorage
     , saveUserInfo:   saveUserInfo
     , getUserInfo:    getUserInfo
     , isLoggedIn:     isLoggedIn
@@ -24,7 +24,7 @@ angular
     function getToken() {
       return authStorage.token;
     }
-    function removeToken() {
+    function clearStorage() {
       authStorage.token = '';
       authStorage.UserInfo = {};
     }
@@ -39,20 +39,15 @@ angular
     }
     function currentUser() {
       if (!this.isLoggedIn) {
-        console.log('return')
         return false;
       }
 
       const token = this.getToken();
-      console.log(token);
       try {
-        console.log('auth token: ', token);
         const payload = JSON.parse($window.atob(token.split('.')[1]));
-        console.log('payload: ', payload);
         return payload;
       }
       catch(err) {
-        console.log('error', err);
         return false;
       }
     }

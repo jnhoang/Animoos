@@ -1,81 +1,83 @@
-<!-- Modals -->
+<div ng-controller="NavCtrl">
+  <!-- Login Modal -->
+  <!-- <div ng-include="'app/views/modals/login-modal.html'">
+  </div> -->
+  <div 
+    class="modal modal-card"
+    id="login-modal">
+    <div class="modal-content">
+      <form>
+        <h4>Login</h4>
+        <div>
+          <label for="username">Username</label>
+          <input type="text" 
+            required="true" 
+            id="username" 
+            ng-model="loginData.username">
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" 
+            required="true" 
+            placeholder="*******"
+            id="password" 
+            ng-model="loginData.password">
+        </div>
+      </form>
+    </div>
 
-<!-- Login Modal -->
-<!-- <div ng-include="'app/views/modals/login-modal.html'">
-</div> -->
-<div 
-  ng-controller="NavCtrl"
-  class="modal modal-card"
-  id="login-modal">
-  <div class="modal-content">
-    {{loginData}}
-    <form>
-      <h4>Login</h4>
-      <div>
-        <label for="username">test</label>
-        <input type="text" 
-          required="true" 
-          id="username" 
-          ng-model="loginData.username">
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" 
-          required="true" 
-          placeholder="*******"
-          id="password" 
-          ng-model="loginData.password">
-      </div>
-    </form>
+    <div class="modal-footer">
+      <button 
+        ng-click="login()" 
+        class="modal-action modal-close waves-effect btn-flat cyan white-text">
+        Login
+      </button>
+    </div>
   </div>
+  <!-- NAV BAR -->
+  <nav class="navbar z-depth-0">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo"><img class="logo" src="./img/animoo.ico"><span>Animoos</span></a>
+      
+      <!-- SEARCH BAR -->
+      <ul class="right">
+         <!-- WORKING AREA -->
+        <li 
+          class="cyan" 
+          ng-if="!loggedIn">
+          <a href="/signup">
+          Sign up
+          </a>
+        </li>
+        <li 
+          class="cyan" 
+          ng-if="!loggedIn">
 
-  <div class="modal-footer">
-    <button 
-      ng-click="login()" 
-      class="modal-action waves-effect btn-flat cyan white-text">
-      Login
-    </button>
-  </div>
+          <a
+            href=""
+            data-target="login-modal" modal>
+            Log in
+          </a>
+        </li>
+        <li 
+          class="cyan" 
+          ng-if="loggedIn">
+          <a href="">{{username}}</a>
+        </li>
+        <li
+          class="cyan"
+          ng-if="loggedIn">
+          <a href="" ng-click="logout()">Logout</a>
+        </li>
+        <li class="cyan">
+          <a href="/search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
-
-<nav class="navbar z-depth-0"
-  ng-controller="NavCtrl">
-  <div class="nav-wrapper">
-    <a href="/" class="brand-logo"><img class="logo" src="./img/animoo.ico"><span>Animoos</span></a>
-    
-    <!-- SEARCH BAR -->
-    <ul class="right">
-       <!-- WORKING AREA -->
-      <li 
-        class="cyan" 
-        ng-if="!loggedIn">
-        <a href="/signup">
-        Sign up
-        </a>
-      </li>
-      <li 
-        class="cyan" 
-        ng-if="!loggedIn">
-
-        <a
-          href=""
-          data-target="login-modal" modal>
-          Log in
-        </a>
-      </li>
-      <li 
-        class="cyan" 
-        ng-if="loggedIn">
-        <a href="">logged in!</a>
-      </li>
-      <li class="cyan">
-        <a href="/search">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="wallpaper">
   <div class="wallpaper-filter"></div>
