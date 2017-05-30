@@ -1,3 +1,13 @@
+<!-- Modals -->
+<!-- Signup Modal -->
+<div ng-include="'app/views/modals/signup-modal.html'"></div>
+<div class="modal modal-card" id="signup-modal">
+  <h1>hello</h1>
+</div>
+<!-- Login Modal -->
+<div ng-include="'app/views/modals/login-modal.html'">
+</div>
+
 <nav class="navbar z-depth-0"
   ng-controller="NavCtrl">
   <div class="nav-wrapper">
@@ -8,11 +18,14 @@
        <!-- WORKING AREA -->
       <li class="cyan" 
         ng-if="!loggedIn">
-        <a href="">Sign up</a>
+        <a href="" data-target="signup-modal" modal>Sign up</a>
       </li>
       <li class="cyan" 
         ng-if="!loggedIn">
-        <a href="">Log in</a>
+        <a data-target="login-modal" modal
+          ng-click='test()'>
+          Log in
+        </a>
       </li>
       <li class="cyan" 
         ng-if="loggedIn">
@@ -30,3 +43,4 @@
 <div class="wallpaper">
   <div class="wallpaper-filter"></div>
 </div>
+

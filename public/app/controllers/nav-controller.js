@@ -8,6 +8,9 @@ angular
     AuthFactory.currentUser();
     $scope.loggedIn = false;
 
+    $scope.test = function() {
+      console.log('click');
+    }
     navbarFade();
 
     // Navbar fade animation

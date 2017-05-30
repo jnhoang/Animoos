@@ -1,0 +1,32 @@
+<div class="modal modal-card"
+  id="login-modal">
+  <div class="modal-content">
+    <form>
+      <h4>Login</h4>
+      <div>
+        <label for="username">Username</label>
+        <input type="text" 
+          required="true" 
+          id="email" 
+          placeholder="test@test.com" 
+          ng-model="login.username">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" 
+          required="true" 
+          placeholder="*******"
+          id="password" 
+          ng-model="login.password">
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button 
+      ng-click="userLogin()" 
+      class="modal-action modal-close waves-effect btn-flat cyan white-text">
+      Login
+    </button>
+  </div>
+</div>
