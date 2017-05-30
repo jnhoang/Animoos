@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const rp = require('request-promise');
 
+// JSON web token dependencies
 const expressJWT = require('express-jwt');
+const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 
 const app = express();
@@ -35,6 +37,25 @@ app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).status({ message: 'You need an authorization token to view this information.' });
   }
+});
+
+// if Authenticated, returns a sugned JWT
+app.post('/api/auth', (req, res) => {
+  console.log('hello from server', req.body)
+  User.findOne({ username: req.body.username }, (err, user) => {
+    // returns 401 if error or not a user
+    if (err || !user) return res.status(401).send({ message: 'User not found' });
+    // checks provided password against db password
+    const isAuthenticated = user.authenticated(req.body.password);
+    // returns 401 if error or bad password
+    if (err || !isAuthenticated) return res.status(401).send({ message: 'User not authenticated'});
+    // all checks cleared, creates new jwt token
+    const token = jwt.sign(user.toJSON(), secret);
+    console.log('token: ', token);
+    
+    // returns token
+    return res.send({ user: user, token: token });
+  });  
 });
 
 // Angular route

@@ -14,7 +14,7 @@ angular
     , email: ''
     , password: ''
     , passwordConfirm: ''
-    }
+    };
 
     $scope.signup = () => {
       if ($scope.user.password !== $scope.user.passwordConfirm) {

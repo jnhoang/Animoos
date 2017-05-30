@@ -3,14 +3,26 @@ angular
 .controller('NavCtrl', [
   '$scope'
 , '$window'
+, 'UserFactory'
 , 'AuthFactory'
-, function($scope, $window, AuthFactory) {
-    AuthFactory.currentUser();
+, function($scope, $window, UserFactory, AuthFactory) {
     $scope.loggedIn = false;
-
-    $scope.test = function() {
-      console.log('click');
+    $scope.loginData = {
+      username: ''
+    , password: ''
+    };
+    $scope.login = function() {
+      console.log('click')
+      UserFactory.userLogin($scope.loginData)
+      .then( (data) => {
+        console.log(data);
+      })
+      .catch( (err) => {
+        console.log(err.data.message);
+      });
     }
+
+
     navbarFade();
 
     // Navbar fade animation

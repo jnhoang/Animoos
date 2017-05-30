@@ -1,7 +1,41 @@
 <!-- Modals -->
 
 <!-- Login Modal -->
-<div ng-include="'app/views/modals/login-modal.html'">
+<!-- <div ng-include="'app/views/modals/login-modal.html'">
+</div> -->
+<div 
+  ng-controller="NavCtrl"
+  class="modal modal-card"
+  id="login-modal">
+  <div class="modal-content">
+    {{loginData}}
+    <form>
+      <h4>Login</h4>
+      <div>
+        <label for="username">test</label>
+        <input type="text" 
+          required="true" 
+          id="username" 
+          ng-model="loginData.username">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" 
+          required="true" 
+          placeholder="*******"
+          id="password" 
+          ng-model="loginData.password">
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button 
+      ng-click="login()" 
+      class="modal-action waves-effect btn-flat cyan white-text">
+      Login
+    </button>
+  </div>
 </div>
 
 <nav class="navbar z-depth-0"
@@ -23,8 +57,9 @@
         class="cyan" 
         ng-if="!loggedIn">
 
-        <a href="" data-target="login-modal" modal
-          ng-click='test()'>
+        <a
+          href=""
+          data-target="login-modal" modal>
           Log in
         </a>
       </li>

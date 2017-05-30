@@ -13,7 +13,7 @@ angular
     };
 
     function userLogin(userObj) {
-      return $http.post('/api/users/auth', userObj);
+      return $http.post('/api/auth', userObj);
     }
     function userSignup(userObj) {
       return $http.post('/api/users', userObj);

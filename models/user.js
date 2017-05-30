@@ -33,11 +33,11 @@ UserSchema.set('toJSON', {
   return returnJSON;
   }
 });
-UserSchema.methods.authenticated = (password) => {
+UserSchema.methods.authenticated = function(password) {
   const provider = this;
   const isAuthenticated = bcrypt.compareSync(password, provider.password);
 
-  return isAuthenicated ? provider : false;
+  return isAuthenticated ? provider : false;
 }
 UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) {
