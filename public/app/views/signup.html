@@ -1,3 +1,7 @@
+<!-- <div 
+  ng-if="!loading"
+  ng-include="'app/views/partials/nav.html'">
+</div> -->
 {{ user }}
 <div class="row">
   <div class="col s6">
@@ -41,7 +45,6 @@
             <label for="password">Desired Password</label>
             <input type="password"
               id="password"
-              length="16"
               ng-model="user.password">
           </div>
           <!-- confim password -->
@@ -49,7 +52,6 @@
             <label for="passwordConfirm">Confirm Password</label>
             <input type="password"
               id="passwordConfirm"
-              length="16"
               ng-model="user.passwordConfirm">
           </div>
 
@@ -65,4 +67,9 @@
     </div>
     
   </div>
+</div>
+
+<div 
+  ng-include="'app/views/partials/footer.html'"
+  ng-if="!loading">
 </div>

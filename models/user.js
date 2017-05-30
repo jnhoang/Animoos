@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
 UserSchema.set('toJSON', {
   transform: (doc, ret, options) => {
     const returnJSON = {
-      id:           ret.id
+      id:           ret._id
     , email:        ret.email
     , firstName:    ret.firstName
     , lastName:     ret.lastName
@@ -39,9 +39,13 @@ UserSchema.methods.authenticated = (password) => {
 
   return isAuthenicated ? provider : false;
 }
-UserSchema.pre('save', (next) => {
-  this.isModified('password') ? this.password = bcrypt.hashSync(this.password, 10) : null;
-  next();
+UserSchema.pre('save', function(next) {
+  if (!this.isModified('password')) {
+    next();
+  } else {
+    this.password = bcrypt.hashSync(this.password, 10);
+    next();
+  }
 });
 
 module.exports = mongoose.model('User', UserSchema);

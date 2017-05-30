@@ -16,7 +16,7 @@ angular
       return $http.post('/api/users/auth', userObj);
     }
     function userSignup(userObj) {
-      return $http.get('/api/users');
+      return $http.post('/api/users', userObj);
     }
     function getUserSingle(id) {
       return $http.get('/api/users' + id);

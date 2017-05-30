@@ -25,10 +25,10 @@ router.route('/')
   // find the user first in case the email already exists
   .post( (req, res) => {
     console.log('receiving request to post new user: ', req.body);
-    User.findOne({ email: req.body.email }, (err, user) => {
-      if (user) return res.status(400).send({ message: 'Email already exists' });
+    User.findOne({ username: req.body.username }, (err, user) => {
+      if (user) return res.status(400).send({ message: 'Username or email already exists in the system' });
 
-      User.create(req,body, (err, user) => {
+      User.create(req.body, (err, user) => {
         if (err) return res.status(500).send(err);
 
         return res.send(user);

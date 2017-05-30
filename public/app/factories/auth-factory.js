@@ -44,15 +44,15 @@ angular
       }
 
       const token = this.getToken();
-      // console.log(token);
+      console.log(token);
       try {
-        // console.log('auth token: ', token);
+        console.log('auth token: ', token);
         const payload = JSON.parse($window.atob(token.split('.')[1]));
-        // console.log('payload: ', payload);
+        console.log('payload: ', payload);
         return payload;
       }
       catch(err) {
-        // console.log('error', err);
+        console.log('error', err);
         return false;
       }
     }
