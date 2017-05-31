@@ -2,7 +2,7 @@ angular
 .module('Animoo')
 .factory('UserFactory', [
   '$http'
-, ($http) => {
+, function($http) {
     return {
       userLogin:        userLogin
     , userSignup:       userSignup

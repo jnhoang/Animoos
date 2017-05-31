@@ -8,8 +8,7 @@ angular
 , 'AuthFactory'
 , function($scope, $state, $window, UserFactory, AuthFactory) {
     // VARIABLES
-    $scope.test = 'this is a test'
-    $scope.loggedIn = false;
+    $scope.loggedIn;
     $scope.username;
 
     $scope.loginData = {
@@ -17,15 +16,25 @@ angular
     , password: ''
     };
 
+    // On Load functions
+    // Check if user is currently logged in
+    isLoggedIn();
     // intialize Navbar fade animation onload
     navbarFade();
 
+
     // FUNCTIONS
+    function isLoggedIn() {
+      console.log(AuthFactory.isLoggedIn());
+      $scope.loggedIn = AuthFactory.isLoggedIn();
+      let userInfo = AuthFactory.getUserInfo();
+      $scope.username = userInfo.username;
+    }
     $scope.login = () => {
       UserFactory.userLogin($scope.loginData)
       .then( (res) => {
         let data = res.data;
-
+        console.log(data)
         Materialize.toast('You are now signed in.', 3000);
         // Saves data in auth factory variables
         AuthFactory.saveUserInfo(data.user);
@@ -33,6 +42,7 @@ angular
         // Used to change navbar
         $scope.username = data.user.username;
         $scope.loggedIn = true;
+        $state.go('PrivateProfile');
 
       })
       .catch( (err) => {
