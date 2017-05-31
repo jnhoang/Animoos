@@ -2,15 +2,56 @@
   ng-if="!loading"
   ng-include="'app/views/partials/nav.html'">
 </div>
-
 <div>
-<!-- avatar photo -->
-  <div></div>
-<!-- blurb -->
-<!-- edit profile button -->
-<a href="">Edit Profile</a>
-<!-- watch list -->
-<div></div>
-<!-- favorites -->
-<div></div>
+  <!-- Row 1 -->
+  <div class="row">
+    <!-- Profile content -->
+    <div class="col s12">
+      <div class="card-panel profile-card">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s2">
+              <div class="card">
+                <!-- avatar photo -->
+                <div class="card-image">
+                  <img class="profile-pic"
+                    src="http://fillmurray.com/150/200">
+                  <span class="card-title">USERNAME HERE</span>
+                  <!-- CHANGE PHOTO BUTTON, TO BE MOVED TO EDIT PROFILE -->
+                  <!-- <a href=""
+                    class="btn-floating halfway-fab waves-effect waves-light red">
+                    <i class="material-icons">add</i>
+                  </a> -->
+                </div>
+                <div class="card-content">
+                  <!-- blurb -->
+                  <p> FILLER </p>
+                  <!-- edit profile button -->
+                  <a href="">Edit Profile</a>
+                </div>
+              </div>
+            </div> <!-- End of profile card -->
+            
+            <!-- watch list -->
+            <div class="col s12 m9">
+              <div class="card row card-container">
+                <div class="row-title"><strong>To Watch</strong></div>
+              </div>
+            </div>
+          </div> <!-- End of Row 1 -->
+
+          <!-- Row 2 -->
+          <div class="row">
+            <!-- favorites -->
+            <div class="col s12">
+              <div class="card row card-container">
+                <div class="row-title"><strong>Favorites</strong></div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- End of Card Content-->
+      </div>
+    </div>
+  </div>
 </div>
