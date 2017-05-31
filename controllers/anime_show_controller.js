@@ -42,7 +42,7 @@ router.get('/browse', function(req, res) {
     .then( (data) => res.send(data) )
     .catch( (err) => errorMsg(res, err, 'browseAnime()') );
   })
-  .catch((err) => errorMsg(res, err, 'checkAccessToken()') );
+  .catch((err) => errorMsg(res, err, 'checkAccessToken(), browseAnime') );
 })
 
 // SEARCH FOR SHOW BY :TITLE
@@ -54,7 +54,7 @@ router.get('/search/anime/:title', (req, res) => {
     .then( (data) => res.send(data) )
     .catch( (err) => errorMsg(res, err, 'searchShow()') );
   })
-  .catch( (err) => errorMsg(res, err, 'checkAccessToken()') );
+  .catch( (err) => errorMsg(res, err, 'checkAccessToken(), :title') );
 })
 
 // GET SPECIFIC SHOW BY :ID
@@ -65,7 +65,7 @@ router.get('/page-data/anime/:id', function(req, res) {
     .then( (data) => res.send(data) )
     .catch( (err) => errorMsg(res, err, 'getAnimeById()') );
   })
-  .catch( (err) => errorMsg(res, err, 'checkAccessToken()') );
+  .catch( (err) => errorMsg(res, err, 'checkAccessToken(), :ID') );
 }) 
 
 // GET CHARACTER BY ID
@@ -76,7 +76,7 @@ router.get('/page-data/character/:id', function(req, res) {
     .then( (data) => res.send(data) )
     .catch( (err) => errorMsg(res, err, 'getCharById()') );
   })
-  .catch( (err) => errorMsg(res, err, 'checkAccessToken()') );
+  .catch( (err) => errorMsg(res, err, 'checkAccessToken(), :CharID') );
 })
 // export
 module.exports = router;

@@ -20,7 +20,6 @@ angular
     // Check if user is currently logged in
     isLoggedIn();
     // intialize Navbar fade animation onload
-    navbarFade();
 
 
     // FUNCTIONS
@@ -58,20 +57,6 @@ angular
       $scope.loggedIn = false;
       Materialize.toast('OK Bye, see you again soon!', 3000);
       //$state.go('Home')
-    }
-
-    function navbarFade() {
-      const navbar = document.querySelector('.navbar');
-      // Displays navbar after scrolling past 1/2 screen
-      const transitionHeight = window.innerHeight / 2
-      document.addEventListener('scroll', function(event) {
-        if (window.scrollY >= transitionHeight) {
-          navbar.style.backgroundColor = '#00bcd4';
-        }
-        if (window.scrollY < transitionHeight) {
-          navbar.style.backgroundColor = 'transparent';
-        } 
-      });
     }
   }
 ]);

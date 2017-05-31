@@ -5,6 +5,7 @@
   margin-bottom: 40px;
 }
 .show-banner {
+  margin-top: 75px;
   width: 100%;
   max-height: 50vh;
   object-fit: cover;
