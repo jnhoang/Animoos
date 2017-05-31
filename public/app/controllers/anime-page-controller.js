@@ -19,6 +19,8 @@ angular
     // Run at page render
     getAnimeData();
 
+
+
     function getAnimeData() {
       AnimeAPIFactory.getAnimeById($stateParams.id)
       .then(function(data) {

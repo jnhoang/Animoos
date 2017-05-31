@@ -24,10 +24,6 @@
   left: 50%;
   top: 50%;
 }
-.breaker { /* remove this*/
-  height: 300px;
-  width:  100%;
-}
 .anime-side-cover {
   display: flex;
   justify-content: center;
@@ -42,6 +38,14 @@
   font-size: 1.5em;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+}
+.img-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-btn {
+  margin: -10px 0 25px 0;
 }
 .anime-desc {
   margin-top: 0;
