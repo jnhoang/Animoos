@@ -32,6 +32,11 @@ angular
     , templateUrl: 'app/views/search-results.html'
     , controller: 'SearchCtrl'
     })
+    .state('PrivateProfile', {
+      url: '/profile'
+    , templateUrl: '/app/views/private-profile.html'
+    , controller: 'ProfileCtrl'
+    })
 
     $locationProvider.html5Mode(true);
 
