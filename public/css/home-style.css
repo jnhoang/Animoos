@@ -59,6 +59,11 @@ a.brand-logo {
   font-size: 75px;
   font-family: 'Carter One', cursive;
 }
+@media (max-width: 600px) {
+  .slider-title {
+    font-size: 32px;
+  }
+}
 .slider-btn {
   margin-top: 25px;
   color: rgba(0,0,0,0.75);
