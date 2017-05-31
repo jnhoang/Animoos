@@ -42,7 +42,7 @@ angular
         // Used to change navbar
         $scope.username = data.user.username;
         $scope.loggedIn = true;
-        $state.go('PrivateProfile');
+        $state.go('PrivateProfile', {username: $scope.username});
 
       })
       .catch( (err) => {
@@ -57,6 +57,7 @@ angular
       $scope.username = '';
       $scope.loggedIn = false;
       Materialize.toast('OK Bye, see you again soon!', 3000);
+      //$state.go('Home')
     }
 
     function navbarFade() {

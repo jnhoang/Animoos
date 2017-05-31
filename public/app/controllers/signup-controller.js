@@ -8,9 +8,7 @@ angular
 , function($scope, $state, AuthFactory, userFactory) {
     
     $scope.user = {
-      firstName: ''
-    , lastName: ''
-    , username: ''
+      username: ''
     , email: ''
     , password: ''
     , passwordConfirm: ''
@@ -24,7 +22,8 @@ angular
 
       userFactory.userSignup($scope.user)
       .then( (data) => {
-        $state.go('home');
+        Materialize.toast('Account successfully created', 8000);
+        $state.go('Home');
         console.log('success: ', data);
       })
       .catch( (err) => {

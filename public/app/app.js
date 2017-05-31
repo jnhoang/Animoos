@@ -33,7 +33,7 @@ angular
     , controller: 'SearchCtrl'
     })
     .state('PrivateProfile', {
-      url: '/profile'
+      url: '/profile/:username'
     , templateUrl: '/app/views/private-profile.html'
     , controller: 'ProfileCtrl'
     })

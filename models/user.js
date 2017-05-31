@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
 , avatar:       String
 , watchList:    Array
 , favorites:    Array
+, userSummary:  String
 , username: {
     type:       String
   , required:   true
@@ -27,18 +28,20 @@ UserSchema.set('toJSON', {
   transform: (doc, ret, options) => {
     const returnJSON = {
       id:           ret._id
+    , avatar:       ret.avatar
     , email:        ret.email
-    , firstName:    ret.firstName
-    , lastName:     ret.lastName
+    , favorites:    ret.favorites
     , username:     ret.username
+    , userSummary:  ret.userSummary
+    , watchList:    ret.watchList
     };
 
   return returnJSON;
   }
 });
 UserSchema.methods.authenticated = function(password) {
-  const provider = this;
-  const isAuthenticated = bcrypt.compareSync(password, provider.password);
+  const provider          = this;
+  const isAuthenticated   = bcrypt.compareSync(password, provider.password);
 
   return isAuthenticated ? provider : false;
 }
