@@ -1,16 +1,15 @@
 <div 
-  ng-controller="NavCtrl"
   class="modal modal-card"
   id="login-modal">
   <div class="modal-content">
     <form>
       <h4>Login</h4>
       <div>
-        <label for="email">Email</label>
+        <label for="username">Username</label>
         <input type="text" 
           required="true" 
-          id="email" 
-          ng-model="login.email">
+          id="username" 
+          ng-model="loginData.username">
       </div>
       <div>
         <label for="password">Password</label>
@@ -18,7 +17,7 @@
           required="true" 
           placeholder="*******"
           id="password" 
-          ng-model="login.password">
+          ng-model="loginData.password">
       </div>
     </form>
   </div>

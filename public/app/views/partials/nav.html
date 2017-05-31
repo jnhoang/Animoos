@@ -1,39 +1,4 @@
 <div ng-controller="NavCtrl">
-  <!-- Login Modal -->
-  <!-- <div ng-include="'app/views/modals/login-modal.html'">
-  </div> -->
-  <div 
-    class="modal modal-card"
-    id="login-modal">
-    <div class="modal-content">
-      <form>
-        <h4>Login</h4>
-        <div>
-          <label for="username">Username</label>
-          <input type="text" 
-            required="true" 
-            id="username" 
-            ng-model="loginData.username">
-        </div>
-        <div>
-          <label for="password">Password</label>
-          <input type="password" 
-            required="true" 
-            placeholder="*******"
-            id="password" 
-            ng-model="loginData.password">
-        </div>
-      </form>
-    </div>
-
-    <div class="modal-footer">
-      <button 
-        ng-click="login()" 
-        class="modal-action modal-close waves-effect btn-flat cyan white-text">
-        Login
-      </button>
-    </div>
-  </div>
   <!-- NAV BAR -->
   <nav class="navbar z-depth-0">
     <div class="nav-wrapper">
@@ -77,6 +42,42 @@
       </ul>
     </div>
   </nav>
+
+  <!-- Login Modal -->
+  <!-- <div ng-include="'app/views/modals/login-modal.html'">
+  </div> -->
+  <div 
+    class="modal modal-card"
+    id="login-modal">
+    <div class="modal-content">
+      <form>
+        <h4>Login</h4>
+        <div>
+          <label for="username">Username</label>
+          <input type="text" 
+            required="true" 
+            id="username" 
+            ng-model="loginData.username">
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" 
+            required="true" 
+            placeholder="*******"
+            id="password" 
+            ng-model="loginData.password">
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button 
+        ng-click="login()" 
+        class="modal-action modal-close waves-effect btn-flat cyan white-text">
+        Login
+      </button>
+    </div>
+  </div>
 </div>
 
 <div class="wallpaper">

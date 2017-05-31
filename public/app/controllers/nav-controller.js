@@ -2,10 +2,11 @@ angular
 .module('Animoo')
 .controller('NavCtrl', [
   '$scope'
+, '$state'
 , '$window'
 , 'UserFactory'
 , 'AuthFactory'
-, function($scope, $window, UserFactory, AuthFactory) {
+, function($scope, $state, $window, UserFactory, AuthFactory) {
     // VARIABLES
     $scope.test = 'this is a test'
     $scope.loggedIn = false;
@@ -32,6 +33,7 @@ angular
         // Used to change navbar
         $scope.username = data.user.username;
         $scope.loggedIn = true;
+
       })
       .catch( (err) => {
         Materialize.toast('Error: ' + err.data.message, 3000);
