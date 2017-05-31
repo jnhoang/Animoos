@@ -4,22 +4,51 @@ angular
   '$scope'
 , '$stateParams'
 , 'AnimeAPIFactory'
-, function($scope, $stateParams, AnimeAPIFactory) {
+, 'AuthFactory'
+, 'UserFactory'
+, function($scope, $stateParams, AnimeAPIFactory, AuthFactory, UserFactory) {
     
     // PUBLIC VARS & FUNCTIONS 
     $scope.animeData;
     $scope.charData;
+    $scope.userInfo;
     $scope.showActor      = false;
     $scope.loading        = true;
     $scope.loadingModal   = true;
+    $scope.isLoggedIn     = AuthFactory.isLoggedIn();
 
-    $scope.getAnimeData   = getAnimeData;
-    $scope.getCharById    = getCharById;
-
+    $scope.getAnimeData     = getAnimeData;
+    $scope.getCharById      = getCharById;
+    $scope.addToFav         = addToFav;
+    $scope.addToWatchList   = addToWatchList;
     // Run at page render
     getAnimeData();
 
+    if ($scope.isLoggedIn) {
+      console.log(AuthFactory.getUserInfo());
+      $scope.userInfo = AuthFactory.getUserInfo();
+    }
 
+    function addToWatchList() {
+      // Updates userObj & pushes anime to current user's watchlist
+      $scope.userInfo.watchList.push($scope.animeData);
+      AuthFactory.saveUserInfo($scope.userInfo);
+      
+      // Updates user db
+      UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
+      .then( (data) => Materialize.toast('added to watchList') )
+      .catch( (err) => Materialize.toast('Sorry, an error has occured') );
+    }
+
+    function addToFav() {
+      $scope.userInfo.favorites.push($scope.animeData);
+      AuthFactory.saveUserInfo($scope.userInfo);
+      
+      // Updates user db
+      UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
+      .then( (data) => Materialize.toast('added to favorites') )
+      .catch( (err) => Materialize.toast('Sorry, an error has occured') );
+    }
 
     function getAnimeData() {
       AnimeAPIFactory.getAnimeById($stateParams.id)

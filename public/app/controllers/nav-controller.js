@@ -42,7 +42,7 @@ angular
         // Used to change navbar
         $scope.username = data.user.username;
         $scope.loggedIn = true;
-        $state.go('PrivateProfile', {username: $scope.username});
+        //$state.go('PrivateProfile', {username: $scope.username});
 
       })
       .catch( (err) => {

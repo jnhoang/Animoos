@@ -38,14 +38,21 @@
         class='dropdown-button btn add-btn green' 
         href='javascript:void(0);' 
         data-activates='addToList' 
-        dropdown data-hover="true">
-        Add to...
+        dropdown data-hover="true"
+        ng-if="isLoggedIn">
+        Add to <i class="fa fa-caret-down" aria-hidden="true"></i>
       </a>
 
       <!-- Dropdown Structure -->
-      <ul id='addToList' class='dropdown-content'>
-          <li><a href="">Watch List</a></li>
-          <li><a href="">Favorites</a></li>
+      <ul 
+        class="dropdown-content"
+        id="addToList">
+          <li>
+            <a href="" ng-click="addToWatchList()">Watch List</a>
+          </li>
+          <li>
+            <a href="" ng-click="addtoFav()">Favorites</a>
+          </li>
       </ul>
     </div>
 
