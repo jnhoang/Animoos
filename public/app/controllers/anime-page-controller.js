@@ -29,16 +29,17 @@ angular
     }
 
     function addToList(specifiedList) {
-      console.log(specifiedList)
       // checks if anime already on user's list
       if (checkIfOnList($scope.animeData, $scope.userInfo, specifiedList)) {
         Materialize.toast('Anime is already on your ' + specifiedList, 3000)
         console.log('returned');
         return;
       }
+
       // Updates userObj & pushes anime to current user's list
-      $scope.userInfo[specifiedList].push($scope.animeData);
+      $scope.userInfo[specifiedList].push(packageAnimeSaveData($scope.animeData));
       AuthFactory.saveUserInfo($scope.userInfo);
+      
       // Updates user db
       UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
       .then( (data) => Materialize.toast('added to ' + specifiedList, 3000) )
@@ -79,6 +80,15 @@ angular
       });
 
       return inListYet;
+    }
+
+    function packageAnimeSaveData(animeObj) {
+      let modifiedData = {};
+      modifiedData.id = animeObj.id;
+      modifiedData.title_english = animeObj.title_english;
+      modifiedData.image_url_lge = animeObj.image_url_lge;
+
+      return modifiedData;
     }
   }
 ])
