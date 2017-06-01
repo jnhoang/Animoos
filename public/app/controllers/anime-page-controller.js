@@ -19,8 +19,7 @@ angular
 
     $scope.getAnimeData     = getAnimeData;
     $scope.getCharById      = getCharById;
-    $scope.addToFav         = addToFav;
-    $scope.addToWatchList   = addToWatchList;
+    $scope.addToList        = addToList;
     // Run at page render
     getAnimeData();
 
@@ -29,39 +28,21 @@ angular
       $scope.userInfo = AuthFactory.getUserInfo();
     }
 
-    function addToWatchList() {
+    function addToList(specifiedList) {
+      console.log(specifiedList)
       // checks if anime already on user's list
-      if (checkIfOnList($scope.animeData, $scope.userInfo, 'watchList')) {
-        Materialize.toast('Anime is already on your watch list', 3000)
+      if (checkIfOnList($scope.animeData, $scope.userInfo, specifiedList)) {
+        Materialize.toast('Anime is already on your ' + specifiedList, 3000)
         console.log('returned');
         return;
       }
-      // Updates userObj & pushes anime to current user's watchlist
-      $scope.userInfo.watchList.push($scope.animeData);
+      // Updates userObj & pushes anime to current user's list
+      $scope.userInfo[specifiedList].push($scope.animeData);
       AuthFactory.saveUserInfo($scope.userInfo);
-      
       // Updates user db
       UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
-      .then( (data) => Materialize.toast('added to watchList', 3000) )
+      .then( (data) => Materialize.toast('added to ' + specifiedList, 3000) )
       .catch( (err) => Materialize.toast('Sorry, an error has occured', 3000) );
-    }
-
-    function addToFav() {
-      // checks if anime already on user's list
-      if (checkIfOnList($scope.animeData, $scope.userInfo, 'favorites')) {
-        Materialize.toast('Anime is already on your favorites list', 3000)
-        console.log('returned');
-        return;
-      }
-      // Updates userObj & pushes anime to current user's favorites
-      $scope.userInfo.favorites.push($scope.animeData);
-      AuthFactory.saveUserInfo($scope.userInfo);
-      
-      // Updates user db
-      UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
-      .then( (data) => Materialize.toast('added to favorites', 3000) )
-      .catch( (err) => Materialize.toast('Sorry, an error has occured', 3000) );
-      console.log('UserFactory has been accessed');
     }
 
     function getAnimeData() {

@@ -2,7 +2,7 @@ angular
 .module('Animoo')
 .factory('AuthFactory', [
   '$window'
-, ($window) => {
+, function($window) {
     let authStorage = {
       token: ''
     , UserInfo: {}

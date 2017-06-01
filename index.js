@@ -38,6 +38,9 @@ app.use(function (err, req, res, next) {
     res.status(401).status({ message: 'You need an authorization token to view this information.' });
     console.log('unauthorized access')
   }
+  if (err) {
+    console.log('error: ', err);
+  }
 });
 
 // if Authenticated, returns a sugned JWT
