@@ -24,12 +24,17 @@ angular
     // Run at page render
     getAnimeData();
 
+    UserFactory.getUserAll()
+    .then( (data) => console.log('DATA', data) )
+    .catch( (err) => console.log('error', err) )
+
     if ($scope.isLoggedIn) {
       console.log(AuthFactory.getUserInfo());
       $scope.userInfo = AuthFactory.getUserInfo();
     }
 
     function addToWatchList() {
+      console.log('click at watchlist')
       // Updates userObj & pushes anime to current user's watchlist
       $scope.userInfo.watchList.push($scope.animeData);
       AuthFactory.saveUserInfo($scope.userInfo);
@@ -41,6 +46,7 @@ angular
     }
 
     function addToFav() {
+      console.log('click at addtoFav')
       $scope.userInfo.favorites.push($scope.animeData);
       AuthFactory.saveUserInfo($scope.userInfo);
       
@@ -48,6 +54,7 @@ angular
       UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
       .then( (data) => Materialize.toast('added to favorites') )
       .catch( (err) => Materialize.toast('Sorry, an error has occured') );
+      console.log('UserFactory has been accessed');
     }
 
     function getAnimeData() {

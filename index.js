@@ -36,6 +36,7 @@ app.use('/api/anilist', require('./controllers/anime_show_controller'));
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).status({ message: 'You need an authorization token to view this information.' });
+    console.log('unauthorized access')
   }
 });
 

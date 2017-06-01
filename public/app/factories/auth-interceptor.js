@@ -8,9 +8,8 @@ angular
         const token = AuthFactory.getToken();
 
         if(token) {
-          config.headers.Authorization = 'Bearer' + token;
+          config.headers.Authorization = 'Bearer ' + token;
         }
-        // $httpProvider.interceptors.push('AuthInterceptor');
         
         return config;
       }
