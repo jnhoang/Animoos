@@ -70,7 +70,7 @@ angular
           $log.debug('successfully fetched data from API for anime id: ', id);
           deferred.resolve(storage.animeData[id]);
         })
-        .catch((err) => defer.reject(err) );
+        .catch( (err) => deferred.reject(err) );
       }
       // returns promise
       return deferred.promise;

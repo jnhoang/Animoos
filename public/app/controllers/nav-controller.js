@@ -24,7 +24,6 @@ angular
 
     // FUNCTIONS
     function isLoggedIn() {
-      console.log(AuthFactory.isLoggedIn());
       $scope.loggedIn = AuthFactory.isLoggedIn();
       let userInfo = AuthFactory.getUserInfo();
       $scope.username = userInfo.username;
@@ -33,7 +32,7 @@ angular
       UserFactory.userLogin($scope.loginData)
       .then( (res) => {
         let data = res.data;
-        console.log(data)
+
         Materialize.toast('You are now signed in.', 3000);
         // Saves data in auth factory variables
         AuthFactory.saveUserInfo(data.user);
