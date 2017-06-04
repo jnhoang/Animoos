@@ -12,27 +12,41 @@ angular
     $scope.loading      = true;
     $scope.loadingBar   = false;
 
-    // On Page Render
-    //getTop5();
+    // auto API call on any change to filters
+    $scope.$watchCollection('filterObj', function(newObj, oldObj) {
+      if ($scope.filterObj.year && $scope.filterObj.year.length != 4) {
+        return;
+      }
 
-    function getTop5() {
-      var option = { sort: 'popularity-desc' };
-      
-      AnimeAPIFactory.browseBy(option)
-      .then(function(res) {
-        $scope.popularArr = res.data;
-        adjustApiData($scope.popularArr);
-        // Takes out first 5 arr items for display in slider
-        for (var i = 0; i < 5; i++) {
-          $scope.top5.push($scope.popularArr.shift());
+      $scope.loadingBar = true;
+      // clears empty fields from filterObj
+      for (var key in $scope.filterObj) {
+        if ($scope.filterObj[key] == '') {
+          delete $scope.filterObj[key]
         }
-        $scope.loading = false;
+      }
+      AnimeAPIFactory.browseBy($scope.filterObj)
+      .then(function(res) {
+        $scope.showArr      = res.data;
+        $scope.loading      = false;
+        $scope.loadingBar   = false;
+
+        // loads slider data on load
+        if ($scope.top5.length === 0) {
+          $scope.top5 = $scope.showArr.slice(0, 5);
+        }
+        // catch for no results
+        if (res.data.error || res.data.length == 0) {
+          Materialize.toast('Sorry, there were no results.', 10000);
+          return;
+        }
       })
-      .catch(function (err) {
-          Materialize.toast('Sorry, there was an error. \
-            Reload the page or try again later', 10000);
+      .catch(function(err) {
+        $scope.loadingBar = false;
+        Materialize.toast('Sorry, there was an error. \
+          Reload the page or try again later', 10000);
       });
-    }
+    });
 
     function adjustApiData(animeArr) {
       animeArr.forEach(function(anime) {
@@ -60,35 +74,6 @@ angular
     , sort:       'popularity-desc'
     , page:       1
     }
-    // auto API call on any change to filters
-    $scope.$watchCollection('filterObj', function(newObj, oldObj) {
-      if ($scope.filterObj.year && $scope.filterObj.year.length != 4) {
-        return;
-      }
-
-      $scope.loadingBar = true;
-      // clears empty fields from filterObj
-      for (var key in $scope.filterObj) {
-        if ($scope.filterObj[key] == '') {
-          delete $scope.filterObj[key]
-        }
-      }
-      AnimeAPIFactory.browseBy($scope.filterObj)
-      .then(function(res) {
-        $scope.showArr      = res.data;
-        $scope.loading      = false;
-        $scope.loadingBar   = false;
-        if (res.data.error || res.data.length == 0) {
-          Materialize.toast('Sorry, there were no results.', 10000);
-          return;
-        }
-      })
-      .catch(function(err) {
-        $scope.loadingBar = false;
-        Materialize.toast('Sorry, there was an error. \
-          Reload the page or try again later', 10000);
-      });
-    });
 
   }
 ]);
