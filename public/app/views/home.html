@@ -10,8 +10,12 @@
 </div>
 
 <!-- TOP 5 SLIDER -->
-<div id="home-slider" class="slider" slider
-  ng-if="!loading" indicators="false"">
+<div 
+  id="home-slider" 
+  class="slider" slider
+  ng-if="!loading" 
+  height="400"
+  indicators="false">
   <ul class="slides">
     <li ng-repeat="show in top5">
       <img ng-src="{{ show.image_url_banner }}">
@@ -44,7 +48,7 @@
 </div>
 
 <!-- MAIN PAGE FILTERS -->
-<div class="row filter-bar advance-filter"
+<div class="row filter-bar advance-filter center-align"
   ng-if="!loading">
   <div>
     <!-- YEAR -->
