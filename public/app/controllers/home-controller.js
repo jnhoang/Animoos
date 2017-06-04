@@ -13,7 +13,7 @@ angular
     $scope.loadingBar   = false;
 
     // On Page Render
-    getTop5();
+    //getTop5();
 
     function getTop5() {
       var option = { sort: 'popularity-desc' };
@@ -76,6 +76,7 @@ angular
       AnimeAPIFactory.browseBy($scope.filterObj)
       .then(function(res) {
         $scope.showArr      = res.data;
+        $scope.loading      = false;
         $scope.loadingBar   = false;
         if (res.data.error || res.data.length == 0) {
           Materialize.toast('Sorry, there were no results.', 10000);

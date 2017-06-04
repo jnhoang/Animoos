@@ -16,18 +16,28 @@ angular
 
     return {
       // list of functions factory returns, see below for full function
-      getAnimeById: getAnimeById
-    , searchForAnime: searchForAnime  
-    , getCharById: getCharById
-    , browseBy: browseBy
+      getAnimeById:     getAnimeById
+    , searchForAnime:   searchForAnime
+    , getCharById:      getCharById
+    , browseBy:         browseBy
     }
   
     function browseBy(filterObj) {
-      return $http({
-        url: 'api/anilist/browse'
-      , method: 'GET'
-      , params: filterObj
-      });
+      if (JSON.stringify(filterObj) === '{"token_type":"Bearer","sort":"popularity-desc","page":1}') {
+        const deferred = $q.defer();
+        deferred.resolve(browseResults);
+        
+        return deferred.promise;
+      } 
+      else {
+        const httpPackage = {
+          url: 'api/anilist/browse'
+        , method: 'GET'
+        , params: filterObj
+        }
+
+        return $http(httpPackage);
+      }
     }
     // returns factory storage || api call for char data via a promise
     function getCharById(id) {
