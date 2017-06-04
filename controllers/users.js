@@ -44,8 +44,6 @@ router.route('/:id')
   // receives user id & update info
   // finds user by id and updates their info
   .put( (req, res) => {
-    console.log('put route, req.params: ', req.params);
-    console.log('put route, req.body: ', req.body);
     User.findByIdAndUpdate(req.params.id, req.body, (err) => {
       if (err) return res.status(500).send(err);
 

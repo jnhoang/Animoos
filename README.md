@@ -2,7 +2,7 @@
 A site that offers information on Anime. Use the search/filter system to review what you missed, check out the current offerings or check the actors behind the characters you love. [View Site](https://animoos.herokuapp.com/).
 
 ![Demo Image](/public/img/demo.png) 
-# Approach
+# Initial Approach
 ### Day 1 
 * Plan server structure and routes
 * Drew wireframes
@@ -63,7 +63,12 @@ GET | /browse | receives a query param of an object with filter specifications. 
 GET | /search/anime/:title| receives query param of an anime title, queries the API with the search term returns an array of objects that match the search term.
 GET | /page-data/anime/:id | receives query param of an anime id, queries the API and returns an object with the anime data
 GET | /page-data/character/:id | receives query param of an character id, queries the API and returns an object with the character data
-
+GET | /users | request for all users
+POST | /users | receives a user object, checks database for a user or creates a new user
+GET | /users/:id | receives an id and queries database for id
+PUT | /users/:id | receives an id and user object, queries database per id and updates with database content with the user object
+DELETE | users/:id | receives an id and queries database and deletes content matched to that id
+POST | /auth | used to assign JWT tokens
 # Issues
 * This was a project to practice CSS skills, making Angular and Materialize work together was difficult.
 * Creating a universal backend route to query the API proved difficult to make a route generic enough to handle the front-end request properly. The Anilist API also does not accept blank entries in their API queries and designing the call around that was interesting.
@@ -74,8 +79,7 @@ GET | /page-data/character/:id | receives query param of an character id, querie
 
 # Next Steps
 * Complete infinite scroll on main page or implement pagination for filter results
-* Optimize home page, heavily loaded with content produces slow navigation
-
+* Prettify user profile page
 
 # Resources Used
 * [Background used for shows that do not have a banner](http://www.nmgncp.com/anime-background-wallpaper/3663544.html)
