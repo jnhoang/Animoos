@@ -40,6 +40,8 @@ angular
       // Updates user db & local storage
       UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
       .then( (data) => {
+        console.log('data: ', data);
+        console.log('$scope.userInfo: ', $scope.userInfo)
         AuthFactory.updateUserInfo($scope.userInfo);
         Materialize.toast('added to ' + specifiedList, 3000) 
       })

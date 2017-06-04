@@ -22,12 +22,9 @@ angular
       return $http.get('/api/users' + id);
     }
     function getUserAll() {
-      console.log('user factory')
       return $http.get('/api/users');
     }
     function userUpdate(id, userObj) {
-      console.log(id)
-      console.log('updating: ', userObj)
       return $http.put('/api/users/' + id, userObj);
     }
     function userDelete(id) {

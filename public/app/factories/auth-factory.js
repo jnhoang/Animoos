@@ -18,7 +18,7 @@ angular
     }
     function updateUserInfo(userObj) {
       let storageData = JSON.parse($window.localStorage['animoo.user']);
-      storageData.userInfo = userObj;
+      storageData.user = userObj;
       $window.localStorage['animoo.user'] = JSON.stringify(storageData);
     }
     function saveUserInfo(userObj) {
