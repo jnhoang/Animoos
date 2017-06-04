@@ -16,7 +16,7 @@ const app = express();
 // mongoose models and connection
 const mongoose = require('mongoose');
 const User = require('./models/user');
-mongoose.connect(/*process.env.MONGOLAB || */'mongodb://localhost/animoos');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/animoos');
 
 // set and use statements
 app.use(bodyParser.json());
