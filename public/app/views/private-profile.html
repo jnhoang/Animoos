@@ -16,7 +16,7 @@
               <div class="card row card-container results-panel">
                 <div class="row-title"><strong>To Watch</strong></div>
 
-                <div ng-repeat="animeObj in user.watchList|limitTo:6 track by $index">
+                <div ng-repeat="animeObj in user.watchList track by $index">
                   <div class="col s12 m4 l3 xl2">
                     <a ng-href="/anime/{{ animeObj.id }}">
                       <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
@@ -35,13 +35,6 @@
                     </a>
                   </div>
                 </div>
-                <p class="see-more right-align"
-                ng-if="user.watchList.length > 6">
-                  <a href=""
-                    data-target="" modal>
-                    <strong>See more...</strong>
-                  </a>
-                </p>
                 
               </div>
             </div>
@@ -54,7 +47,7 @@
               <div class="card row card-container results-panel">
                 <div class="row-title"><strong>Favorites</strong></div>
 
-                  <div ng-repeat="animeObj in user.favorites|limitTo:6 track by $index">
+                  <div ng-repeat="animeObj in user.favorites track by $index">
                     <div class="col s12 m4 l3 xl2">
                       <a ng-href="/anime/{{ animeObj.id }}">
                         <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
@@ -73,13 +66,7 @@
                       </a>
                     </div>
                   </div>
-                  <p class="see-more right-align"
-                  ng-if="user.favorites.length > 6">
-                    <a href=""
-                      data-target="" modal>
-                      <strong>See more...</strong>
-                    </a>
-                  </p>
+                  
               </div>
             </div>
           </div>

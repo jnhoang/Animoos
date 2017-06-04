@@ -19,8 +19,6 @@ angular
     // On Load functions
     // Check if user is currently logged in
     isLoggedIn();
-    // intialize Navbar fade animation onload
-
 
     // FUNCTIONS
     function isLoggedIn() {
@@ -40,7 +38,7 @@ angular
         // Used to change navbar
         $scope.username = data.user.username;
         $scope.loggedIn = true;
-        //$state.go('PrivateProfile', {username: $scope.username});
+        $state.go('PrivateProfile', {username: $scope.username});
 
       })
       .catch( (err) => {
@@ -55,7 +53,7 @@ angular
       $scope.username = '';
       $scope.loggedIn = false;
       Materialize.toast('OK Bye, see you again soon!', 3000);
-      //$state.go('Home')
+      $state.go('Home')
     }
   }
 ]);
