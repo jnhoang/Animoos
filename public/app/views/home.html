@@ -1,4 +1,5 @@
-<div 
+<!-- Nav Bar -->
+<div
   ng-if="!loading"
   ng-include="'app/views/partials/nav.html'">
 </div>
@@ -10,7 +11,7 @@
 
 <!-- TOP 5 SLIDER -->
 <div id="home-slider" class="slider" slider
-  ng-if="!loading" indicators="false" height="475">
+  ng-if="!loading" indicators="false"">
   <ul class="slides">
     <li ng-repeat="show in top5">
       <img ng-src="{{ show.image_url_banner }}">

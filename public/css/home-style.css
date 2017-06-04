@@ -47,9 +47,15 @@ footer {
   .navbar {
     height: 77px;
   }
+  .slider {
+    height: 30%;
+  }
 }
 
 /*Slider*/
+.slider { 
+  /*margin-top: 60px;*/
+}
 .cover-slider {
   height: 100%;
   width: 100%;

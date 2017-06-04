@@ -3,53 +3,36 @@ angular
 .factory('AuthFactory', [
   '$window'
 , function($window) {
-    let authStorage = {
-      token: ''
-    , UserInfo: {}
-    };
 
     return {
-      saveToken:      saveToken
-    , getToken:       getToken
-    , clearStorage:   clearStorage
+      clearStorage:   clearStorage
     , saveUserInfo:   saveUserInfo
     , getUserInfo:    getUserInfo
+    , getToken:       getToken
     , isLoggedIn:     isLoggedIn
-    , currentUser:    currentUser
     };
 
-    function saveToken(token) {
-      authStorage.token = token;
-    }
-    function getToken() {
-      return authStorage.token;
-    }
     function clearStorage() {
-      authStorage.token = '';
-      authStorage.UserInfo = {};
+      $window.localStorage.removeItem('animoo.user');
     }
     function saveUserInfo(userObj) {
-      authStorage.UserInfo = userObj;
+      let user = {
+        token: userObj.token
+      , userInfo: userObj.user
+      };
+      $window.localStorage['animoo.user'] = JSON.stringify(user);
     }
     function getUserInfo() {
-      return authStorage.UserInfo;
+      let user = $window.localStorage['animoo.user'];
+      return user ? JSON.parse(user).userInfo : false;
+    }
+    function getToken() {
+      let user = $window.localStorage['animoo.user'];
+      return user ? JSON.parse(user).token : null;
     }
     function isLoggedIn() {
-      return authStorage.token ? true : false;
-    }
-    function currentUser() {
-      if (!this.isLoggedIn) {
-        return false;
-      }
-
-      const token = this.getToken();
-      try {
-        const payload = JSON.parse($window.atob(token.split('.')[1]));
-        return payload;
-      }
-      catch(err) {
-        return false;
-      }
+      let token = this.getToken();
+      return token ? true : false;
     }
   }
 ]);

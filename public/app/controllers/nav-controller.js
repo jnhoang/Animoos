@@ -22,19 +22,18 @@ angular
 
     // FUNCTIONS
     function isLoggedIn() {
-      $scope.loggedIn = AuthFactory.isLoggedIn();
-      let userInfo = AuthFactory.getUserInfo();
-      $scope.username = userInfo.username;
+      $scope.loggedIn   = AuthFactory.isLoggedIn();
+      let userInfo      = AuthFactory.getUserInfo();
+      $scope.username   = userInfo.username;
     }
     $scope.login = () => {
       UserFactory.userLogin($scope.loginData)
       .then( (res) => {
+        // returns user obj & auth token
         let data = res.data;
-
         Materialize.toast('You are now signed in.', 3000);
         // Saves data in auth factory variables
-        AuthFactory.saveUserInfo(data.user);
-        AuthFactory.saveToken(data.token);
+        AuthFactory.saveUserInfo(data);
         // Used to change navbar
         $scope.username = data.user.username;
         $scope.loggedIn = true;

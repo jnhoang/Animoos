@@ -5,5 +5,4 @@ angular
 , 'AuthFactory'
 , function($scope, AuthFactory) {
     $scope.user = AuthFactory.getUserInfo();
-    console.log(AuthFactory.getUserInfo());
 }]);

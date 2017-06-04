@@ -23,12 +23,14 @@ angular
     }
   
     function browseBy(filterObj) {
+      // use saved data on initial home page load
       if (JSON.stringify(filterObj) === '{"token_type":"Bearer","sort":"popularity-desc","page":1}') {
         const deferred = $q.defer();
         deferred.resolve(browseResults);
         
         return deferred.promise;
       } 
+      // make external api call for other home page fi
       else {
         const httpPackage = {
           url: 'api/anilist/browse'

@@ -34,7 +34,7 @@ angular
     // auto API call on any change to filters
     $scope.$watchCollection('filterObj', function(newObj, oldObj) {
       // prevents premature API calls
-      if ($scope.filterObj.year && $scope.filterObj.year.length != 4) {
+      if ($scope.filterObj.year && $scope.filterObj.year.length !== 4) {
         return;
       }
       // notify user search in progress
