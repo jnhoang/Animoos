@@ -6,6 +6,10 @@ a.brand-logo {
   display: flex;
   font-family: 'Carter One', cursive;
 }
+footer {
+  width: 100%;
+  bottom: 0;
+}
 .logo {
   height: 64px;
   width: 64px;
