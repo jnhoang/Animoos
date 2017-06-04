@@ -37,12 +37,14 @@ angular
       }
 
       // Updates userObj & pushes anime to current user's list
-      $scope.userInfo[specifiedList].push(packageAnimeSaveData($scope.animeData));
-      AuthFactory.saveUserInfo($scope.userInfo);
+      $scope.userInfo[specifiedList].push(packageAnimeSaveData($scope.animeData));      
       
-      // Updates user db
+      // Updates user db & local storage
       UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
-      .then( (data) => Materialize.toast('added to ' + specifiedList, 3000) )
+      .then( (data) => {
+        AuthFactory.updateUserInfo($scope.userInfo);
+        Materialize.toast('added to ' + specifiedList, 3000) 
+      })
       .catch( (err) => Materialize.toast('Sorry, an error has occured', 3000) );
     }
 

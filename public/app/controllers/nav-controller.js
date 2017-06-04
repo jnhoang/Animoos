@@ -22,9 +22,13 @@ angular
 
     // FUNCTIONS
     function isLoggedIn() {
-      $scope.loggedIn   = AuthFactory.isLoggedIn();
-      let userInfo      = AuthFactory.getUserInfo();
-      $scope.username   = userInfo.username;
+      // checks if a user is currently logged in
+      // if logged in, stores user data 
+      $scope.loggedIn = AuthFactory.isLoggedIn();
+      
+      if ($scope.loggedIn) {
+        $scope.username = AuthFactory.getUserInfo().username;
+      }
     }
     $scope.login = () => {
       UserFactory.userLogin($scope.loginData)

@@ -5,26 +5,28 @@ angular
 , function($window) {
 
     return {
-      clearStorage:   clearStorage
-    , saveUserInfo:   saveUserInfo
-    , getUserInfo:    getUserInfo
-    , getToken:       getToken
-    , isLoggedIn:     isLoggedIn
+      clearStorage:     clearStorage
+    , updateUserInfo:   updateUserInfo
+    , saveUserInfo:     saveUserInfo
+    , getUserInfo:      getUserInfo
+    , getToken:         getToken
+    , isLoggedIn:       isLoggedIn
     };
 
     function clearStorage() {
       $window.localStorage.removeItem('animoo.user');
     }
+    function updateUserInfo(userObj) {
+      let storageData = JSON.parse($window.localStorage['animoo.user']);
+      storageData.userInfo = userObj;
+      $window.localStorage['animoo.user'] = JSON.stringify(storageData);
+    }
     function saveUserInfo(userObj) {
-      let user = {
-        token: userObj.token
-      , userInfo: userObj.user
-      };
-      $window.localStorage['animoo.user'] = JSON.stringify(user);
+      $window.localStorage['animoo.user'] = JSON.stringify(userObj);
     }
     function getUserInfo() {
       let user = $window.localStorage['animoo.user'];
-      return user ? JSON.parse(user).userInfo : false;
+      return user ? JSON.parse(user).user : false;
     }
     function getToken() {
       let user = $window.localStorage['animoo.user'];
