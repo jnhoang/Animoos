@@ -24,7 +24,6 @@ angular
     getAnimeData();
 
     if ($scope.isLoggedIn) {
-      console.log(AuthFactory.getUserInfo());
       $scope.userInfo = AuthFactory.getUserInfo();
     }
 
@@ -32,7 +31,6 @@ angular
       // checks if anime already on user's list
       if (checkIfOnList($scope.animeData, $scope.userInfo, specifiedList)) {
         Materialize.toast('Anime is already on your ' + specifiedList, 3000)
-        console.log('returned');
         return;
       }
 
