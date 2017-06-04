@@ -15,8 +15,8 @@ a.brand-logo {
   position: fixed;
   background-color: #00bcd4;
   z-index: 100;
-  transition: all 500ms;
 }
+
 .intro-words {
   width: 75%;
   text-shadow: -5px 7px 5px rgba(0, 0, 0, 0.3);
@@ -39,6 +39,9 @@ a.brand-logo {
 @media (max-width: 600px) {
   .intro-words {
     font-size: 6em;
+  }
+  .navbar {
+    height: 77px;
   }
 }
 
