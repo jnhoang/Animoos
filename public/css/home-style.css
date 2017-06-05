@@ -25,8 +25,9 @@ footer {
   .intro-words {
     font-size: 6em;
   }
-  .navbar {
-    height: 77px;
+  .navbar,
+  .nav-ul {
+    height: 60px;
   }
 }
 

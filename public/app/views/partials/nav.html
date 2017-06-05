@@ -2,10 +2,10 @@
   <!-- NAV BAR -->
   <nav class="navbar z-depth-0">
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo left"><img class="logo" src="./img/animoo.ico"><span>Animoos</span></a>
+      <a href="/" class="brand-logo left"><img class="logo" src="./img/animoo.ico"><span class="hide-on-small-only">Animoos</span></a>
       
       <!-- SEARCH BAR -->
-      <ul class="right cyan">
+      <ul class="right cyan nav-ul">
          <!-- WORKING AREA -->
         <li 
           ng-if="!loggedIn">
@@ -15,7 +15,6 @@
         </li>
         <li 
           ng-if="!loggedIn">
-
           <a
             href=""
             data-target="login-modal" modal>

@@ -8,7 +8,6 @@
   margin-bottom: 40px;
 }
 .show-banner {
-  margin-top: 75px;
   width: 100%;
   max-height: 50vh;
   object-fit: cover;
@@ -95,9 +94,16 @@
 @media(max-width: 600px) {
   .anime-title {
     font-size: 2em;
+    padding-top: 50px;
   }
   .modal-card {
     height: 90%;
+  }
+  img.responsive-img.show-banner {
+    height: 200px;
+  }
+  .banner-box {
+    margin-bottom: 15px;
   }
 }
 
