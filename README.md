@@ -13,39 +13,9 @@ A site that offers information on Anime. Use the search/filter system to review 
 ![2](/public/img/main2.png)
 
 ###### Description wireframe
+* Initial Wireframes
 ![1](/public/img/descrip1.png)
 ![1](/public/img/descrip2.png)
-
-
-
-### Day 2
-* Add skeleton structure
-* Setup server routes
-
-### Day 3
-* Developed front-end code and structure
-* Connected API data to front-end
-* Styling
-
-### Day 4 
-* Built Anime Description view
-* Styling
-
-### Day 5
-* Initiated search view
-* Initiated logic for filter system
-* Styling
-
-### Day 6
-* Completed search logic
-* Refactor server route code to handle more universal route calls
-* Completed styling decisions
-
-### Day 7
-* Moved filter system to main page results
-* Implemented ng-watch filter changes
-* Deployed site
-* Refactor front-end controller code
 
 # Technologies Used
 * AngularJS
