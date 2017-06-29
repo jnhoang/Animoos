@@ -20,6 +20,7 @@ angular
     $scope.getAnimeData     = getAnimeData;
     $scope.getCharById      = getCharById;
     $scope.addToList        = addToList;
+    
     // Run at page render
     getAnimeData();
 
@@ -28,6 +29,7 @@ angular
     }
 
     function addToList(specifiedList) {
+      
       // checks if anime already on user's list
       if (checkIfOnList($scope.animeData, $scope.userInfo, specifiedList)) {
         Materialize.toast('Anime is already on your ' + specifiedList, 3000)
@@ -39,13 +41,13 @@ angular
       
       // Updates user db & local storage
       UserFactory.userUpdate($scope.userInfo.id, $scope.userInfo)
-      .then( (data) => {
+      .then(function (data) {
         console.log('data: ', data);
         console.log('$scope.userInfo: ', $scope.userInfo)
         AuthFactory.updateUserInfo($scope.userInfo);
         Materialize.toast('added to ' + specifiedList, 3000) 
       })
-      .catch( (err) => Materialize.toast('Sorry, an error has occured', 3000) );
+      .catch(function (err) { Materialize.toast('Sorry, an error has occured', 3000); });
     }
 
     function getAnimeData() {
@@ -64,17 +66,17 @@ angular
       $scope.loadingModal = true;
 
       AnimeAPIFactory.getCharById(id)
-      .then((res) => {
+      .then(function (res) {
         $scope.loadingModal   = false;
         $scope.charData       = res;
       })
-      .catch( (err) => console.log(err.message) );
+      .catch(function (err) { console.log(err.message); });
     }
 
     function checkIfOnList(newAnime, user, listType) {
       let inListYet = false;
       console.log(user[listType])
-      user[listType].forEach( (anime) => {
+      user[listType].forEach( function(anime) {
         if (anime.id === newAnime.id) {
           inListYet = true;
           return;

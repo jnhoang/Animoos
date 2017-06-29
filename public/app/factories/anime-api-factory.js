@@ -15,6 +15,7 @@ angular
     };
 
     return {
+      
       // list of functions factory returns, see below for full function
       getAnimeById:     getAnimeById
     , searchForAnime:   searchForAnime
@@ -23,6 +24,7 @@ angular
     }
   
     function browseBy(filterObj) {
+      
       // use saved data on initial home page load
       if (JSON.stringify(filterObj) === '{"token_type":"Bearer","sort":"popularity-desc","page":1}') {
         const deferred = $q.defer();
@@ -30,6 +32,7 @@ angular
         
         return deferred.promise;
       } 
+      
       // make external api call for other home page fi
       else {
         const httpPackage = {
@@ -41,49 +44,58 @@ angular
         return $http(httpPackage);
       }
     }
+    
     // returns factory storage || api call for char data via a promise
     function getCharById(id) {
       const deferred = $q.defer();
       
       if (storage.charData[id]) {
+        
         // returns local data if available
         $log.debug('char id stored in cache', storage.charData[id]);
         deferred.resolve(storage.charData[id]);
       }
       else {
+        
         // api call for data, stores in local cache, returns local data
         $http.get('/api/anilist/page-data/character/' + id)
-        .then( (res) => { 
+        .then(function(res) { 
           storage.charData[id] = res.data;
           $log.debug('successfully fetched data from API for char id: ', id);
           deferred.resolve(storage.charData[id]);
         })
-        .catch( (err) => defer.reject(err) );
+        .catch(function(err){ defer.reject(err); });
       }
+      
       // returns promise
       return deferred.promise;
     } 
+    
     // returns factory storage || api call for anime data via a promise
     function getAnimeById(id) {
       const deferred = $q.defer();
 
       if (storage.animeData[id]) {
+        
         // returns local data if available
         $log.debug('anime id stored in cache', storage.animeData[id]);
         deferred.resolve(storage.animeData[id])
       }
       else {
+        
         // api call for data, stores in local cache, returns local data
         $http.get('/api/anilist/page-data/anime/' + id)
-        .then( (res) => {
+        .then(function(res) {
           storage.animeData[id] = res.data;
+          
           // formats return data for display
           adjustApiData(storage.animeData[id]);
           $log.debug('successfully fetched data from API for anime id: ', id);
           deferred.resolve(storage.animeData[id]);
         })
-        .catch( (err) => deferred.reject(err) );
+        .catch(function(err) { deferred.reject(err) });
       }
+      
       // returns promise
       return deferred.promise;
     }

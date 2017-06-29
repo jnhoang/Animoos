@@ -16,41 +16,49 @@ angular
     , password: ''
     };
 
-    // On Load functions
-    // Check if user is currently logged in
+    /*
+    **  On Load functions
+    **  Check if user is currently logged in
+    */
     isLoggedIn();
 
     // FUNCTIONS
     function isLoggedIn() {
-      // checks if a user is currently logged in
-      // if logged in, stores user data 
+      
+      /*
+      ** checks if a user is currently logged in
+      ** if logged in, stores user data 
+      */
       $scope.loggedIn = AuthFactory.isLoggedIn();
       
       if ($scope.loggedIn) {
         $scope.username = AuthFactory.getUserInfo().username;
       }
     }
-    $scope.login = () => {
+    $scope.login = function() {
       UserFactory.userLogin($scope.loginData)
-      .then( (res) => {
+      .then(function (res) {
+        
         // returns user obj & auth token
         let data = res.data;
         Materialize.toast('You are now signed in.', 3000);
+        
         // Saves data in auth factory variables
         AuthFactory.saveUserInfo(data);
+        
         // Used to change navbar
         $scope.username = data.user.username;
         $scope.loggedIn = true;
         $state.go('PrivateProfile', {username: $scope.username});
-
       })
-      .catch( (err) => {
+      .catch(function (err) {
         Materialize.toast('Error: ' + err.data.message, 3000);
         console.log(err.data.message);
       });
       $scope.loginData = {};
     }
-    $scope.logout = () => {
+    $scope.logout = function() {
+      
       // reset all stored data
       AuthFactory.clearStorage();
       $scope.username = '';

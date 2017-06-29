@@ -13,12 +13,12 @@ angular
     $scope.loadingBar   = false;
 
     // ADVANCE FILTER ASSETS
-
     $scope.genres = [
       'Genres', 'action', 'adventure', 'comedy', 'drama', 'fantasy', 'horror',
       'mahou shoujo', 'mecha', 'music', 'mystery', 'psychological', 'romance', 
       'sci fi', 'slice of life', 'sports'
     ];
+    
     // Initial API call
     $scope.filterObj = {
       token_type: 'Bearer'
@@ -33,10 +33,12 @@ angular
 
     // auto API call on any change to filters
     $scope.$watchCollection('filterObj', function(newObj, oldObj) {
+      
       // prevents premature API calls
       if ($scope.filterObj.year && $scope.filterObj.year.length !== 4) {
         return;
       }
+      
       // notify user search in progress
       $scope.loadingBar = true;
       

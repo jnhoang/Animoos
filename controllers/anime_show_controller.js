@@ -19,6 +19,7 @@ const accessTokenOptions = {
   , client_secret:  process.env.CLIENT_SECRET
   }
 }
+
 // General API call options
 const requestOptions  = {
   method: 'GET'
@@ -32,6 +33,7 @@ const requestOptions  = {
 const router = express.Router();
 
 // ROUTES
+
 // BROWSE
 router.get('/browse', function(req, res) {
   const browseObj = req.query;
@@ -45,8 +47,10 @@ router.get('/browse', function(req, res) {
   .catch((err) => errorMsg(res, err, 'checkAccessToken(), browseAnime') );
 })
 
-// SEARCH FOR SHOW BY :TITLE
-// Gets back array of possible shows
+/*
+** SEARCH FOR SHOW BY :TITLE
+** Gets back array of possible shows
+*/
 router.get('/search/anime/:title', (req, res) => {
   checkAccessToken()
   .then( () => {
@@ -78,6 +82,7 @@ router.get('/page-data/character/:id', function(req, res) {
   })
   .catch( (err) => errorMsg(res, err, 'checkAccessToken(), :CharID') );
 })
+
 // export
 module.exports = router;
 
@@ -93,6 +98,7 @@ function checkAccessToken(searchTerm) {
     .then( (data) => {
       const tokenData = data;
       token = tokenData.access_token;
+      
       // token expires after 1 hour
       expirationTime = tokenData.expires;
       console.log('success in checkAccessToken', tokenData)
