@@ -51,7 +51,7 @@ router.get('/browse', function(req, res) {
 ** SEARCH FOR SHOW BY :TITLE
 ** Gets back array of possible shows
 */
-router.get('/search/anime/:title', (req, res) => {
+router.get('/search/anime/:title', function(req, res) {
   checkAccessToken()
   .then(function() {
     searchShow(req.params.title)
