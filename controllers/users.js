@@ -8,9 +8,9 @@ const router = express.Router();
 router.route('/')
   
   // returns object of all users
-  .get( (req, res) => {
+  .get(function(req, res) {
     console.log('receiving request for all users: ', req.body);
-    User.find( (err, users) => {
+    User.find( function(err, users) {
       if (err) res.status(500).send(err);
 
       return res.send(users);
@@ -22,12 +22,12 @@ router.route('/')
   ** receives user object
   ** find the user first in case the email already exists
   */
-  .post( (req, res) => {
+  .post(function(req, res) {
     console.log('receiving request to post new user: ', req.body);
-    User.findOne({ username: req.body.username }, (err, user) => {
+    User.findOne({ username: req.body.username }, function(err, user) {
       if (user) return res.status(400).send({ message: 'Username or email already exists in the system' });
 
-      User.create(req.body, (err, user) => {
+      User.create(req.body, function(err, user) {
         if (err) return res.status(500).send(err);
 
         return res.send(user);
@@ -38,9 +38,9 @@ router.route('/')
 router.route('/:id')
   
   // receives id, finds single user by id
-  .get( (req, res) => {
+  .get(function(req, res) {
     console.log('receiving request for single user: ', req.body);
-    User.findById(req.params.id, (err, user) => {
+    User.findById(req.params.id, function(err, user) {
       if (err) return res.staus(500).send(err);
 
       return res.send(user);
@@ -51,8 +51,8 @@ router.route('/:id')
   ** receives user id & update info
   ** finds user by id and updates their info
   */
-  .put( (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, (err) => {
+  .put(function(req, res) {
+    User.findByIdAndUpdate(req.params.id, req.body, function(err) {
       if (err) return res.status(500).send(err);
 
       return res.send({ message: 'success' });
@@ -63,12 +63,12 @@ router.route('/:id')
   ** receives user id
   ** deletes specified user from db
   */
-  .delete( (req, res) => {
-    User.findByIdAndRemove(req.params.id, (err) => {
+  .delete(function(req, res) {
+    User.findByIdAndRemove(req.params.id, function(err) {
       if (err) return res.status(500).send(err);
 
       return res.send({ message: 'success' });
-    })
+    } )
   })
 
 module.exports = router;

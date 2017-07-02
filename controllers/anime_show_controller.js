@@ -39,12 +39,12 @@ router.get('/browse', function(req, res) {
   const browseObj = req.query;
 
   checkAccessToken()
-  .then( (tokenData) => { 
+  .then(function(tokenData) { 
     browseAnime(browseObj)
-    .then( (data) => res.send(data) )
-    .catch( (err) => errorMsg(res, err, 'browseAnime()') );
+    .then(function(data) { res.send(data); })
+    .catch(function(err) {errorMsg(res, err, 'browseAnime()'); });
   })
-  .catch((err) => errorMsg(res, err, 'checkAccessToken(), browseAnime') );
+  .catch(function(err) { errorMsg(res, err, 'checkAccessToken(), browseAnime'); });
 })
 
 /*
@@ -53,34 +53,34 @@ router.get('/browse', function(req, res) {
 */
 router.get('/search/anime/:title', (req, res) => {
   checkAccessToken()
-  .then( () => {
+  .then(function() {
     searchShow(req.params.title)
-    .then( (data) => res.send(data) )
-    .catch( (err) => errorMsg(res, err, 'searchShow()') );
+    .then(function(data) { res.send(data); })
+    .catch(function(err) { errorMsg(res, err, 'searchShow()'); });
   })
-  .catch( (err) => errorMsg(res, err, 'checkAccessToken(), :title') );
+  .catch( function(err) { errorMsg(res, err, 'checkAccessToken(), :title'); });
 })
 
 // GET SPECIFIC SHOW BY :ID
 router.get('/page-data/anime/:id', function(req, res) {
   checkAccessToken()
-  .then( () => {
+  .then(function() {
     getAnimeById(req.params.id)
-    .then( (data) => res.send(data) )
-    .catch( (err) => errorMsg(res, err, 'getAnimeById()') );
+    .then(function(data) { res.send(data); })
+    .catch(function(err) { errorMsg(res, err, 'getAnimeById()'); });
   })
-  .catch( (err) => errorMsg(res, err, 'checkAccessToken(), :ID') );
+  .catch( function(err) { errorMsg(res, err, 'checkAccessToken(), :ID'); });
 }) 
 
 // GET CHARACTER BY ID
 router.get('/page-data/character/:id', function(req, res) { 
   checkAccessToken()
-  .then( () => {
+  .then(function() {
     getCharById(req.params.id)
-    .then( (data) => res.send(data) )
-    .catch( (err) => errorMsg(res, err, 'getCharById()') );
+    .then( function(data) { res.send(data); })
+    .catch( function(err) { errorMsg(res, err, 'getCharById()'); });
   })
-  .catch( (err) => errorMsg(res, err, 'checkAccessToken(), :CharID') );
+  .catch( function(err) { errorMsg(res, err, 'checkAccessToken(), :CharID'); });
 })
 
 // export
@@ -95,7 +95,7 @@ function checkAccessToken(searchTerm) {
 
   if (!token || currentTime > expirationTime) {
     rp(accessTokenOptions)
-    .then( (data) => {
+    .then(function(data) {
       const tokenData = data;
       token = tokenData.access_token;
       
@@ -104,7 +104,7 @@ function checkAccessToken(searchTerm) {
       console.log('success in checkAccessToken', tokenData)
       deferred.resolve();
     })
-    .catch( (err) => deferred.reject(err) );
+    .catch(function(err) { deferred.reject(err); });
   } 
   else { 
     deferred.resolve(); 
@@ -119,8 +119,8 @@ function searchShow(searchTerm) {
   requestOptions.qs.access_token = token;
 
   rp(requestOptions)
-  .then( (data) => deferred.resolve(data) )
-  .catch( (err) => deferred.reject(err) );
+  .then(function(data) { deferred.resolve(data); })
+  .catch(function(err) { deferred.reject(err); });
 
   return deferred.promise;
 }
@@ -131,8 +131,8 @@ function getCharById(id) {
   requestOptions.qs.access_token = token;
 
   rp(requestOptions)
-  .then( (data) => deferred.resolve(data) )
-  .catch( (err) => deferred.reject(err) );
+  .then(function(data) { deferred.resolve(data); })
+  .catch(function(err) { deferred.reject(err); });
 
   return deferred.promise;
 }
@@ -143,8 +143,8 @@ function getAnimeById(id) {
   requestOptions.qs.access_token = token;
 
   rp(requestOptions)
-  .then( (data) => deferred.resolve(data) )
-  .catch( (err) => deferred.reject(err) );
+  .then( function(data) { deferred.resolve(data); })
+  .catch( function(err) { deferred.reject(err); });
   return deferred.promise;
 }
 
@@ -159,8 +159,8 @@ function browseAnime(qsObj) {
   requestOptions.qs     = qsObj
 
   rp(requestOptions)
-  .then( (data) => deferred.resolve(data) )
-  .catch( (err) => deferred.reject(err) );
+  .then(function(data) { deferred.resolve(data); })
+  .catch(function(err) { deferred.reject(err); });
 
   return deferred.promise;
 }

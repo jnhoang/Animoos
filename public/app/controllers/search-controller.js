@@ -16,6 +16,7 @@ angular
         return;
       }
       $scope.loadingBar = true;
+      
       // API call
       AnimeAPIFactory.searchForAnime($scope.searchTerm)
       .then(function(res) {
