@@ -14,7 +14,7 @@ angular
     $stateProvider
     .state('Home', {
       url: '/'
-    , templateUrl: 'app/views/home.html'
+    , templateUrl: 'app/home-page/home.html'
     , controller: 'HomeCtrl'
     })
     .state('Signup', {
@@ -24,12 +24,12 @@ angular
     })
     .state('AnimeDetail', {
       url: '/anime/:id'
-    , templateUrl: 'app/views/anime-page.html'
+    , templateUrl: 'app/single-anime-page/anime-page.html'
     , controller: 'AnimeDetailCtrl'
     })
     .state('Search', {
       url: '/search'
-    , templateUrl: 'app/views/search-results.html'
+    , templateUrl: 'app/search-page/search-results.html'
     , controller: 'SearchCtrl'
     })
     .state('PrivateProfile', {

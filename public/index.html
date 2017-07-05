@@ -22,6 +22,7 @@
 
   <body>
     <div ui-view></div>
+    
     <!-- JQuery for Materialize JS -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- Angular -->
@@ -41,16 +42,18 @@
     <script src="/app/app.js"></script>
     <!-- Initial Data -->
     <script src="/js/data.js"></script>
+
     <!-- CONTROLLERS -->
-    <script src="app/controllers/home-controller.js"></script>
-    <script src="app/controllers/anime-page-controller.js"></script>
-    <script src="app/controllers/search-controller.js"></script>
+    <script src="app/home-page/home-controller.js"></script>
+    <script src="app/single-anime-page/anime-page-controller.js"></script>
+    <script src="app/search-page/search-controller.js"></script>
     <script src="app/controllers/nav-controller.js"></script>
     <script src="app/controllers/signup-controller.js"></script>
     <script src="app/controllers/profile-controller.js"></script>
+
     <!-- DIRECTIVES -->
-    <script src="app/directives/top5-slider.js"></script>
-    <script src="app/directives/show-card.js"></script>
+    <script src="app/home-page/directives/top5-slider/top5-slider.js"></script>
+    <script src="app/home-page/directives/show-card/show-card.js"></script>
 
     <!-- FACTORIES -->
     <script src="app/factories/anime-api-factory.js"></script>

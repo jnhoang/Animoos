@@ -163,7 +163,7 @@
 
           
             <a href="/anime/{{ show.id }}">
-              <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
+              <div class="card z-depth-3 home-title-card" style="background-image: url({{show.image_url_lge}}); background-size: cover; ">
               <div class="related-info">
                 <p> 
                   Type: {{ show.type }}
@@ -216,13 +216,10 @@
 <!-- ****** -->
 
 <!-- Single Character Modal -->
-<div ng-include="'app/views/modals/single-char-modal.html'">
-</div>
+<div ng-include="'app/single-anime-page/modals/single-char-modal.html'"></div>
 
 <!-- All Character Modal -->
-<div ng-include="'app/views/modals/all-char-modal.html'">
-</div>
+<div ng-include="'app/single-anime-page/modals/all-char-modal.html'"></div>
 
 <!-- All Franchise Modal -->
-<div ng-include="'app/views/modals/all-franchise-modal.html'">
-</div>
+<div ng-include="'app/single-anime-page/modals/all-franchise-modal.html'"></div>
