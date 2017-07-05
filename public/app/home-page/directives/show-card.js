@@ -3,6 +3,6 @@ angular
 .directive('showCard', function(){
 	return {
 		scope: { animeObj: '=info'}
-	, templateUrl: './app/home-page/directives/show-card/show-card.html'
+	, templateUrl: './app/home-page/directives/show-card.html'
 	};
 });
