@@ -1,0 +1,30 @@
+<div 
+  id="home-slider" 
+  class="slider" slider
+  ng-if="!loading" 
+  height="400"
+  indicators="false">
+  <ul class="slides">
+    <li ng-repeat="show in top5">
+      <img ng-src="{{ show.image_url_banner }}">
+      <div class="cover-slider"></div>
+      <div class="caption left-align">
+        
+        <h3 class="caption-text slider-title">{{ show.title_english }}</h3>
+        <h5 class="caption-text">
+          {{ show.average_score }}%
+        </h5>
+        <h5>
+          <span ng-repeat="genre in show.genres">
+            {{ genre }} 
+          </span>
+        </h5>
+        <p>
+          <a ng-href="/anime/{{ show.id }}"
+            class="waves-effect waves-light slider-btn btn">Learn More</a>
+        </p>
+
+      </div>
+    </li>
+  </ul>
+</div>
