@@ -117,23 +117,7 @@
   class="card-panel results-panel">
   <div class="row">
     <div ng-repeat="animeObj in showArr track by $index">
-      <div class="col s12 m4 l3 xl2">
-        <a ng-href="/anime/{{ animeObj.id }}">
-          <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
-              <h5 class="cover-title">
-                {{ animeObj.title_english }}
-              </h5>
-            <h5 class="center more-info-indicator">
-              <i class="fa fa-chevron-up" aria-hidden="true"></i>
-            </h5>
-
-            <div class="cover-info"></div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4"><i class="fa fa-times right" aria-hidden="true"></i></span>
-            </div>
-          </div>
-        </a>
-      </div>
+      <show-card info="animeObj"></show-card>
     </div>
   </div>
 </div>

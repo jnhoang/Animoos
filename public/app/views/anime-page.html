@@ -159,12 +159,11 @@
           In the Franchise
         </div>
          <div ng-repeat="show in animeData.relations|limitTo:4 track by $index">
-
           <div class="col s12 m4 l3 xl2">
+
+          
             <a href="/anime/{{ show.id }}">
-              <div class="card z-depth-2 home-title-card">
-                <img class="title-img-lg"
-                  ng-src="{{ show.image_url_lge }}">
+              <div class="card z-depth-3 home-title-card" style="background-image: url({{animeObj.image_url_lge}}); background-size: cover; ">
               <div class="related-info">
                 <p> 
                   Type: {{ show.type }}
