@@ -88,6 +88,10 @@ footer {
   height: 325px;
   overflow: hidden;
 }
+.home-title-card:hover .cover-title {
+  color: #00e5ff;
+}
+
 @media (min-width: 600px) and (max-width: 775px)
 , (min-width: 1200px) and (max-width: 1425px) {
   .home-title-card{ 
@@ -127,9 +131,6 @@ footer {
   font-size: 1.25em;
   text-align: center;
   text-shadow: 0 0 1px black;
-}
-.cover-title:hover {
-  color: #00e5ff;
 }
 .more-info-indicator {
   z-index: 5;
