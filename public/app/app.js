@@ -38,7 +38,10 @@ angular
     , controller: 'ProfileCtrl'
     })
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+      enabled: true
+    , requiredBase: false
+    });
 
   }
 ])

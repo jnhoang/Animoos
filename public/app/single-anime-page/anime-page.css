@@ -55,6 +55,12 @@
   padding: 25px;
   text-align: justify;
 }
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .card-container {
   padding: 20px;
 }
@@ -69,6 +75,7 @@
   height: 100%;
   width: 100%;
 }
+
 .card-content.char-name {
   height: 60px;
   padding: 5px 10px 10px 10px;
