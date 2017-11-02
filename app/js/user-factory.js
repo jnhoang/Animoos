@@ -4,12 +4,12 @@ angular
   '$http'
 , function($http) {
     return {
-      userLogin:        userLogin
-    , userSignup:       userSignup
-    , getUserSingle:    getUserSingle
-    , getUserAll:       getUserAll
-    , userUpdate:       userUpdate
-    , userDelete:       userDelete
+      userLogin:        userLogin,
+      userSignup:       userSignup,
+      getUserSingle:    getUserSingle,
+      getUserAll:       getUserAll,
+      userUpdate:       userUpdate,
+      userDelete:       userDelete
     };
 
     function userLogin(userObj) {
