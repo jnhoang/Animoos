@@ -1,0 +1,24 @@
+{
+  "name": "Animoos",
+  "homepage": "https://github.com/jnhustin/Animoos",
+  "authors": [
+    "jnhustin <jnhustin@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "3.1.1",
+    "angular-ui-router": "^1.0.10",
+    "angular-resource": "^1.6.6",
+    "materialize": "^0.100.2"
+  }
+}

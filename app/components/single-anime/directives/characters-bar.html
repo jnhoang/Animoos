@@ -1,0 +1,27 @@
+<div class="card single-char z-depth-2">
+  <a 
+    href          = ""
+    data-target   = "charModal" 
+    ng-click      = "getCharById(char.id)"
+    modal >
+    
+    <img 
+      class     = "char-staff-img"
+      ng-show   = "!showActor"
+      ng-src    = "{{ char.image_url_med }}">
+    <img 
+      class     = "char-staff-img"
+      ng-show   = "showActor"
+      ng-src="{{ char.actor[0].image_url_med }}">
+  </a>
+
+  <div class="card-content char-name">
+    <p class ="truncate">{{ char.name_first }} {{ char.name_last }}</p>
+    <p 
+      ng-mouseenter   = "showActor = true"
+      ng-mouseleave   = "showActor = false"
+      class           = "truncate">
+      {{ char.actor[0].name_first}} {{char.actor[0].name_last }}
+    </p>
+  </div>
+</div>

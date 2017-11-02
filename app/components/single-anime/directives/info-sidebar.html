@@ -1,0 +1,34 @@
+<div class="card anime-side-bar">
+
+  <!-- BASIC INFO -->
+  <h5 class="center-align"><strong>Alternative Titles</strong></h5>
+  <div class="divider"></div>
+  
+  <p>Japanese title: {{ animeData.title_japanese }}</p>
+  <p>Romaji title: {{ animeData.title_romaji }}</p>
+  
+  <h5 class="center-align"><strong>Information</strong></h5>
+  <div class="divider"></div>
+  
+  <p>Total Episodes   : {{ animeData.total_episodes }}</p>
+  <p>Duration         : {{ animeData.duration }}mins</p>
+  <p>Average Score    : {{ animeData.average_score }}%</p>
+  <p>Airing Status    : {{ animeData.airing_status }}</p>
+  <p>Originally Aired : {{ animeData.start_date_fuzzy }}</p>
+  <p>
+    Studios: <span ng-repeat="studio in animeData.studio track by $index">{{ studio.studio_name }} </span> 
+  </p>
+  <p>
+    Genres: <span ng-repeat="genre in animeData.genres track by $index">{{ genre }} </span>
+  </p>
+
+  <!-- EXTERNAL LINKS -->
+  <h5 class="center-align"><strong>External Links</strong></h5>
+  <div class="divider"></div>
+
+  <p 
+    class       = ""
+    ng-repeat   = "service in animeData.external_links">
+    <a href = "{{ service.url }}">{{ service.site }}</a>
+  </p>
+</div>

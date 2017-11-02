@@ -1,41 +1,68 @@
 // requires and global variables
 require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const rp = require('request-promise');
+var express     = require('express');
+var bodyParser  = require('body-parser');
+var path        = require('path');
+var rp          = require('request-promise');
 
 // JSON web token dependencies
-const expressJWT = require('express-jwt');
-const jwt = require('jsonwebtoken');
-const secret = process.env.JWT_SECRET;
+var expressJWT  = require('express-jwt');
+// var jwt         = require('jsonwebtoken');
+var secret      = process.env.JWT_SECRET;
 
-const app = express();
+var app = express();
 
+/* CONFIG */
+var config = {
+  bodyParserOption  : { extended : false  },
+  expressJwtOption  : { secret   : secret },
+  securityOption    : {
+    path: [
+      { 
+        url       : '/api/users/signup',
+        methods   : ['POST']
+      },
+      {
+        url       : '/api/users/login',
+        methods   : ['POST']
+      }
+    ]
+  }
+};
 
 // mongoose models and connection
-const mongoose = require('mongoose');
-const User = require('./models/user');
+var mongoose  = require('mongoose');
+var User      = require('./models/user');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/animoos');
 
 // set and use statements
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded(config.bodyParserOption));
+app.use(express.static(path.join(__dirname, 'app')));
 app.use(require('morgan')('dev'));
 
 // routes
 // controllers
-app.use('/api/users', expressJWT({secret: secret})
-  .unless({
-    path: [{ url: '/api/users', methods: ['POST'] }]
-  }), require('./controllers/users'));
+app.use(
+  '/api/users', 
+  expressJWT(config.expressJwtOption).unless(config.securityOption), 
+  require('./controllers/users')
+);
+
 
 app.use('/api/anilist', require('./controllers/anime_show_controller'));
 
+
+/* Unauthorized Access Catch */
 app.use(function (err, req, res, next) {
+  var statusMsg401 = {
+    message: 'You need an authorization token to view this information.'
+  };
+
   if (err.name === 'UnauthorizedError') {
-    res.status(401).status({ message: 'You need an authorization token to view this information.' });
+    res
+    .status(401)
+    .status(statusMsg401);
     console.log('unauthorized access')
   }
   if (err) {
@@ -43,26 +70,10 @@ app.use(function (err, req, res, next) {
   }
 });
 
-// if Authenticated, returns a sugned JWT
-app.post('/api/auth', (req, res) => {
-  User.findOne({ username: req.body.username }, (err, user) => {
-    // returns 401 if error or not a user
-    if (err || !user) return res.status(401).send({ message: 'User not found' });
-    // checks provided password against db password
-    const isAuthenticated = user.authenticated(req.body.password);
-    // returns 401 if error or bad password
-    if (err || !isAuthenticated) return res.status(401).send({ message: 'User not authenticated'});
-    // all checks cleared, creates new jwt token
-    const token = jwt.sign(user.toJSON(), secret);
-    
-    // returns token
-    return res.send({ user: user, token: token });
-  });  
-});
 
 // Angular route
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'app/index.html'));
 });
 
 // listen
