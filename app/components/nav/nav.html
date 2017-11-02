@@ -1,0 +1,81 @@
+<div ng-controller="NavCtrl">
+  <!-- NAV BAR -->
+  <nav class="navbar z-depth-0">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo left"><img class="logo" src="./img/animoo.ico"><span class="hide-on-small-only">Animoos</span></a>
+      
+      <!-- SEARCH BAR -->
+      <ul class="right cyan nav-ul">
+         <!-- WORKING AREA -->
+        <li 
+          ng-if="!loggedIn">
+          <a href="/signup">
+          Sign up
+          </a>
+        </li>
+        <li 
+          ng-if="!loggedIn">
+          <a
+            href=""
+            data-target="login-modal" modal>
+            Log in
+          </a>
+        </li>
+        <li 
+          ng-if="loggedIn">
+          <a ng-href="/profile/{{username}}" >{{username}}</a>
+        </li>
+        <li
+          ng-if="loggedIn">
+          <a href="" ng-click="logout()">Logout</a>
+        </li>
+        <li>
+          <a href="/search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Login Modal -->
+  <!-- <div ng-include="'app/views/modals/login-modal.html'">
+  </div> -->
+  <div 
+    class="modal modal-card"
+    id="login-modal">
+    <div class="modal-content">
+      <form>
+        <h4>Login</h4>
+        <div>
+          <label for="username">Username</label>
+          <input type="text" 
+            required="true" 
+            id="username" 
+            ng-model="loginData.username">
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" 
+            required="true" 
+            placeholder="*******"
+            id="password" 
+            ng-model="loginData.password">
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button 
+        ng-click="login()" 
+        class="modal-action modal-close waves-effect btn-flat cyan white-text">
+        Login
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="wallpaper">
+  <div class="wallpaper-filter"></div>
+</div>
+

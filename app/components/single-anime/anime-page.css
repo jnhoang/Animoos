@@ -1,0 +1,115 @@
+.top-margin {
+  margin-top: 75px;
+}
+.banner-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.show-banner {
+  width: 100%;
+  max-height: 50vh;
+  object-fit: cover;
+}
+.anime-title {
+  margin: 0;
+  position: absolute;
+  color: white;
+  text-align: center;
+  text-shadow: 0 0 50px black;
+}
+.custom-container {
+  width: 90%;
+}
+.anime-display-loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.anime-side-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.anime-side-bar {
+  padding: 15px;
+}
+.row-title {
+  padding: 0 0 10px 10px;
+  line-height: 1.5;
+  font-size: 1.5em;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+.img-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-btn {
+  margin: -10px 0 25px 0;
+}
+.anime-desc {
+  margin-top: 0;
+  padding: 25px;
+  text-align: justify;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.card-container {
+  padding: 20px;
+}
+.single-char {
+  padding: 0;
+  display: inline-block;
+  width: 100%;
+  min-height: 225px;
+}
+.char-staff-img {
+  min-height: 185px;
+  height: 100%;
+  width: 100%;
+}
+
+.card-content.char-name {
+  height: 60px;
+  padding: 5px 10px 10px 10px;
+}
+.see-more {
+  margin: 0;
+  clear: both;
+}
+.related-info {
+  top: 0;
+  z-index: 1;
+  padding: 20px;
+  position: absolute;
+  text-shadow: 0 0 15px black;
+  color: white;
+}
+/*Modal*/
+.modal-card {
+  width: 80%;
+  padding: 25px;
+  text-align: justify;
+}
+@media(max-width: 600px) {
+  .anime-title {
+    font-size: 2em;
+  }
+  .modal-card {
+    height: 90%;
+  }
+  img.responsive-img.show-banner {
+    height: 200px;
+  }
+  .banner-box {
+    margin-bottom: 15px;
+  }
+}
+

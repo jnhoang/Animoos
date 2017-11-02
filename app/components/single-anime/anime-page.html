@@ -1,0 +1,174 @@
+<div 
+  ng-if="!loading"
+  ng-include="'app/views/partials/nav.html'">
+</div>
+
+<!-- LOADING SPINNER -->
+<div ng-if="loading" class="preloader-wrapper big active anime-display-loading">
+  <div class="spinner-layer spinner-green-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+<!-- banner -->
+<div ng-if="!loading" class="banner-box top-margin">
+  
+  <img ng-if="animeData.image_url_banner != null"
+    class="responsive-img show-banner" 
+    src="{{animeData.image_url_banner}}">
+  <img ng-if="animeData.image_url_banner == null"
+    class="responsive-img show-banner"
+    src="https://res.cloudinary.com/dxumleria/image/upload/v1492708840/3663544-anime-background-wallpaper_zt9hqg.jpg">
+  <h1 class="anime-title">{{ animeData.title_english}}</h1>
+  
+</div>
+
+<div ng-if="!loading" class="container custom-container">
+
+  <!-- ROW 1  -->
+  <div class="row">
+
+    <div class="col s12 m3 center-align img-box">
+      <!-- COVER -->
+      <img class="responsive-img z-depth-4"
+        ng-src="{{ animeData.image_url_lge }}">
+      <!-- Add to List -->
+      <a 
+        class="dropdown-button btn add-btn green" 
+        href="" 
+        data-activates="addToList" 
+        dropdown data-hover="true"
+        ng-if="isLoggedIn">
+        Add to <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </a>
+
+      <!-- Dropdown Structure -->
+      <ul 
+        class="dropdown-content"
+        id="addToList">
+          <li>
+            <a href="" ng-click="addToList('watchList')">Watch List</a>
+          </li>
+          <li>
+            <a href="" ng-click="addToList('favorites')">Favorites</a>
+          </li>
+      </ul>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="col s12 m9">
+
+      <div class="card anime-desc">
+        <span class="card-title"><strong>Synopsis</strong></span>
+        <p ng-bind-html="animeData.description"></p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="row">
+    <!-- SIDEBAR -->
+    <div class="col s12 m3">
+      <info-sidebar info="animeData"></info-sidebar>
+    </div>
+
+    <!-- CHARACTERS -->
+    <div class="col s12 m9">
+      <div class="card row card-container">
+
+        <div class="row-title">Characters</div>
+        <!-- Individual chars -->
+        <div ng-repeat="char in animeData.characters|limitTo:6">
+          <div class="col s6 m4 l2">
+            <chars-bar info="char"></chars-bar>
+          </div>
+        </div>
+
+        <p class="see-more right-align"
+          ng-if="animeData.characters.length > 6">
+          <a href=""
+            data-target="allCharModal" modal>
+            <strong>See more...</strong>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3 -->
+  <div class="row">
+    <!-- RELATED SHOWS -->
+    <div class="col s12">
+      <div class="card row card-container">
+        <div class="row-title"
+          ng-if="animeData.relations != 0">
+          In the Franchise
+        </div>
+         <div ng-repeat="show in animeData.relations|limitTo:4 track by $index">
+          <div class="col s12 m4 l3 xl2">
+
+          
+            <a href="/anime/{{ show.id }}">
+              <div class="card z-depth-3 home-title-card" style="background-image: url({{show.image_url_lge}}); background-size: cover; ">
+              <div class="related-info">
+                <p> 
+                  Type: {{ show.type }}
+                </p>
+                <p>
+                  Avg Score: {{ show.average_score }}%
+                </p>
+                <p>
+                  Relation: {{ show.relation_type }}
+                </p>
+              </div>
+              <h5 class="cover-title">
+                {{ show.title_english }}
+              </h5>
+              <div class="cover-info"></div>
+            </a>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="see-more right-align"
+          ng-if="animeData.relations.length > 4">
+          <a href=""
+            data-target="allFranchise" modal>
+            <strong>See more...</strong>
+          </a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+    
+  </div>
+</div> <!-- End of Container -->
+
+<!-- ROW 4 -->
+<div>
+  <!-- previously viewed items -->
+</div>
+
+<!-- Footer -->
+<div 
+  ng-include="'app/views/partials/footer.html'"
+  ng-if="!loading">
+</div>
+
+<!-- ****** -->
+<!-- MODALS -->
+<!-- ****** -->
+
+<!-- Single Character Modal -->
+<div ng-include="'app/single-anime-page/modals/single-char-modal.html'"></div>
+
+<!-- All Character Modal -->
+<div ng-include="'app/single-anime-page/modals/all-char-modal.html'"></div>
+
+<!-- All Franchise Modal -->
+<div ng-include="'app/single-anime-page/modals/all-franchise-modal.html'"></div>
