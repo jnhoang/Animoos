@@ -1,11 +1,12 @@
 <!-- Nav Bar -->
 <div
-  ng-if="!loading"
-  ng-include="'app/views/partials/nav.html'">
+  ng-if       = "!loading"
+  ng-include  = "'app/views/partials/nav.html'">
 </div>
 <!-- LOADING BAR -->
-<div class="progress loadingBar"
-  ng-if="loading">
+<div 
+  class   = "progress loadingBar"
+  ng-if   = "loading">
   <div class="indeterminate"></div>
 </div>
 
@@ -13,36 +14,43 @@
 <top-slider info="top5"></top-slider>
 
 <!-- LOADING BAR -->
-<div class="progress loadingBar"
-  ng-class="{'invisible': !loadingBar}">
+<div 
+  class     = "progress loadingBar"
+  ng-class  = "{'invisible': !loadingBar}">
   <div class="indeterminate"></div>
 </div>
 
 <!-- MAIN PAGE FILTERS -->
-<div class="row filter-bar advance-filter center-align"
-  ng-if="!loading">
+<div 
+  class  = "row filter-bar advance-filter center-align"
+  ng-if  = "!loading">
   <div>
+    <div>
+      <span class="fa fa-filter fa-2x"></span>
+    </div>
     <!-- YEAR -->
     <div class="col s5 m3 l2">
       <div input-field>
-        <input type="text"
-          ng-maxlength="4"
-          ng-model="filterObj.year"
-          placeholder="Year: e.g '2000'">
+        <input 
+          ng-maxlength  = "4"
+          ng-model      = "filterObj.year"
+          placeholder   = "Year: e.g '2000'"
+          type          = "text">
       </div>
     </div>
 
     <!-- SEASON -->
     <div class="col s5 m3 l2">
       <div class="filter-text" input-field>
-        <select class="filter-text"
-          ng-model="filterObj.season"
+        <select 
+          class    = "filter-text"
+          ng-model = "filterObj.season"
           material-select>
-          <option value="" selected >Season</option>
-          <option value="spring"    >Spring</option>
-          <option value="summer"    >Summer</option>
-          <option value="autumn"    >Autumn</option>
-          <option value="winter"    >Winter</option>
+          <option value   = "" selected >Season</option>
+          <option value   = "spring"    >Spring</option>
+          <option value   = "summer"    >Summer</option>
+          <option value   = "autumn"    >Autumn</option>
+          <option value   = "winter"    >Winter</option>
         </select>
       </div>
     </div>
@@ -50,17 +58,18 @@
     <!-- SORT -->
     <div class="col s5 m3 l2">
       <div input-field>
-        <select class="" 
-          ng-model="filterObj.sort"
+        <select 
+          class     = ""
+          ng-model  = "filterObj.sort"
           material-select>
-          <option value="" selected>Sort by</option>
-          <option value="id">Id</option>
-          <option value="score-desc">Score (Higest)</option>
-          <option value="score">Score (Lowest)</option>
-          <option value="popularity-desc">Popularity (Highest)</option>
-          <option value="popularity">Popularity (Lowest)</option>
-          <option value="start_date">Start Date</option>
-          <option value="end_date">End Date</option>
+          <option value   = ""       selected >Sort by</option>
+          <option value   = "id"              >Id</option>
+          <option value   = "score-desc"      >Score (Higest)</option>
+          <option value   = "score"           >Score (Lowest)</option>
+          <option value   = "popularity-desc" >Popularity (Highest)</option>
+          <option value   = "popularity"      >Popularity (Lowest)</option>
+          <option value   = "start_date"      >Start Date</option>
+          <option value   = "end_date"        >End Date</option>
         </select>
       </div>
     </div>
@@ -68,15 +77,16 @@
     <!-- TYPE -->
     <div class="col s5 m3 l2">
       <div input-field>
-        <select class="" 
-          ng-model="filterObj.type"
+        <select 
+          class     = ""
+          ng-model  = "filterObj.type"
           material-select>
-          <option value="" selected>Type</option>
-          <option value="tv">TV</option>
-          <option value="tv short">TV Short</option>
-          <option value="movie">Movie</option>
-          <option value="special">Special</option>
-          <option value="ova">OVA</option>
+          <option value   = "" selected >Type</option>
+          <option value   = "tv"        >TV</option>
+          <option value   = "tv short"  >TV Short</option>
+          <option value   = "movie"     >Movie</option>
+          <option value   = "special"   >Special</option>
+          <option value   = "ova"       >OVA</option>
         </select>
       </div>
     </div>
@@ -84,14 +94,15 @@
     <!-- STATUS -->
     <div class="col s5 m3 l2">
       <div input-field>
-        <select class="" 
-          ng-model="filterObj.status"
+        <select 
+          class     = ""
+          ng-model  = "filterObj.status"
           material-select>
-          <option value="" selected>Status</option>
-          <option value="finished airing">Finished Airing</option>
-          <option value="currently airing">Currently Airing</option>
-          <option value="not yet aired">Not Yet Aired</option>
-          <option value="cancelled">Cancelled</option>
+          <option value   = "" selected         >Status</option>
+          <option value   = "finished airing"   >Finished Airing</option>
+          <option value   = "currently airing"  >Currently Airing</option>
+          <option value   = "not yet aired"     >Not Yet Aired</option>
+          <option value   = "cancelled"         >Cancelled</option>
         </select>
       </div>
     </div>

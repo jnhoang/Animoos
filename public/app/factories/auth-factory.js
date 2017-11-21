@@ -5,12 +5,12 @@ angular
 , function($window) {
 
     return {
-      clearStorage:     clearStorage
-    , updateUserInfo:   updateUserInfo
-    , saveUserInfo:     saveUserInfo
-    , getUserInfo:      getUserInfo
-    , getToken:         getToken
-    , isLoggedIn:       isLoggedIn
+      clearStorage      : clearStorage
+    , updateUserInfo    : updateUserInfo
+    , saveUserInfo      : saveUserInfo
+    , getUserInfo       : getUserInfo
+    , getToken          : getToken
+    , isLoggedIn        : isLoggedIn
     };
 
     function clearStorage() {
