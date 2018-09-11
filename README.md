@@ -1,6 +1,12 @@
 # Animoos
 A site that offers information on Anime. Use the search/filter system to review what you missed, check out the current offerings or check the actors behind the characters you love. [View Site](https://animoos.herokuapp.com/).
 
+
+# Quickstart
+* db - mongod
+* frontend - nodemon
+* backend - node index.jx
+
 ![Demo Image](/public/img/demo.png) 
 # Initial Approach
 ### Day 1 
